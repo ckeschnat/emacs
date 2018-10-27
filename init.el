@@ -134,6 +134,11 @@
 (load "~/.emacs.d/chris-org")
   
   
+;; https://blog.aaronbieber.com/2016/08/07/getting-started-with-emacs-lisp.html
+(define-key lisp-interaction-mode-map (kbd "<C-return>") 'eval-last-sexp)
+(evil-define-key 'insert global-map (kbd "s-d") 'eval-last-sexp)
+(evil-define-key 'normal global-map (kbd "s-d") 'eval-defun)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
