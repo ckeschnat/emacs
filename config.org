@@ -130,7 +130,7 @@ Key bindings.
   ;:bind (:map ivy-mode-map  ; bind in the ivy buffer
   ;       ("C-'" . ivy-avy)) ; C-' to ivy-avy
   :config
-  (setq ivy-use-virtual-buffers t)   ; extend searching to bookmarks and ��
+  (setq ivy-use-virtual-buffers t)   ; extend searching to bookmarks and ¡­
   (setq ivy-height 20)               ; set height of the ivy window
   (setq ivy-count-format "(%d/%d) ") ; count format, from the ivy help page
   )
@@ -189,9 +189,394 @@ Key bindings.
 #+END_SRC
 
 * Org
+*** org-archive-subtree-hierarchical
 #+BEGIN_SRC emacs-lisp
-;; org
-(load "~/.emacs.d/chris-org")
+;; org-archive-subtree-hierarchical.el
+;; modified from https://lists.gnu.org/archive/html/emacs-orgmode/2014-08/msg00109.html
+
+;; In orgmode
+;; * A
+;; ** AA
+;; *** AAA
+;; ** AB
+;; *** ABA
+;; Archiving AA will remove the subtree from the original file and create
+;; it like that in archive target:
+
+;; * AA
+;; ** AAA
+
+;; And this give you
+;; * A
+;; ** AA
+;; *** AAA
+
+
+(require 'org-archive)
+
+(defun org-archive-subtree-hierarchical--line-content-as-string ()
+  "Returns the content of the current line as a string"
+  (save-excursion
+    (beginning-of-line)
+    (buffer-substring-no-properties
+    (line-beginning-position) (line-end-position))))
+
+(defun org-archive-subtree-hierarchical--org-child-list ()
+  "This function returns all children of a heading as a list. "
+  (interactive)
+  (save-excursion
+    ;; this only works with org-version > 8.0, since in previous
+    ;; org-mode versions the function (org-outline-level) returns
+    ;; gargabe when the point is not on a heading.
+    (if (= (org-outline-level) 0)
+        (outline-next-visible-heading 1)
+      (org-goto-first-child))
+    (let ((child-list (list (org-archive-subtree-hierarchical--line-content-as-string))))
+      (while (org-goto-sibling)
+        (setq child-list (cons (org-archive-subtree-hierarchical--line-content-as-string) child-list)))
+      child-list)))
+
+(defun org-archive-subtree-hierarchical--org-struct-subtree ()
+  "This function returns the tree structure in which a subtree
+belongs as a list."
+  (interactive)
+  (let ((archive-tree nil))
+    (save-excursion
+      (while (org-up-heading-safe)
+        (let ((heading
+              (buffer-substring-no-properties
+                (line-beginning-position) (line-end-position))))
+          (if (eq archive-tree nil)
+              (setq archive-tree (list heading))
+            (setq archive-tree (cons heading archive-tree))))))
+    archive-tree))
+
+(defun org-archive-subtree-hierarchical ()
+  "This function archives a subtree hierarchical"
+  (interactive)
+  (let ((org-tree (org-archive-subtree-hierarchical--org-struct-subtree))
+        (this-buffer (current-buffer))
+        (file (abbreviate-file-name
+              (or (buffer-file-name (buffer-base-buffer))
+                  (error "No file associated to buffer")))))
+    (save-excursion
+      (setq location (org-get-local-archive-location)
+            afile (org-extract-archive-file location)
+            heading (org-extract-archive-heading location)
+            infile-p (equal file (abbreviate-file-name (or afile ""))))
+      (unless afile
+        (error "Invalid `org-archive-location'"))
+      (if (> (length afile) 0)
+          (setq newfile-p (not (file-exists-p afile))
+                visiting (find-buffer-visiting afile)
+                buffer (or visiting (find-file-noselect afile)))
+        (setq buffer (current-buffer)))
+      (unless buffer
+        (error "Cannot access file \"%s\"" afile))
+      (org-cut-subtree)
+      (set-buffer buffer)
+      (org-mode)
+      (goto-char (point-min))
+      (while (not (equal org-tree nil))
+        (let ((child-list (org-archive-subtree-hierarchical--org-child-list)))
+          (if (member (car org-tree) child-list)
+              (progn
+                (search-forward (car org-tree) nil t)
+                (setq org-tree (cdr org-tree)))
+            (progn
+              (goto-char (point-max))
+              (newline)
+              (org-insert-struct org-tree)
+              (setq org-tree nil)))))
+      (newline)
+      (org-yank)
+      (when (not (eq this-buffer buffer))
+        (save-buffer))
+      (message "Subtree archived %s"
+              (concat "in file: " (abbreviate-file-name afile))))))
+
+(defun org-insert-struct (struct)
+  "TODO"
+  (interactive)
+  (when struct
+    (insert (car struct))
+    (newline)
+    (org-insert-struct (cdr struct))))
+
+(defun org-archive-subtree ()
+  (org-archive-subtree-hierarchical)
+  )
+#+END_SRC
+*** Rest
+#+BEGIN_SRC emacs-lisp
+;; (use-package org-super-agenda
+;;   :config (org-super-agenda-mode))
+
+;; (setq org-agenda-custom-commands
+;;       '(("c" "Super Agenda" agenda
+;;          (org-super-agenda-mode)
+;;          ((org-super-agenda-groups
+;;            '(
+;;              (:name "Next Items"
+;;                     :time-grid t
+;;                     :tag ("NEXT" "outbox"))
+;;              (:name "Important"
+;;                     :priority "A")
+;;              (:name "Today"
+;;                     :time-grid t
+;;                     :scheduled today)
+;;              (:name "Quick Picks"
+;;                     :effort < 00:30 ; ← that one doesn't seem to work, no?
+;;                     )
+;;              (:priority<= "B"
+;;                           :order 1)
+;;              )))
+;;          (org-agenda nil "a"))))
+;; (let ((org-super-agenda-groups
+;;        '(;; Each group has an implicit boolean OR operator between its selectors.
+;;          (:name "Today"  ; Optionally specify section name
+;;                 :time-grid t  ; Items that appear on the time grid
+;;                 :todo "TODAY")  ; Items that have this TODO keyword
+;;          (:name "Important"
+;;                 ;; Single arguments given alone
+;;                 :tag "bills"
+;;                 :priority "A")
+;;          ;; Set order of multiple groups at once
+;;          (:order-multi (2 (:name "Shopping in town"
+;;                                  ;; Boolean AND group matches items that match all subgroups
+;;                                  :and (:tag "shopping" :tag "@town"))
+;;                           (:name "Food-related"
+;;                                  ;; Multiple args given in list with implicit OR
+;;                                  :tag ("food" "dinner"))
+;;                           (:name "Personal"
+;;                                  :habit t
+;;                                  :tag "personal")
+;;                           (:name "Space-related (non-moon-or-planet-related)"
+;;                                  ;; Regexps match case-insensitively on the entire entry
+;;                                  :and (:regexp ("space" "NASA")
+;;                                                ;; Boolean NOT also has implicit OR between selectors
+;;                                                :not (:regexp "moon" :tag "planet")))))
+;;          ;; Groups supply their own section names when none are given
+;;          (:todo "WAITING" :order 8)  ; Set order of this section
+;;          (:todo ("SOMEDAY" "TO-READ" "CHECK" "TO-WATCH" "WATCHING")
+;;                 ;; Show this group at the end of the agenda (since it has the
+;;                 ;; highest number). If you specified this group last, items
+;;                 ;; with these todo keywords that e.g. have priority A would be
+;;                 ;; displayed in that group instead, because items are grouped
+;;                 ;; out in the order the groups are listed.
+;;                 :order 9)
+;;          (:priority<= "B"
+;;                       ;; Show this section after "Today" and "Important", because
+;;                       ;; their order is unspecified, defaulting to 0. Sections
+;;                       ;; are displayed lowest-number-first.
+;;                       :order 1)
+;;          ;; After the last group, the agenda will display items that didn't
+;;          ;; match any of these groups, with the default order position of 99
+;;          )))
+;;   (org-agenda nil "a"))
+
+
+(with-eval-after-load 'org
+    ;; here goes your Org config :)
+    ;; background colors for export http://ivanmalison.github.io/dotfiles/#setbackgroundcolorofsourceblocksforexport
+    (use-package org
+      :config
+      (progn
+        (defun imalison:org-inline-css-hook (exporter)
+          "Insert custom inline css to automatically set the
+  background of code to whatever theme I'm using's background"
+          (when (eq exporter 'html)
+            (let* ((my-pre-bg (face-background 'default))
+                  (my-pre-fg (face-foreground 'default)))
+              (setq
+              org-html-head-extra
+              (concat
+                org-html-head-extra
+                (format "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
+                        my-pre-bg my-pre-fg))))))
+
+        (add-hook 'org-export-before-processing-hook 'imalison:org-inline-css-hook)))
+
+    (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
+
+    (load "~/.spacemacs.d/org-archive-subtree-hierarchical")
+
+    (setq org-archive-location "archive/%s_archive::")
+
+    (setq org-startup-indented t)
+    (setq org-export-with-sub-superscripts nil)
+
+    (setq home-org-dir "c:/Users/NOBODY/Documents/Seafile/docs/org/")
+    (setq work-org-dir "c:/Users/chris.keschnat/Documents/docs/org/")
+    (setq org-agenda-files
+          (cond ((file-directory-p home-org-dir) (list home-org-dir))
+                ((file-directory-p work-org-dir) (list work-org-dir))
+          )
+    )
+
+    (setq org-agenda-text-search-extra-files '(agenda-archives))
+
+    ;; TODO(chris) use this?
+    ;; (setq org-publish-project-alist
+    ;;       '(("org"
+    ;;          :base-directory "c:/Users/NOBODY/Documents/Seafile/docs/org/"
+    ;;          :publishing-directory "c:/Users/NOBODY/Documents/Seafile/docs/org/html/"
+    ;;          :publishing-function org-html-publish-to-html
+    ;;          :section-numbers nil
+    ;;          :table-of-contents nil)))
+
+    (setq org-blank-before-new-entry '((heading . nil) (plain-list-item . auto)))
+
+    (setq org-enforce-todo-dependencies t)
+    (setq org-enforce-todo-checkbox-dependencies t)
+
+    (setq org-log-redeadline (quote time))
+    (setq org-log-reschedule (quote time))
+
+    (setq org-default-notes-file (concat (car org-agenda-files) "inbox.org"))
+    ;; More headings for refile
+    ;; (setq org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
+    (setq org-refile-targets '((nil :maxlevel . 9)
+                               (org-agenda-files :maxlevel . 9)))
+    (setq org-refile-use-outline-path 'file)              ; Show full paths for refiling
+    (setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
+
+    (setq helm-org-rifle-show-path t)
+    (setq org-refile-allow-creating-parent-nodes 'confirm)
+
+    (setq org-todo-keyword-faces
+          '(("TODO" . org-warning)
+            ("NEXT" . org-todo)
+            ("SOMEDAY" . (:foreground "moccasin" :weight bold))
+            ("WAITING" . (:foreground "lavender blush" :weight bold))
+            ("CANCELLED" . org-done)))
+
+    (setq org-todo-keywords
+          '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "SOMEDAY(s)" "|" "CANCELLED(c)" "DONE(d)")))
+    (setq org-tag-alist (quote (
+                                ("@home" . ?H)
+                                ("@work" . ?W)
+                                ("WAITING" . ?A)
+                                ("PERSONAL" . ?P)
+                                ("NOTE" . ?n)
+                                ("CANCELLED" . ?C)
+                                ("FLAGGED" . ??)
+                                ("watch" . ?w)
+                                ("read" . ?r)
+                                )))
+
+    (setq org-capture-templates
+          (quote (("t" "todo" entry (file "") "* TODO %?\n%U\n%a\n")
+                  ("n" "note" entry (file "") "* %? :NOTE:\n%U\n%a\n")
+                  )))
+
+    (add-to-list 'org-structure-template-alist
+                 (list "hh" (concat "#+SETUPFILE: themes/theme-readtheorg-local.setup\n"
+                                    "#+OPTIONS: html-postamble:nil num:nil\n"
+                                    "#+FILETAGS: ?\n")))
+
+    (add-to-list 'org-structure-template-alist
+                 (list "p" (concat ":PROPERTIES:\n"
+                                   "?\n"
+                                   ":END:")))
+
+    (add-to-list 'org-structure-template-alist
+                 (list "eh" (concat ":EXPORT_FILE_NAME: ?\n"
+                                    ":EXPORT_TITLE:\n"
+                                    ":EXPORT_OPTIONS: html-postamble:nil num:nil")))
+
+
+    (setq org-use-fast-todo-selection t)
+    (setq org-todo-state-tags-triggers
+          (quote (("CANCELLED" ("CANCELLED" . t))
+                  ("WAITING" ("WAITING" . t))
+                  (done ("WAITING"))
+                  ("TODO" ("WAITING") ("CANCELLED"))
+                  ("NEXT" ("WAITING") ("CANCELLED"))
+                  ("DONE" ("WAITING") ("CANCELLED")))))
+
+
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html
+    ;; maybe use https://github.com/alphapapa/org-super-agenda
+
+    (defun air-org-skip-subtree-if-priority (priority)
+      "Skip an agenda subtree if it has a priority of PRIORITY.
+
+      PRIORITY may be one of the characters ?A, ?B, or ?C."
+      (let ((subtree-end (save-excursion (org-end-of-subtree t)))
+            (pri-value (* 1000 (- org-lowest-priority priority)))
+            (pri-current (org-get-priority (thing-at-point 'line t))))
+        (if (= pri-value pri-current)
+            subtree-end
+          nil)))
+
+    ;; (setq org-agenda-custom-commands
+    ;;       '(("c" "Simple agenda view"
+    ;;          ((tags "PRIORITY=\"A\""
+    ;;                 ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+    ;;                  (org-agenda-overriding-header "High-priority unfinished tasks:")))
+    ;;           (agenda "")
+    ;;           (alltodo ""
+    ;;                    ((org-agenda-skip-function
+    ;;                      '(or (air-org-skip-subtree-if-priority ?A)
+    ;;                           (org-agenda-skip-if nil '(scheduled deadline))))))))))
+
+    (setq org-agenda-custom-commands
+          '(("d" "Daily agenda and all TODOs"
+             ((tags "PRIORITY=\"A\""
+                    ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                     (org-agenda-overriding-header "High-priority unfinished tasks:")))
+              (agenda "" ((org-agenda-span 'day)))
+              (alltodo ""
+                       ((org-agenda-skip-function '(or (air-org-skip-subtree-if-priority ?A)
+                                                       (org-agenda-skip-if nil '(scheduled deadline))))
+                        (org-agenda-overriding-header "ALL normal priority tasks:"))))
+             ((org-agenda-compact-blocks t)))))
+
+
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    ;; (setq org-agenda-custom-commands
+    ;;       (quote (("N" "Notes" tags "NOTE"
+    ;;                (
+    ;;                 (org-agenda-overriding-header "Notes")
+    ;;                 (org-tags-match-list-sublevels t)
+    ;;                 )
+    ;;                )
+    ;;              )
+    ;;       )
+    ;; )
+
+
+    (setq org-hide-emphasis-markers t)
+
+    (let* ((variable-tuple
+      (cond ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
+            ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
+            ((x-list-fonts "Verdana")         '(:font "Verdana"))
+            ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
+            (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
+      (base-font-color     (face-foreground 'default nil 'default))
+      (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
+
+     (custom-theme-set-faces
+     'user
+     `(org-level-8 ((t (,@headline ,@variable-tuple))))
+     `(org-level-7 ((t (,@headline ,@variable-tuple))))
+     `(org-level-6 ((t (,@headline ,@variable-tuple))))
+     `(org-level-5 ((t (,@headline ,@variable-tuple))))
+     `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
+     `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
+     `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.5))))
+     `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
+     `(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))))
+
+    ;; circles instead of dashes in lists
+    (font-lock-add-keywords 'org-mode
+                            '(("^ *\\([-]\\) "
+                               (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+)
 #+END_SRC
 *** htmlize
 To export to html.
