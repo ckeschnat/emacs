@@ -136,7 +136,7 @@ Key bindings.
   :prefix "SPC"
   :non-normal-prefix "M-SPC"
   ;; "/"   '(counsel-rg :which-key "ripgrep") ; You'll need counsel package for this
-  "TAB" '(switch-to-prev-buffer :which-key "previous buffer")
+  "TAB" '(spacemacs/alternate-buffer :which-key "previous buffer")
   "SPC" '(helm-M-x :which-key "M-x")
   "pf"  '(helm-find-files :which-key "find files")
   ;; Buffers
@@ -178,6 +178,26 @@ To export to html.
   :ensure t)
 #+END_SRC
 
+* Navigation
+#+BEGIN_SRC emacs-lisp
+(defun spacemacs/alternate-buffer (&optional window)
+  "Switch back and forth between current and last buffer in the
+current window."
+  (interactive)
+  (let ((current-buffer (window-buffer window))
+        (buffer-predicate
+         (frame-parameter (window-frame window) 'buffer-predicate)))
+    ;; switch to first buffer previously shown in this window that matches
+    ;; frame-parameter `buffer-predicate'
+    (switch-to-buffer
+     (or (cl-find-if (lambda (buffer)
+                       (and (not (eq buffer current-buffer))
+                            (or (null buffer-predicate)
+                                (funcall buffer-predicate buffer))))
+                     (mapcar #'car (window-prev-buffers window)))
+         ;; `other-buffer' honors `buffer-predicate' so no need to filter
+         (other-buffer current-buffer t)))))
+#+END_SRC
 * Custom
 Do not edit below here.
 
