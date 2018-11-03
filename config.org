@@ -15,14 +15,14 @@ https://huytd.github.io/emacs-from-scratch.html
 (setq inhibit-splash-screen t)
 #+END_SRC
 
-** Font
+*** Font
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'default-frame-alist '(font . "Liberation Mono"))
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(fullscreen . fullheight))
 #+END_SRC
 
-** Theme  
+*** Theme
 #+BEGIN_SRC emacs-lisp
 ;; Theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
@@ -80,6 +80,11 @@ https://huytd.github.io/emacs-from-scratch.html
   (setq-default evil-escape-key-sequence "fd")
   :config
   (evil-escape-mode 1))
+
+;; https://blog.aaronbieber.com/2016/08/07/getting-started-with-emacs-lisp.html
+(define-key lisp-interaction-mode-map (kbd "<C-return>") 'eval-last-sexp)
+(evil-define-key 'insert global-map (kbd "s-d") 'eval-last-sexp)
+(evil-define-key 'normal global-map (kbd "s-d") 'eval-defun)
 #+END_SRC
 
 * Helm
@@ -161,21 +166,16 @@ Key bindings.
 #+END_SRC
 
 * Org
-** htmlize
+#+BEGIN_SRC emacs-lisp
+;; org
+(load "~/.emacs.d/chris-org")
+#+END_SRC
+*** htmlize
 To export to html.
 
 #+BEGIN_SRC emacs-lisp
 (use-package htmlize
   :ensure t)
-
-;; org
-(load "~/.emacs.d/chris-org")
-
-
-;; https://blog.aaronbieber.com/2016/08/07/getting-started-with-emacs-lisp.html
-(define-key lisp-interaction-mode-map (kbd "<C-return>") 'eval-last-sexp)
-(evil-define-key 'insert global-map (kbd "s-d") 'eval-last-sexp)
-(evil-define-key 'normal global-map (kbd "s-d") 'eval-defun)
 #+END_SRC
 
 * Custom
