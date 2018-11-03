@@ -47,6 +47,9 @@ https://huytd.github.io/emacs-from-scratch.html
 ;; Disable backup files
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
+
+;; No lock files
+(setq create-lockfiles nil)
 #+END_SRC
 
 * Packages
