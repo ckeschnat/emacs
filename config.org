@@ -87,43 +87,6 @@ https://huytd.github.io/emacs-from-scratch.html
 (evil-define-key 'normal global-map (kbd "s-d") 'eval-defun)
 #+END_SRC
 
-* Helm
-#+BEGIN_SRC emacs-lisp
-;; Helm
-(use-package helm
-  :ensure t
-  :init
-  (setq helm-M-x-fuzzy-match t
-  helm-mode-fuzzy-match t
-  helm-buffers-fuzzy-matching t
-  helm-recentf-fuzzy-match t
-  helm-locate-fuzzy-match t
-  helm-semantic-fuzzy-match t
-  helm-imenu-fuzzy-match t
-  helm-completion-in-region-fuzzy-match t
-  helm-candidate-number-list 150
-  helm-split-window-in-side-p t
-  helm-move-to-line-cycle-in-source t
-  helm-echo-input-in-header-line t
-  helm-autoresize-max-height 0
-  helm-autoresize-min-height 20)
-  :config
-  (helm-mode 1))
-
-(global-set-key (kbd "M-x") #'helm-M-x)
-#+END_SRC
-
-* Which-key
-#+BEGIN_SRC emacs-lisp
-;; Which Key
-(use-package which-key
-  :ensure t
-  :init
-  (setq which-key-separator " ")
-  (setq which-key-prefix-prefix "+")
-  :config
-  (which-key-mode 1))
-#+END_SRC
 * General
 Key bindings.
 
@@ -137,12 +100,7 @@ Key bindings.
     :states '(normal visual insert emacs)
     :prefix "SPC"
     :non-normal-prefix "M-SPC"
-    ;; "/"   '(counsel-rg :which-key "ripgrep") ; You'll need counsel package for this
     "TAB" '(spacemacs/alternate-buffer :which-key "previous buffer")
-    "SPC" '(helm-M-x :which-key "M-x")
-    ;; Buffers
-    "b"  '(:ignore t :which-key "Buffers")
-    "bb"  '(helm-buffers-list :which-key "buffers list")
     ;; Window
     "w"  '(:ignore t :which-key "Windows")
     "wl"  '(windmove-right :which-key "move right")
@@ -152,15 +110,73 @@ Key bindings.
     "w/"  '(split-window-right :which-key "split right")
     "w-"  '(split-window-below :which-key "split bottom")
     "wd"  '(delete-window :which-key "delete window")
-    ;; Projectile
-    "p"  '(:ignore t :which-key "Projectile")
-    "pf"  '(helm-find-files :which-key "find files")
+    ;; Files
+    "f"  '(:ignore t :which-key "Files")
+    ;; Buffers
+    "b"  '(:ignore t :which-key "Buffers")
+    "bd"  '(kill-this-buffer :which-key "delete buffer")
+    ;; Search
+    "s"  '(:ignore t :which-key "Search")
     ;; Others
     "o"  '(:ignore t :which-key "Other")
-    "ot"  '(ansi-term :which-key "open terminal")
   ))
 #+END_SRC
 
+* Ivy
+#+BEGIN_SRC emacs-lisp
+(use-package ivy :ensure t
+  :diminish (ivy-mode . "") ; does not display ivy in the modeline
+  :init (ivy-mode 1)        ; enable ivy globally at startup
+  ;:bind (:map ivy-mode-map  ; bind in the ivy buffer
+  ;       ("C-'" . ivy-avy)) ; C-' to ivy-avy
+  :config
+  (setq ivy-use-virtual-buffers t)   ; extend searching to bookmarks and бн
+  (setq ivy-height 20)               ; set height of the ivy window
+  (setq ivy-count-format "(%d/%d) ") ; count format, from the ivy help page
+  )
+
+(general-define-key
+  :states '(normal visual insert emacs)
+  :prefix "SPC"
+  :non-normal-prefix "M-SPC"
+  "SPC" '(counsel-M-x :which-key "M-x")
+  ;; Buffers
+  "bb"  '(ivy-switch-buffer :which-key "buffers list")
+  ;; Files
+  "ff"  '(counsel-find-file :which-key "find files")
+  ;; Search
+  "ss"   '(swiper :which-key "swiper")
+  ;; "/"   '(counsel-rg :which-key "ripgrep") ; You'll need counsel package for this
+)
+
+; fuzzy matching except with swiper
+(setq ivy-re-builders-alist
+      '((swiper . ivy--regex-plus)
+        (t      . ivy--regex-fuzzy)))
+
+;(use-package avy :ensure t)
+(use-package counsel :ensure t
+;  :bind*                           ; load counsel when pressed
+;  (("M-x"     . counsel-M-x)       ; M-x use counsel
+;   ("C-x C-f" . counsel-find-file) ; C-x C-f use counsel-find-file
+;   ("C-x C-r" . counsel-recentf)   ; search recently edited files
+;   ("C-c f"   . counsel-git)       ; search for files in git repo
+;   ("C-c s"   . counsel-git-grep)  ; search for regexp in git repo
+;   ("C-c /"   . counsel-ag)        ; search for regexp in git repo using ag
+;   ("C-c l"   . counsel-locate))   ; search for files or else using locate
+  )
+#+END_SRC
+* Which-key
+#+BEGIN_SRC emacs-lisp
+;; Which Key
+(use-package which-key
+  :ensure t
+  :init
+  (setq which-key-separator " ")
+  (setq which-key-prefix-prefix "+")
+  :config
+  (which-key-mode 1))
+#+END_SRC
 * Projectile
 #+BEGIN_SRC emacs-lisp
 ;; Projectile
@@ -205,6 +221,44 @@ current window."
          ;; `other-buffer' honors `buffer-predicate' so no need to filter
          (other-buffer current-buffer t)))))
 #+END_SRC
+* Helm                                                             :noexport:
+#+BEGIN_SRC emacs-lisp :tangle no
+;; Helm
+(use-package helm
+  :ensure t
+  :init
+  (setq helm-M-x-fuzzy-match t
+  helm-mode-fuzzy-match t
+  helm-buffers-fuzzy-matching t
+  helm-recentf-fuzzy-match t
+  helm-locate-fuzzy-match t
+  helm-semantic-fuzzy-match t
+  helm-imenu-fuzzy-match t
+  helm-completion-in-region-fuzzy-match t
+  helm-candidate-number-list 150
+  helm-split-window-in-side-p t
+  helm-move-to-line-cycle-in-source t
+  helm-echo-input-in-header-line t
+  helm-autoresize-max-height 0
+  helm-autoresize-min-height 20)
+  :config
+  (helm-mode 1))
+
+(global-set-key (kbd "M-x") #'helm-M-x)
+
+(general-define-key
+  :states '(normal visual insert emacs)
+  :prefix "SPC"
+  :non-normal-prefix "M-SPC"
+  "SPC" '(helm-M-x :which-key "M-x")
+  ;; Buffers
+  "bb"  '(helm-buffers-list :which-key "buffers list")
+  ;; Files
+  "ff"  '(helm-find-files :which-key "find files")
+  ;; "/"   '(counsel-rg :which-key "ripgrep") ; You'll need counsel package for this
+)
+#+END_SRC
+
 * Custom
 Do not edit below here.
 
