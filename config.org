@@ -148,7 +148,7 @@ Key bindings.
   "wj"  '(windmove-down :which-key "move bottom")
   "w/"  '(split-window-right :which-key "split right")
   "w-"  '(split-window-below :which-key "split bottom")
-  "wx"  '(delete-window :which-key "delete window")
+  "wd"  '(delete-window :which-key "delete window")
   ;; Others
   "at"  '(ansi-term :which-key "open terminal")
 ))
