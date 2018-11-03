@@ -39,6 +39,7 @@ https://huytd.github.io/emacs-from-scratch.html
 #+END_SRC
 * Misc
 #+BEGIN_SRC emacs-lisp
+(setq-default buffer-file-coding-system 'utf-8-unix)
 ;; Show matching parens
 (setq show-paren-delay 0)
 (show-paren-mode 1)
