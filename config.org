@@ -189,6 +189,20 @@ Key bindings.
   :config
   (which-key-mode 1))
 #+END_SRC
+* Ranger
+#+BEGIN_SRC emacs-lisp
+(use-package ranger
+:ensure t
+:config
+
+  (general-define-key
+    :states '(normal visual insert emacs)
+    :prefix "SPC"
+    :non-normal-prefix "M-SPC"
+    "fr" '(ranger :which-key "Ranger")
+  )
+)
+#+END_SRC
 * Projectile
 #+BEGIN_SRC emacs-lisp
 ;; Projectile
