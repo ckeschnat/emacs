@@ -220,6 +220,13 @@ Key bindings.
 (use-package org
     :config
 #+END_SRC
+*** keybindings
+#+BEGIN_SRC emacs-lisp
+(general-define-key
+  :states '(normal emacs)
+  "RET" 'org-open-at-point
+)
+#+END_SRC
 *** Background colors for export
 #+BEGIN_SRC emacs-lisp
 ;; background colors for export http://ivanmalison.github.io/dotfiles/#setbackgroundcolorofsourceblocksforexport
@@ -442,6 +449,11 @@ belongs as a list."
 *** No superscripts
 #+BEGIN_SRC emacs-lisp
 (setq org-export-with-sub-superscripts nil)
+#+END_SRC
+*** src-blocks
+#+BEGIN_SRC emacs-lisp
+(setq org-src-fontify-natively t)
+(setq org-src-tab-acts-natively t)
 #+END_SRC
 *** Agenda
 #+BEGIN_SRC emacs-lisp
