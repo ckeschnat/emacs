@@ -67,7 +67,6 @@ https://huytd.github.io/emacs-from-scratch.html
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
-(setq package-enable-at-startup nil)
 #+END_SRC
 
 * Evil
@@ -193,6 +192,32 @@ Key bindings.
 #+END_SRC
 
 * Org
+*** use-package
+#+BEGIN_SRC emacs-lisp
+(use-package org
+    :config
+#+END_SRC
+*** Background colors for export
+#+BEGIN_SRC emacs-lisp
+;; background colors for export http://ivanmalison.github.io/dotfiles/#setbackgroundcolorofsourceblocksforexport
+    (progn
+    (defun imalison:org-inline-css-hook (exporter)
+        "Insert custom inline css to automatically set the
+        background of code to whatever theme I'm using's background"
+        (when (eq exporter 'html)
+        (let* ((my-pre-bg (face-background 'default))
+                (my-pre-fg (face-foreground 'default)))
+            (setq
+            org-html-head-extra
+            (concat
+            org-html-head-extra
+            (format "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
+                    my-pre-bg my-pre-fg))))))
+
+    (add-hook 'org-export-before-processing-hook 'imalison:org-inline-css-hook))
+
+(setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
+#+END_SRC
 *** org-super-agenda
 #+BEGIN_SRC emacs-lisp
 ;; (use-package org-super-agenda
@@ -378,29 +403,6 @@ belongs as a list."
 (defun org-archive-subtree ()
     (org-archive-subtree-hierarchical)
     )
-#+END_SRC
-*** Background colors for export
-#+BEGIN_SRC emacs-lisp
-;; background colors for export http://ivanmalison.github.io/dotfiles/#setbackgroundcolorofsourceblocksforexport
-(use-package org
-    :config
-    (progn
-    (defun imalison:org-inline-css-hook (exporter)
-        "Insert custom inline css to automatically set the
-        background of code to whatever theme I'm using's background"
-        (when (eq exporter 'html)
-        (let* ((my-pre-bg (face-background 'default))
-                (my-pre-fg (face-foreground 'default)))
-            (setq
-            org-html-head-extra
-            (concat
-            org-html-head-extra
-            (format "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
-                    my-pre-bg my-pre-fg))))))
-
-    (add-hook 'org-export-before-processing-hook 'imalison:org-inline-css-hook)))
-
-(setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
 #+END_SRC
 *** Archive location
 #+BEGIN_SRC emacs-lisp
@@ -590,6 +592,7 @@ belongs as a list."
 (font-lock-add-keywords 'org-mode
                         '(("^ *\\([-]\\) "
                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+) ;; END use-package org
 #+END_SRC
 *** htmlize
 To export to html.
