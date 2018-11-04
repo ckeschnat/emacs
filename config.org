@@ -83,7 +83,10 @@ https://huytd.github.io/emacs-from-scratch.html
   (setq-default evil-escape-key-sequence "fd")
   :config
   (evil-escape-mode 1)
+#+END_SRC
 
+*** TODO Should this be managed by general?
+#+BEGIN_SRC emacs-lisp
   ;; https://blog.aaronbieber.com/2016/08/07/getting-started-with-emacs-lisp.html
   (define-key lisp-interaction-mode-map (kbd "<C-return>") 'eval-last-sexp)
   (evil-define-key 'insert global-map (kbd "s-d") 'eval-last-sexp)
@@ -93,7 +96,7 @@ https://huytd.github.io/emacs-from-scratch.html
 
 * General
 Key bindings.
-
+**** TODO move some of these somewhere else
 #+BEGIN_SRC emacs-lisp
 ;; Custom keybinding
 (use-package general
@@ -152,6 +155,11 @@ Key bindings.
   "ss"   '(swiper :which-key "swiper")
   ;; "/"   '(counsel-rg :which-key "ripgrep") ; You'll need counsel package for this
 )
+
+(general-define-key
+  :states '(normal visual insert emacs)
+  "C-s" 'swiper
+  "M-x" 'counsel-M-x)
 
 ; fuzzy matching except with swiper
 (setq ivy-re-builders-alist
