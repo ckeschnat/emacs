@@ -3,55 +3,6 @@
 #+FILETAGS: emacs
 #+TITLE: Emacs config
 
-* UI
-https://huytd.github.io/emacs-from-scratch.html
-
-#+BEGIN_SRC emacs-lisp
-;; Minimal UI
-(scroll-bar-mode -1)
-(tool-bar-mode   -1)
-(tooltip-mode    -1)
-(menu-bar-mode   -1)
-(setq inhibit-splash-screen t)
-#+END_SRC
-
-*** Font
-#+BEGIN_SRC emacs-lisp
-(add-to-list 'default-frame-alist '(font . "Liberation Mono"))
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
-(add-to-list 'default-frame-alist '(fullscreen . fullheight))
-#+END_SRC
-
-*** Theme
-#+BEGIN_SRC emacs-lisp
-;; Theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-  (setq zenburn-override-colors-alist '(
-                                        ("zenburn-bg-05" . "#131818")
-                                        ("zenburn-bg-1" . "#6A714A")
-                                        ))
-(load-theme 'zenburn t)
-
-;;(use-package doom-themes
-;;  :ensure t
-;;  :config
-;;  (load-theme 'doom-one t))
-#+END_SRC
-* Misc
-#+BEGIN_SRC emacs-lisp
-(setq-default buffer-file-coding-system 'utf-8-unix)
-;; Show matching parens
-(setq show-paren-delay 0)
-(show-paren-mode 1)
-
-;; Disable backup files
-(setq make-backup-files nil) ; stop creating backup~ files
-(setq auto-save-default nil) ; stop creating #autosave# files
-
-;; No lock files
-(setq create-lockfiles nil)
-#+END_SRC
-
 * Packages and use-package
 #+BEGIN_SRC emacs-lisp
 ;; Package configs
@@ -69,6 +20,59 @@ https://huytd.github.io/emacs-from-scratch.html
 (require 'use-package)
 #+END_SRC
 
+* UI
+https://huytd.github.io/emacs-from-scratch.html
+
+#+BEGIN_SRC emacs-lisp
+;; Minimal UI
+(scroll-bar-mode -1)
+(tool-bar-mode   -1)
+(tooltip-mode    -1)
+(menu-bar-mode   -1)
+(setq inhibit-splash-screen t)
+#+END_SRC
+*** Font
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'default-frame-alist '(font . "Liberation Mono"))
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(add-to-list 'default-frame-alist '(fullscreen . fullheight))
+#+END_SRC
+
+*** Theme
+#+BEGIN_SRC emacs-lisp
+;; Theme
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(setq zenburn-override-colors-alist '(
+                                      ("zenburn-bg-05" . "#131818")
+                                      ("zenburn-bg-1" . "#6A714A")
+                                      ))
+(load-theme 'zenburn t)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (use-package doom-themes
+    :ensure t
+    :config
+    (load-theme 'doom-one t)
+    (doom-themes-org-config)
+  )
+
+#+END_SRC
+* Misc
+#+BEGIN_SRC emacs-lisp
+(setq-default buffer-file-coding-system 'utf-8-unix)
+;; Show matching parens
+(setq show-paren-delay 0)
+(show-paren-mode 1)
+
+;; Disable backup files
+(setq make-backup-files nil) ; stop creating backup~ files
+(setq auto-save-default nil) ; stop creating #autosave# files
+
+;; No lock files
+(setq create-lockfiles nil)
+#+END_SRC
+
 * Evil
 #+BEGIN_SRC emacs-lisp
 ;; Vim mode
@@ -82,18 +86,8 @@ https://huytd.github.io/emacs-from-scratch.html
   :init
   (setq-default evil-escape-key-sequence "fd")
   :config
-  (evil-escape-mode 1)
+  (evil-escape-mode 1))
 #+END_SRC
-
-*** TODO Should this be managed by general?
-#+BEGIN_SRC emacs-lisp
-  ;; https://blog.aaronbieber.com/2016/08/07/getting-started-with-emacs-lisp.html
-  (define-key lisp-interaction-mode-map (kbd "<C-return>") 'eval-last-sexp)
-  (evil-define-key 'insert global-map (kbd "s-d") 'eval-last-sexp)
-  (evil-define-key 'normal global-map (kbd "s-d") 'eval-defun)
-)
-#+END_SRC
-
 * General
 Key bindings.
 **** TODO move some of these somewhere else
@@ -318,121 +312,121 @@ Key bindings.
 #+END_SRC
 *** org-archive-subtree-hierachical
 #+BEGIN_SRC emacs-lisp
-;; org-archive-subtree-hierarchical.el
-;; modified from https://lists.gnu.org/archive/html/emacs-orgmode/2014-08/msg00109.html
+  ;; org-archive-subtree-hierarchical.el
+  ;; modified from https://lists.gnu.org/archive/html/emacs-orgmode/2014-08/msg00109.html
 
-;; In orgmode
-;; * A
-;; ** AA
-;; *** AAA
-;; ** AB
-;; *** ABA
-;; Archiving AA will remove the subtree from the original file and create
-;; it like that in archive target:
+  ;; In orgmode
+  ;; * A
+  ;; ** AA
+  ;; *** AAA
+  ;; ** AB
+  ;; *** ABA
+  ;; Archiving AA will remove the subtree from the original file and create
+  ;; it like that in archive target:
 
-;; * AA
-;; ** AAA
+  ;; * AA
+  ;; ** AAA
 
-;; And this give you
-;; * A
-;; ** AA
-;; *** AAA
+  ;; And this give you
+  ;; * A
+  ;; ** AA
+  ;; *** AAA
 
 
-(require 'org-archive)
+  (require 'org-archive)
 
-(defun org-archive-subtree-hierarchical--line-content-as-string ()
-    "Returns the content of the current line as a string"
-    (save-excursion
-    (beginning-of-line)
-    (buffer-substring-no-properties
-    (line-beginning-position) (line-end-position))))
+  (defun org-archive-subtree-hierarchical--line-content-as-string ()
+      "Returns the content of the current line as a string"
+      (save-excursion
+      (beginning-of-line)
+      (buffer-substring-no-properties
+      (line-beginning-position) (line-end-position))))
 
-(defun org-archive-subtree-hierarchical--org-child-list ()
-    "This function returns all children of a heading as a list. "
-    (interactive)
-    (save-excursion
-    ;; this only works with org-version > 8.0, since in previous
-    ;; org-mode versions the function (org-outline-level) returns
-    ;; gargabe when the point is not on a heading.
-    (if (= (org-outline-level) 0)
-        (outline-next-visible-heading 1)
-        (org-goto-first-child))
-    (let ((child-list (list (org-archive-subtree-hierarchical--line-content-as-string))))
-        (while (org-goto-sibling)
-        (setq child-list (cons (org-archive-subtree-hierarchical--line-content-as-string) child-list)))
-        child-list)))
+  (defun org-archive-subtree-hierarchical--org-child-list ()
+      "This function returns all children of a heading as a list. "
+      (interactive)
+      (save-excursion
+      ;; this only works with org-version > 8.0, since in previous
+      ;; org-mode versions the function (org-outline-level) returns
+      ;; gargabe when the point is not on a heading.
+      (if (= (org-outline-level) 0)
+          (outline-next-visible-heading 1)
+          (org-goto-first-child))
+      (let ((child-list (list (org-archive-subtree-hierarchical--line-content-as-string))))
+          (while (org-goto-sibling)
+          (setq child-list (cons (org-archive-subtree-hierarchical--line-content-as-string) child-list)))
+          child-list)))
 
-(defun org-archive-subtree-hierarchical--org-struct-subtree ()
-    "This function returns the tree structure in which a subtree
-belongs as a list."
-    (interactive)
-    (let ((archive-tree nil))
-    (save-excursion
-        (while (org-up-heading-safe)
-        (let ((heading
-                (buffer-substring-no-properties
-                (line-beginning-position) (line-end-position))))
-            (if (eq archive-tree nil)
-                (setq archive-tree (list heading))
-            (setq archive-tree (cons heading archive-tree))))))
-    archive-tree))
+  (defun org-archive-subtree-hierarchical--org-struct-subtree ()
+      "This function returns the tree structure in which a subtree
+  belongs as a list."
+      (interactive)
+      (let ((archive-tree nil))
+      (save-excursion
+          (while (org-up-heading-safe)
+          (let ((heading
+                  (buffer-substring-no-properties
+                  (line-beginning-position) (line-end-position))))
+              (if (eq archive-tree nil)
+                  (setq archive-tree (list heading))
+              (setq archive-tree (cons heading archive-tree))))))
+      archive-tree))
 
-(defun org-archive-subtree-hierarchical ()
-    "This function archives a subtree hierarchical"
-    (interactive)
-    (let ((org-tree (org-archive-subtree-hierarchical--org-struct-subtree))
-        (this-buffer (current-buffer))
-        (file (abbreviate-file-name
-                (or (buffer-file-name (buffer-base-buffer))
-                    (error "No file associated to buffer")))))
-    (save-excursion
-        (setq location (org-get-local-archive-location)
-            afile (org-extract-archive-file location)
-            heading (org-extract-archive-heading location)
-            infile-p (equal file (abbreviate-file-name (or afile ""))))
-        (unless afile
-        (error "Invalid `org-archive-location'"))
-        (if (> (length afile) 0)
-            (setq newfile-p (not (file-exists-p afile))
-                visiting (find-buffer-visiting afile)
-                buffer (or visiting (find-file-noselect afile)))
-        (setq buffer (current-buffer)))
-        (unless buffer
-        (error "Cannot access file \"%s\"" afile))
-        (org-cut-subtree)
-        (set-buffer buffer)
-        (org-mode)
-        (goto-char (point-min))
-        (while (not (equal org-tree nil))
-        (let ((child-list (org-archive-subtree-hierarchical--org-child-list)))
-            (if (member (car org-tree) child-list)
-                (progn
-                (search-forward (car org-tree) nil t)
-                (setq org-tree (cdr org-tree)))
-            (progn
-                (goto-char (point-max))
-                (newline)
-                (org-insert-struct org-tree)
-                (setq org-tree nil)))))
-        (newline)
-        (org-yank)
-        (when (not (eq this-buffer buffer))
-        (save-buffer))
-        (message "Subtree archived %s"
-                (concat "in file: " (abbreviate-file-name afile))))))
+  (defun org-archive-subtree-hierarchical ()
+      "This function archives a subtree hierarchical"
+      (interactive)
+      (let ((org-tree (org-archive-subtree-hierarchical--org-struct-subtree))
+          (this-buffer (current-buffer))
+          (file (abbreviate-file-name
+                  (or (buffer-file-name (buffer-base-buffer))
+                      (error "No file associated to buffer")))))
+      (save-excursion
+          (setq location (org-get-local-archive-location)
+              afile (org-extract-archive-file location)
+              heading (org-extract-archive-heading location)
+              infile-p (equal file (abbreviate-file-name (or afile ""))))
+          (unless afile
+          (error "Invalid `org-archive-location'"))
+          (if (> (length afile) 0)
+              (setq newfile-p (not (file-exists-p afile))
+                  visiting (find-buffer-visiting afile)
+                  buffer (or visiting (find-file-noselect afile)))
+          (setq buffer (current-buffer)))
+          (unless buffer
+          (error "Cannot access file \"%s\"" afile))
+          (org-cut-subtree)
+          (set-buffer buffer)
+          (org-mode)
+          (goto-char (point-min))
+          (while (not (equal org-tree nil))
+          (let ((child-list (org-archive-subtree-hierarchical--org-child-list)))
+              (if (member (car org-tree) child-list)
+                  (progn
+                  (search-forward (car org-tree) nil t)
+                  (setq org-tree (cdr org-tree)))
+              (progn
+                  (goto-char (point-max))
+                  (newline)
+                  (org-insert-struct org-tree)
+                  (setq org-tree nil)))))
+          (newline)
+          (org-yank)
+          (when (not (eq this-buffer buffer))
+          (save-buffer))
+          (message "Subtree archived %s"
+                  (concat "in file: " (abbreviate-file-name afile))))))
 
-(defun org-insert-struct (struct)
-    "TODO"
-    (interactive)
-    (when struct
-    (insert (car struct))
-    (newline)
-    (org-insert-struct (cdr struct))))
+  (defun org-insert-struct (struct)
+      "TODO"
+      (interactive)
+      (when struct
+      (insert (car struct))
+      (newline)
+      (org-insert-struct (cdr struct))))
 
-(defun org-archive-subtree ()
-    (org-archive-subtree-hierarchical)
-    )
+  (defun org-archive-subtree ()
+      (org-archive-subtree-hierarchical)
+      )
 #+END_SRC
 *** Archive location
 #+BEGIN_SRC emacs-lisp
