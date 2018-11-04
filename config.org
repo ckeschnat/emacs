@@ -3,6 +3,23 @@
 #+FILETAGS: emacs
 #+TITLE: Emacs config
 
+* Packages and use-package
+#+BEGIN_SRC emacs-lisp
+;; Package configs
+(require 'package)
+(setq package-enable-at-startup nil)
+(setq package-archives '(("org"   . "http://orgmode.org/elpa/")
+                         ("gnu"   . "http://elpa.gnu.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
+(package-initialize)
+
+;; Bootstrap `use-package`
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
+#+END_SRC
+
 * UI
 https://huytd.github.io/emacs-from-scratch.html
 
@@ -52,23 +69,6 @@ https://huytd.github.io/emacs-from-scratch.html
 (setq create-lockfiles nil)
 #+END_SRC
 
-* Packages and use-package
-#+BEGIN_SRC emacs-lisp
-;; Package configs
-(require 'package)
-(setq package-enable-at-startup nil)
-(setq package-archives '(("org"   . "http://orgmode.org/elpa/")
-                         ("gnu"   . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
-(package-initialize)
-
-;; Bootstrap `use-package`
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(require 'use-package)
-#+END_SRC
-
 * Evil
 #+BEGIN_SRC emacs-lisp
 ;; Vim mode
@@ -82,18 +82,8 @@ https://huytd.github.io/emacs-from-scratch.html
   :init
   (setq-default evil-escape-key-sequence "fd")
   :config
-  (evil-escape-mode 1)
+  (evil-escape-mode 1))
 #+END_SRC
-
-*** TODO Should this be managed by general?
-#+BEGIN_SRC emacs-lisp
-  ;; https://blog.aaronbieber.com/2016/08/07/getting-started-with-emacs-lisp.html
-  (define-key lisp-interaction-mode-map (kbd "<C-return>") 'eval-last-sexp)
-  (evil-define-key 'insert global-map (kbd "s-d") 'eval-last-sexp)
-  (evil-define-key 'normal global-map (kbd "s-d") 'eval-defun)
-)
-#+END_SRC
-
 * General
 Key bindings.
 **** TODO move some of these somewhere else
