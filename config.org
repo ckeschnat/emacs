@@ -206,17 +206,17 @@ Key bindings.
 #+END_SRC
 * Ranger
 #+BEGIN_SRC emacs-lisp
-(use-package ranger
-:ensure t
-:config
+  (use-package ranger
+  :ensure t
+  :config
 
-  (general-define-key
-    :states '(normal visual insert emacs)
-    :prefix "SPC"
-    :non-normal-prefix "M-SPC"
-    "or" '(ranger :which-key "Ranger")
+    (general-define-key
+      :states '(normal visual insert emacs)
+      :prefix "SPC"
+      :non-normal-prefix "M-SPC"
+      "or" '(ranger :which-key "Ranger")
+    )
   )
-)
 #+END_SRC
 * Projectile
 #+BEGIN_SRC emacs-lisp
@@ -228,7 +228,18 @@ Key bindings.
   :config
   (projectile-mode 1))
 #+END_SRC
+* ripgrep
+#+BEGIN_SRC emacs-lisp
+  (use-package rg
+    :ensure t
+    :config
 
+    (general-define-key
+      :states '(normal visual insert emacs)
+      :prefix "SPC"
+      :non-normal-prefix "M-SPC"
+      "sr" '(rg :which-key "ripgrep")))
+#+END_SRC
 * Org
 *** use-package
 #+BEGIN_SRC emacs-lisp
