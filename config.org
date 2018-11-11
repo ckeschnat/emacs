@@ -55,20 +55,44 @@ https://huytd.github.io/emacs-from-scratch.html
 ;;  (load-theme 'doom-one t))
 #+END_SRC
 * Misc
+*** Paths
 #+BEGIN_SRC emacs-lisp
-(setq-default buffer-file-coding-system 'utf-8-unix)
-;; Show matching parens
-(setq show-paren-delay 0)
-(show-paren-mode 1)
-
-;; Disable backup files
-(setq make-backup-files nil) ; stop creating backup~ files
-(setq auto-save-default nil) ; stop creating #autosave# files
-
-;; No lock files
-(setq create-lockfiles nil)
+  (setenv "PATH" (concat "C:\\msys64\\usr\\bin;" "C:\\msys64\\mingw64\\bin;" "C:\\texlive\\2018\\bin\\win32;" "w:\\handmade\\misc;" (getenv "PATH")))
 #+END_SRC
+*** Encoding
+#+BEGIN_SRC emacs-lisp
+  (setq-default buffer-file-coding-system 'utf-8-unix)
+#+END_SRC
+*** Parens
+#+BEGIN_SRC emacs-lisp
+  ;; Show matching parens
+  (setq show-paren-delay 0)
+  (show-paren-mode 1)
+#+END_SRC
+*** Backup and lock files
+#+BEGIN_SRC emacs-lisp
+  ;; Disable backup files
+  (setq make-backup-files nil) ; stop creating backup~ files
+  (setq auto-save-default nil) ; stop creating #autosave# files
 
+  ;; No lock files
+  (setq create-lockfiles nil)
+#+END_SRC
+*** persistent undo
+#+BEGIN_SRC emacs-lisp
+  (setq undo-tree-auto-save-history t)
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+#+END_SRC
+*** center after search
+#+BEGIN_SRC emacs-lisp
+  ;; center after search
+  (setq scroll-conservatively 0)
+#+END_SRC
+*** filetypes to modes
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'auto-mode-alist '("\\.asciidoc\\'" . adoc-mode))
+  (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
+#+END_SRC
 * Evil
 #+BEGIN_SRC emacs-lisp
 ;; Vim mode
@@ -600,27 +624,25 @@ belongs as a list."
   ;; )
 
 
-  (let* ((variable-tuple
-      (cond ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
-          ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
-          ((x-list-fonts "Verdana")         '(:font "Verdana"))
-          ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
-          (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
-      (base-font-color     (face-foreground 'default nil 'default))
-      (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
+  (let* ((variable-tuple (cond ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
+                               ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
+                               ((x-list-fonts "Verdana")         '(:font "Verdana"))
+                               ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
+                               (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
+         (base-font-color     (face-foreground 'default nil 'default))
+         (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
   
-      (custom-theme-set-faces
-      'user
-      `(org-level-8 ((t (,@headline ,@variable-tuple))))
-      `(org-level-7 ((t (,@headline ,@variable-tuple))))
-      `(org-level-6 ((t (,@headline ,@variable-tuple))))
-      `(org-level-5 ((t (,@headline ,@variable-tuple))))
-      `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
-      `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
-      `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.5))))
-      `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
-      `(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))))
-  
+    (custom-theme-set-faces 'user
+                            `(org-level-8 ((t (,@headline ,@variable-tuple))))
+                            `(org-level-7 ((t (,@headline ,@variable-tuple))))
+                            `(org-level-6 ((t (,@headline ,@variable-tuple))))
+                            `(org-level-5 ((t (,@headline ,@variable-tuple))))
+                            `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
+                            `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
+                            `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.5))))
+                            `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
+                            `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil))))))
+
   ;; circles instead of dashes in lists
   (font-lock-add-keywords 'org-mode
                           '(("^ *\\([-]\\) "
@@ -636,6 +658,7 @@ To export to html.
 #+END_SRC
 
 * Navigation
+*** Alternate buffer
 #+BEGIN_SRC emacs-lisp
 (defun spacemacs/alternate-buffer (&optional window)
   "Switch back and forth between current and last buffer in the
@@ -654,6 +677,17 @@ current window."
                      (mapcar #'car (window-prev-buffers window)))
          ;; `other-buffer' honors `buffer-predicate' so no need to filter
          (other-buffer current-buffer t)))))
+#+END_SRC
+*** Movement
+#+BEGIN_SRC emacs-lisp
+  (general-define-key
+    :states '(normal visual insert emacs)
+    "C-j" 'forward-paragraph
+    "C-k" 'backward-paragraph)
+
+  ;; TODO(chris): make this work (works with eval-region)
+  ;; (evil-define-key 'evilified org-agenda-mode-map (kbd "j") 'org-agenda-next-item)
+  ;; (evil-define-key 'evilified org-agenda-mode-map (kbd "k") 'org-agenda-previous-item)
 #+END_SRC
 * Gc
 #+BEGIN_SRC emacs-lisp
