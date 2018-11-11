@@ -165,6 +165,7 @@ Key bindings.
   "bb"  '(ivy-switch-buffer :which-key "buffers list")
   ;; Files
   "ff"  '(counsel-find-file :which-key "find files")
+  "fr"  '(counsel-recentf :which-key "recent files")
   ;; Search
   "ss"   '(swiper :which-key "swiper")
   ;; "/"   '(counsel-rg :which-key "ripgrep") ; You'll need counsel package for this
@@ -213,7 +214,7 @@ Key bindings.
     :states '(normal visual insert emacs)
     :prefix "SPC"
     :non-normal-prefix "M-SPC"
-    "fr" '(ranger :which-key "Ranger")
+    "or" '(ranger :which-key "Ranger")
   )
 )
 #+END_SRC
