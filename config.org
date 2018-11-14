@@ -248,10 +248,11 @@ Key bindings.
 #+END_SRC
 *** keybindings
 #+BEGIN_SRC emacs-lisp
-(general-define-key
-  :states '(normal emacs)
-  "RET" 'org-open-at-point
-)
+  (general-define-key
+    :states '(normal emacs)
+    "RET" 'org-open-at-point
+    "t" 'org-todo
+  )
 #+END_SRC
 *** Background colors for export
 #+BEGIN_SRC emacs-lisp
