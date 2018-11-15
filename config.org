@@ -131,6 +131,11 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
     :ensure t
     :config
     (evil-collection-init))
+
+  (defun my-center-line (&rest _)
+    (evil-scroll-line-to-center nil))
+
+  (advice-add 'evil-search-next :after #'my-center-line)
 #+END_SRC
 * General
 Key bindings.
