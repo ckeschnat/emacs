@@ -137,39 +137,64 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
 
   (advice-add 'evil-search-next :after #'my-center-line)
 #+END_SRC
+*** Lispyville
+https://github.com/noctuid/lispyville
+
+Just because of
+
+#+BEGIN_QUOTE
+If you are just looking for a way to prevent evil’s
+operators from unbalancing parentheses, you can enable lispyville-mode
+in your configuration and just ignore the rest of its features.
+#+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+  (use-package lispyville
+   :ensure t)
+
+  (add-hook 'emacs-lisp-mode-hook #'lispyville-mode)
+  (add-hook 'lisp-mode-hook #'lispyville-mode)
+#+END_SRC
 * General
 Key bindings.
 **** TODO move some of these somewhere else
 #+BEGIN_SRC emacs-lisp
-;; Custom keybinding
-(use-package general
-  :ensure t
-  :config
-  (general-evil-setup t)
-  (general-define-key
-    :states '(normal visual insert emacs)
-    :prefix "SPC"
-    :non-normal-prefix "M-SPC"
-    "TAB" '(spacemacs/alternate-buffer :which-key "previous buffer")
-    ;; Window
-    "w"  '(:ignore t :which-key "Windows")
-    "wl"  '(windmove-right :which-key "move right")
-    "wh"  '(windmove-left :which-key "move left")
-    "wk"  '(windmove-up :which-key "move up")
-    "wj"  '(windmove-down :which-key "move bottom")
-    "w/"  '(split-window-right :which-key "split right")
-    "w-"  '(split-window-below :which-key "split bottom")
-    "wd"  '(delete-window :which-key "delete window")
-    ;; Files
-    "f"  '(:ignore t :which-key "Files")
-    ;; Buffers
-    "b"  '(:ignore t :which-key "Buffers")
-    "bd"  '(kill-this-buffer :which-key "delete buffer")
-    ;; Search
-    "s"  '(:ignore t :which-key "Search")
-    ;; Others
-    "o"  '(:ignore t :which-key "Other")
-  ))
+  ;; Custom keybinding
+  (use-package general
+    :ensure t
+    :config
+    (general-evil-setup t)
+
+    (general-define-key
+      :prefix "C-c"
+      ;; bind "C-c a" to 'org-agenda
+      "a" 'org-agenda
+      "b" 'counsel-bookmark
+      "c" 'org-capture)
+
+    (general-define-key
+      :states '(normal visual insert emacs)
+      :prefix "SPC"
+      :non-normal-prefix "M-SPC"
+      "TAB" '(spacemacs/alternate-buffer :which-key "previous buffer")
+      ;; Window
+      "w"  '(:ignore t :which-key "Windows")
+      "wl"  '(windmove-right :which-key "move right")
+      "wh"  '(windmove-left :which-key "move left")
+      "wk"  '(windmove-up :which-key "move up")
+      "wj"  '(windmove-down :which-key "move bottom")
+      "w/"  '(split-window-right :which-key "split right")
+      "w-"  '(split-window-below :which-key "split bottom")
+      "wd"  '(delete-window :which-key "delete window")
+      ;; Files
+      "f"  '(:ignore t :which-key "Files")
+      ;; Buffers
+      "b"  '(:ignore t :which-key "Buffers")
+      "bd"  '(kill-this-buffer :which-key "delete buffer")
+      ;; Search
+      "s"  '(:ignore t :which-key "Search")
+      ;; Others
+      "o"  '(:ignore t :which-key "Other")))
 #+END_SRC
 
 * Ivy
