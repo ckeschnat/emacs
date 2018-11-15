@@ -109,6 +109,8 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
 * Evil
 [[https://github.com/emacs-evil/evil-collection][Evil-Collection]]
 
+[[https://github.com/Somelauw/evil-org-mode][evil-org]]
+
 #+BEGIN_SRC emacs-lisp
   ;; Vim mode
   (use-package evil
@@ -131,6 +133,17 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
     :ensure t
     :config
     (evil-collection-init))
+
+  (use-package evil-org
+    :ensure t
+    :after org
+    :config
+    (add-hook 'org-mode-hook 'evil-org-mode)
+    (add-hook 'evil-org-mode-hook
+              (lambda ()
+                (evil-org-set-key-theme)))
+    (require 'evil-org-agenda)
+    (evil-org-agenda-set-keys))
 
   (defun my-center-line (&rest _)
     (evil-scroll-line-to-center nil))
@@ -300,13 +313,14 @@ Key bindings.
 (use-package org
     :config
 #+END_SRC
-*** keybindings
+*** TODO keybindings
+Why does TAB not work?
+
 #+BEGIN_SRC emacs-lisp
-  (general-define-key
-    :states '(normal emacs)
-    "RET" 'org-open-at-point
-    "t" 'org-todo
-  )
+ (general-def 'motion
+   "RET" 'org-open-at-point
+   "t" 'org-todo
+   "TAB" 'org-cycle)
 #+END_SRC
 *** Background colors for export
 #+BEGIN_SRC emacs-lisp
@@ -328,14 +342,13 @@ Key bindings.
     (add-hook 'org-export-before-processing-hook 'imalison:org-inline-css-hook))
 #+END_SRC
 
-*** bullets
+*** Bullets
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
   :ensure t
   :config
     (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-  )
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+END_SRC
 *** org-super-agenda
 #+BEGIN_SRC emacs-lisp
