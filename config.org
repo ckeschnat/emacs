@@ -25,11 +25,12 @@ https://huytd.github.io/emacs-from-scratch.html
 
 #+BEGIN_SRC emacs-lisp
 ;; Minimal UI
-(scroll-bar-mode -1)
-(tool-bar-mode   -1)
-(tooltip-mode    -1)
-(menu-bar-mode   -1)
-(setq inhibit-splash-screen t)
+  (when (display-graphic-p)
+    (scroll-bar-mode -1))
+  (tool-bar-mode   -1)
+  (tooltip-mode    -1)
+  (menu-bar-mode   -1)
+  (setq inhibit-splash-screen t)
 #+END_SRC
 
 *** Font
