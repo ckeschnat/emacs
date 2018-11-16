@@ -23,14 +23,17 @@
 * UI
 https://huytd.github.io/emacs-from-scratch.html
 
+https://superuser.com/questions/313398/how-to-prevent-the-symbols-function-definition-is-void-error-when-running-em
+
 #+BEGIN_SRC emacs-lisp
-;; Minimal UI
-  (when (display-graphic-p)
-    (scroll-bar-mode -1))
-  (tool-bar-mode   -1)
-  (tooltip-mode    -1)
-  (menu-bar-mode   -1)
-  (setq inhibit-splash-screen t)
+  ;; Minimal UI
+    (when (display-graphic-p)
+      (progn
+        (scroll-bar-mode -1)
+        (tool-bar-mode   -1)))
+    (tooltip-mode    -1)
+    (menu-bar-mode   -1)
+    (setq inhibit-splash-screen t)
 #+END_SRC
 
 *** Font
