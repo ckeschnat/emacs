@@ -9,3 +9,4 @@ config.el
 undo
 .cache
 eshell
+custom.el

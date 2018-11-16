@@ -80,6 +80,11 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 
 #+END_SRC
+*** Customize
+#+BEGIN_SRC emacs-lisp
+  (setq custom-file "~/.emacs.d/custom.el")
+  (load custom-file 'noerror)
+#+END_SRC
 *** Parens
 #+BEGIN_SRC emacs-lisp
   ;; Show matching parens
@@ -1301,20 +1306,3 @@ The variable puppet-indent-level controls the amount of indentation.
 )
 #+END_SRC
 
-* Custom
-Do not edit below here.
-
-#+BEGIN_SRC emacs-lisp
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-#+END_SRC
