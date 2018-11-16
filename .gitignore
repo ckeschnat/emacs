@@ -8,3 +8,4 @@ bookmarks
 config.el
 undo
 .cache
+eshell
