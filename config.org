@@ -119,11 +119,12 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
 https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-Emacs-Under-Windows/
 
 #+BEGIN_SRC emacs-lisp
-  (require 'tramp)
-  (set-default 'tramp-auto-save-directory "C:\\Users\\chris.keschnat\\AppData\\Local\\Temp")
-  (set-default 'tramp-default-method "plink")
+  (use-package tramp
+    :ensure t
+    :config
+        (set-default 'tramp-auto-save-directory "C:\\Users\\chris.keschnat\\AppData\\Local\\Temp")
+        (set-default 'tramp-default-method "plink"))
 #+END_SRC
-
 * Evil
 [[https://github.com/emacs-evil/evil-collection][Evil-Collection]]
 
