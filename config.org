@@ -321,8 +321,7 @@ Key bindings.
 #+BEGIN_SRC emacs-lisp
  (general-def 'motion
    "RET" 'org-open-at-point
-   "t" 'org-todo
-   "TAB" 'org-cycle)
+   "t" 'org-todo)
 #+END_SRC
 *** Background colors for export
 #+BEGIN_SRC emacs-lisp
@@ -859,7 +858,9 @@ https://github.com/abo-abo/hydra/wiki/Org-agenda
       ("." org-agenda-goto-today)
       ("gr" org-agenda-redo)))
 
-     (general-def 'motion
+     (general-define-key
+       :states 'motion
+       :keymaps 'org-agenda-mode-map
        "v" 'hydra-org-agenda/body)
 
 #+END_SRC
