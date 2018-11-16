@@ -10,3 +10,4 @@ undo
 .cache
 eshell
 custom.el
+tramp
