@@ -374,6 +374,10 @@ Use amx to save recent M-x items
     (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+END_SRC
+*** misc
+#+BEGIN_SRC emacs-lisp
+  (setq org-ellipsis " ⤵")
+#+END_SRC
 *** org-super-agenda
 #+BEGIN_SRC emacs-lisp
 ;; (use-package org-super-agenda
