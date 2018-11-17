@@ -276,16 +276,6 @@ Use amx to save recent M-x items
     ;; "/"   '(counsel-rg :which-key "ripgrep") ; You'll need counsel package for this
   )
 
-  (general-define-key
-    :states '(normal visual insert emacs)
-    "C-s" 'swiper
-    "M-x" 'counsel-M-x)
-
-  ; fuzzy matching except with swiper
-  (setq ivy-re-builders-alist
-        '((swiper . ivy--regex-plus)
-          (t      . ivy--regex-fuzzy)))
-
   ;(use-package avy :ensure t)
   (use-package counsel :ensure t
   ;  :bind*                           ; load counsel when pressed
@@ -297,6 +287,16 @@ Use amx to save recent M-x items
   ;   ("C-c /"   . counsel-ag)        ; search for regexp in git repo using ag
   ;   ("C-c l"   . counsel-locate))   ; search for files or else using locate
     )
+
+  (general-define-key
+    :states '(normal visual insert emacs)
+    "C-s" 'swiper
+    "M-x" 'counsel-M-x)
+
+  ; fuzzy matching except with swiper
+  (setq ivy-re-builders-alist
+        '((swiper . ivy--regex-plus)
+          (t      . ivy--regex-fuzzy)))
 #+END_SRC
 * Which-key
 #+BEGIN_SRC emacs-lisp
