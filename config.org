@@ -275,9 +275,11 @@ Use amx to save recent M-x items
     "fr"  '(counsel-recentf :which-key "recent files")
     ;; Search
     "ss"   '(swiper :which-key "swiper")
+    "sa"   '(swiper-all :which-key "swiper-all")
     ;; "/"   '(counsel-rg :which-key "ripgrep") ; You'll need counsel package for this
   )
 
+  ;; https://www.reddit.com/r/emacs/comments/910pga/tip_how_to_use_ivy_and_its_utilities_in_your/
   (use-package ivy-rich
     :ensure t
     :after ivy
