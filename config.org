@@ -99,6 +99,7 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
 *** Help
 #+BEGIN_SRC emacs-lisp
   (setq help-window-select t)
+  (use-package helpful :ensure t)
 #+END_SRC
 *** Parens
 #+BEGIN_SRC emacs-lisp
