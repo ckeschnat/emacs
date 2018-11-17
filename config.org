@@ -3,6 +3,8 @@
 #+FILETAGS: emacs
 #+TITLE: Emacs config
 
+* Introduction
+Headings tagged "CANCELLED" will not be tangled.
 * Packages and use-package
 #+BEGIN_SRC emacs-lisp
 ;; Package configs
@@ -24,25 +26,27 @@
 https://huytd.github.io/emacs-from-scratch.html
 
 https://superuser.com/questions/313398/how-to-prevent-the-symbols-function-definition-is-void-error-when-running-em
-
+*** Misc
 #+BEGIN_SRC emacs-lisp
   ;; Minimal UI
-    (when (display-graphic-p)
-      (progn
-        (scroll-bar-mode -1)
-        (tool-bar-mode   -1)))
-    (tooltip-mode    -1)
-    (menu-bar-mode   -1)
-    (setq inhibit-splash-screen t)
+  (when (display-graphic-p)
+    (progn
+      (scroll-bar-mode -1)
+      (tool-bar-mode   -1)))
+  (tooltip-mode    -1)
+  (menu-bar-mode   -1)
+  (setq inhibit-splash-screen t)
 #+END_SRC
-
 *** Font
+Set Symbola as fallback font to display unicode characters.
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'default-frame-alist '(font . "Liberation Mono"))
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
-(add-to-list 'default-frame-alist '(fullscreen . fullheight))
-#+END_SRC
+  (set-fontset-font "fontset-default" nil
+    (font-spec :size 20 :name "Symbola"))
 
+  (add-to-list 'default-frame-alist '(font . "Liberation Mono"))
+  (add-to-list 'initial-frame-alist '(fullscreen . maximized))
+  (add-to-list 'default-frame-alist '(fullscreen . fullheight))
+#+END_SRC
 *** Theme
 #+BEGIN_SRC emacs-lisp
 ;; Theme
@@ -66,19 +70,26 @@ https://superuser.com/questions/313398/how-to-prevent-the-symbols-function-defin
 *** Encoding
 See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emacs][masteringemacs]]
 #+BEGIN_SRC emacs-lisp
+  ;; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
+  (setq utf-translate-cjk-mode nil)
+
+  (set-language-environment 'utf-8)
+  (setq locale-coding-system 'utf-8)
+
+  ;; set the default encoding system
   (prefer-coding-system 'utf-8)
+  (setq default-file-name-coding-system 'utf-8)
   (set-default-coding-systems 'utf-8)
   (set-terminal-coding-system 'utf-8)
   (set-keyboard-coding-system 'utf-8)
   ;; backwards compatibility as default-buffer-file-coding-system
   ;; is deprecated in 23.2.
-  (if (boundp 'buffer-file-coding-system)
-      (setq-default buffer-file-coding-system 'utf-8)
+  (if (boundp buffer-file-coding-system)
+      (setq buffer-file-coding-system 'utf-8)
     (setq default-buffer-file-coding-system 'utf-8))
 
   ;; Treat clipboard input as UTF-8 string first; compound text next, etc.
   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
-
 #+END_SRC
 *** Customize
 #+BEGIN_SRC emacs-lisp
@@ -367,16 +378,50 @@ Use amx to save recent M-x items
 #+END_SRC
 
 *** Bullets
+https://zhangda.wordpress.com/2016/02/15/configurations-for-beautifying-emacs-org-mode/
+
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
   :ensure t
   :config
-    (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
+    ;;(setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
+    (setq org-bullets-bullet-list '("✙" "♱" "♰" "☥" "✞" "✟" "✝" "†" "✠" "✚" "✜" "✛" "✢" "✣" "✤" "✥"))
+    ;;(setq org-bullets-bullet-list '("✡" "⎈" "✽" "✲" "✱" "✻" "✼" "✽" "✾" "✿" "❀" "❁" "❂" "❃" "❄" "❅" "❆" "❇"))
+    ;;(setq org-bullets-bullet-list '("○" "☉" "◎" "◉" "○" "◌" "◎" "●" "◦" "◯" "⚪" "⚫" "⚬" "❍" "￮" "⊙" "⊚" "⊛" "∙" "∘"))
+    ;;(setq org-bullets-bullet-list '("◐" "◑" "◒" "◓" "◴" "◵" "◶" "◷" "⚆" "⚇" "⚈" "⚉" "♁" "⊖" "⊗" "⊘"))
+    ;;(setq org-bullets-bullet-list '("♠" "♣" "♥" "♦" "♤" "♧" "♡" "♢"))
+    ;;(setq org-bullets-bullet-list '("☯" "☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷"))
+    ;;(setq org-bullets-bullet-list '("☀" "♼" "☼" "☾" "☽" "☣" "§" "¶" "‡" "※" "✕" "△" "◇" "▶" "◀" "◈"))
+
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+END_SRC
 *** misc
+
+
+"↝" "⇉" "⇝" "⇢" "⇨" "⇰" "➔" "➙" "➛" "➜" "➝" "➞"
+
+"➟" "➠" "➡" "➥" "➦" "➧" "➨"
+
+"➩" "➪" "➮" "➯" "➱" "➲"
+
+"➳" "➵" "➸" "➺" "➻" "➼" "➽"
+arrow heads
+
+"➢" "➣" "➤" "≪", "≫", "«", "»"
+other arrows
+
+"↞" "↠" "↟" "↡" "↺" "↻"
+lightening
+
+"⚡"
+other symbols
+
+…, ▼, ↴, , ∞, ⬎, ⤷, ⤵
+
+→
+
 #+BEGIN_SRC emacs-lisp
-  (setq org-ellipsis " ⤵")
+  (setq org-ellipsis " ↴")
 #+END_SRC
 *** org-super-agenda
 #+BEGIN_SRC emacs-lisp
@@ -1278,8 +1323,8 @@ The variable puppet-indent-level controls the amount of indentation.
   (set (make-local-variable 'indent-tabs-mode) puppet-indent-tabs-mode)
   (set (make-local-variable 'require-final-newline) t)
   (set (make-local-variable 'paragraph-ignore-fill-prefix) t)
-  (set (make-local-variable 'paragraph-start) "\f\\|[ 	]*$\\|#$")
-  (set (make-local-variable 'paragraph-separate) "\\([ 	\f]*\\|#\\)$")
+  (set (make-local-variable 'paragraph-start) "\f\\|[   ]*$\\|#$")
+  (set (make-local-variable 'paragraph-separate) "\\([  \f]*\\|#\\)$")
   (or (boundp 'font-lock-variable-name-face)
       (setq font-lock-variable-name-face font-lock-type-face))
   (set (make-local-variable 'font-lock-keywords) puppet-font-lock-keywords)
@@ -1345,4 +1390,3 @@ The variable puppet-indent-level controls the amount of indentation.
   ;; "/"   '(counsel-rg :which-key "ripgrep") ; You'll need counsel package for this
 )
 #+END_SRC
-
