@@ -757,6 +757,22 @@ belongs as a list."
                               (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
   ) ;; END use-package org
 #+END_SRC
+*** org-journal
+#+BEGIN_SRC emacs-lisp
+  (use-package org-journal
+    :ensure t
+    :after org
+    :init
+
+    (setq org-journal-dir
+            (concat (cond
+              ((file-directory-p home-org-dir) home-org-dir)
+              ((file-directory-p work-org-dir) work-org-dir)) "journal"))
+
+    (setq org-journal-file-format "%Y%m%d.org")
+    (setq org-journal-enable-agenda-integration t)
+  )
+#+END_SRC
 *** htmlize
 To export to html.
 
