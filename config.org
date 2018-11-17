@@ -308,8 +308,7 @@ Use amx to save recent M-x items
             (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
            :predicate
            (lambda (cand) (get-buffer cand)))))
-
-  (setq ivy-rich-path-style 'abbrev))
+  )
 
 
   (use-package swiper
