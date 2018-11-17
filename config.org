@@ -103,11 +103,19 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
     :ensure t
     :config
       (general-define-key
-        :states 'motion
+        :states '(normal visual insert emacs)
         :prefix "C-h"
         :non-normal-prefix "C-M-h"
         "v" '(helpful-variable :which-key "helpful-variable")
-        "f" '(helpful-function :which-key "helpful-function")))
+        "f" '(helpful-function :which-key "helpful-function"))
+
+      (general-define-key
+        :states '(normal visual insert emacs)
+        :prefix "SPC"
+        :non-normal-prefix "M-SPC"
+        "h"  '(:ignore t :which-key "Help")
+        "hv" '(helpful-variable :which-key "helpful-variable")
+        "hf" '(helpful-function :which-key "helpful-function")))
 #+END_SRC
 *** Parens
 #+BEGIN_SRC emacs-lisp
