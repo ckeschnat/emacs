@@ -249,7 +249,9 @@ Use amx to save recent M-x items
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-  (use-package ivy :ensure t
+  (use-package ivy
+    :ensure t
+    :defer 0.1
     :diminish (ivy-mode . "") ; does not display ivy in the modeline
     :init (ivy-mode 1)        ; enable ivy globally at startup
     ;:bind (:map ivy-mode-map  ; bind in the ivy buffer
@@ -276,8 +278,27 @@ Use amx to save recent M-x items
     ;; "/"   '(counsel-rg :which-key "ripgrep") ; You'll need counsel package for this
   )
 
+  (use-package ivy-rich
+    :ensure t
+    :after ivy
+    :custom
+    (ivy-virtual-abbreviate 'full
+                            ivy-rich-switch-buffer-align-virtual-buffer t
+                            ivy-rich-path-style 'abbrev)
+    :config
+    (ivy-rich-mode 1)
+    (ivy-set-display-transformer 'ivy-switch-buffer
+                                 'ivy-rich-switch-buffer-transformer))
+
+  (use-package swiper
+    :ensure t
+    :after ivy)
+
   ;(use-package avy :ensure t)
-  (use-package counsel :ensure t
+  (use-package counsel
+    :ensure t
+    :diminish
+    :after ivy
   ;  :bind*                           ; load counsel when pressed
   ;  (("M-x"     . counsel-M-x)       ; M-x use counsel
   ;   ("C-x C-f" . counsel-find-file) ; C-x C-f use counsel-find-file
