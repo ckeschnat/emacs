@@ -96,6 +96,10 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
   (setq custom-file "~/.emacs.d/custom.el")
   (load custom-file 'noerror)
 #+END_SRC
+*** Help
+#+BEGIN_SRC emacs-lisp
+  (setq help-window-select t)
+#+END_SRC
 *** Parens
 #+BEGIN_SRC emacs-lisp
   ;; Show matching parens
