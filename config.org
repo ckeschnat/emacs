@@ -1308,8 +1308,8 @@ The variable puppet-indent-level controls the amount of indentation.
   (run-with-idle-timer 5 t #'garbage-collect)
   (setq garbage-collection-messages t)
 #+END_SRC
-* Helm                                                             :noexport:
-#+BEGIN_SRC emacs-lisp :tangle no
+* CANCELLED Helm                                                  :CANCELLED:
+#+BEGIN_SRC emacs-lisp
 ;; Helm
 (use-package helm
   :ensure t
