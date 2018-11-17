@@ -99,7 +99,15 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
 *** Help
 #+BEGIN_SRC emacs-lisp
   (setq help-window-select t)
-  (use-package helpful :ensure t)
+  (use-package helpful
+    :ensure t
+    :config
+      (general-define-key
+        :states 'motion
+        :prefix "C-h"
+        :non-normal-prefix "C-M-h"
+        "v" '(helpful-variable :which-key "helpful-variable")
+        "f" '(helpful-function :which-key "helpful-function")))
 #+END_SRC
 *** Parens
 #+BEGIN_SRC emacs-lisp
@@ -359,14 +367,6 @@ Use amx to save recent M-x items
     :states '(normal visual insert emacs)
     "C-s" 'swiper
     "M-x" 'counsel-M-x)
-
-  (general-define-key
-    :states 'motion
-    :prefix "C-h"
-    :non-normal-prefix "C-M-h"
-    "v" '(counsel-describe-variable :which-key "counsel-describe-variable")
-    "f" '(counsel-describe-function :which-key "counsel-describe-function")
-  )
 
   ; fuzzy matching except with swiper
   (setq ivy-re-builders-alist
