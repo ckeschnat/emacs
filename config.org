@@ -231,53 +231,54 @@ Key bindings.
 
 * Ivy
 #+BEGIN_SRC emacs-lisp
-(use-package ivy :ensure t
-  :diminish (ivy-mode . "") ; does not display ivy in the modeline
-  :init (ivy-mode 1)        ; enable ivy globally at startup
-  ;:bind (:map ivy-mode-map  ; bind in the ivy buffer
-  ;       ("C-'" . ivy-avy)) ; C-' to ivy-avy
-  :config
-  (setq ivy-use-virtual-buffers t)   ; extend searching to bookmarks and ¡­
-  (setq ivy-height 20)               ; set height of the ivy window
-  (setq ivy-count-format "(%d/%d) ") ; count format, from the ivy help page
+  (use-package ivy :ensure t
+    :diminish (ivy-mode . "") ; does not display ivy in the modeline
+    :init (ivy-mode 1)        ; enable ivy globally at startup
+    ;:bind (:map ivy-mode-map  ; bind in the ivy buffer
+    ;       ("C-'" . ivy-avy)) ; C-' to ivy-avy
+    :config
+    (setq ivy-use-virtual-buffers t)    ; extend searching to bookmarks and
+    (setq ivy-height 20)                ; set height of the ivy window
+    (setq ivy-count-format "(%d/%d) ")  ; count format, from the ivy help page
+    (setq ivy-initial-inputs-alist nil) ; no "^" at beginning
+    )
+
+  (general-define-key
+    :states '(normal visual insert emacs)
+    :prefix "SPC"
+    :non-normal-prefix "M-SPC"
+    "SPC" '(counsel-M-x :which-key "M-x")
+    ;; Buffers
+    "bb"  '(ivy-switch-buffer :which-key "buffers list")
+    ;; Files
+    "ff"  '(counsel-find-file :which-key "find files")
+    "fr"  '(counsel-recentf :which-key "recent files")
+    ;; Search
+    "ss"   '(swiper :which-key "swiper")
+    ;; "/"   '(counsel-rg :which-key "ripgrep") ; You'll need counsel package for this
   )
 
-(general-define-key
-  :states '(normal visual insert emacs)
-  :prefix "SPC"
-  :non-normal-prefix "M-SPC"
-  "SPC" '(counsel-M-x :which-key "M-x")
-  ;; Buffers
-  "bb"  '(ivy-switch-buffer :which-key "buffers list")
-  ;; Files
-  "ff"  '(counsel-find-file :which-key "find files")
-  "fr"  '(counsel-recentf :which-key "recent files")
-  ;; Search
-  "ss"   '(swiper :which-key "swiper")
-  ;; "/"   '(counsel-rg :which-key "ripgrep") ; You'll need counsel package for this
-)
+  (general-define-key
+    :states '(normal visual insert emacs)
+    "C-s" 'swiper
+    "M-x" 'counsel-M-x)
 
-(general-define-key
-  :states '(normal visual insert emacs)
-  "C-s" 'swiper
-  "M-x" 'counsel-M-x)
+  ; fuzzy matching except with swiper
+  (setq ivy-re-builders-alist
+        '((swiper . ivy--regex-plus)
+          (t      . ivy--regex-fuzzy)))
 
-; fuzzy matching except with swiper
-(setq ivy-re-builders-alist
-      '((swiper . ivy--regex-plus)
-        (t      . ivy--regex-fuzzy)))
-
-;(use-package avy :ensure t)
-(use-package counsel :ensure t
-;  :bind*                           ; load counsel when pressed
-;  (("M-x"     . counsel-M-x)       ; M-x use counsel
-;   ("C-x C-f" . counsel-find-file) ; C-x C-f use counsel-find-file
-;   ("C-x C-r" . counsel-recentf)   ; search recently edited files
-;   ("C-c f"   . counsel-git)       ; search for files in git repo
-;   ("C-c s"   . counsel-git-grep)  ; search for regexp in git repo
-;   ("C-c /"   . counsel-ag)        ; search for regexp in git repo using ag
-;   ("C-c l"   . counsel-locate))   ; search for files or else using locate
-  )
+  ;(use-package avy :ensure t)
+  (use-package counsel :ensure t
+  ;  :bind*                           ; load counsel when pressed
+  ;  (("M-x"     . counsel-M-x)       ; M-x use counsel
+  ;   ("C-x C-f" . counsel-find-file) ; C-x C-f use counsel-find-file
+  ;   ("C-x C-r" . counsel-recentf)   ; search recently edited files
+  ;   ("C-c f"   . counsel-git)       ; search for files in git repo
+  ;   ("C-c s"   . counsel-git-grep)  ; search for regexp in git repo
+  ;   ("C-c /"   . counsel-ag)        ; search for regexp in git repo using ag
+  ;   ("C-c l"   . counsel-locate))   ; search for files or else using locate
+    )
 #+END_SRC
 * Which-key
 #+BEGIN_SRC emacs-lisp
