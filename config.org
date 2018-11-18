@@ -1468,6 +1468,23 @@ https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-fro
 
   (yas-global-mode 1)
 #+END_SRC
+** CANCELLED company/yasnippets                                  :CANCELLED:
+Look at this if needed.
+#+BEGIN_SRC emacs-lisp
+  ;; https://emacs.stackexchange.com/questions/10431/get-company-to-show-suggestions-for-yasnippet-names
+  ;; Add yasnippet support for all company backends
+  ;; https://github.com/syl20bnr/spacemacs/pull/179
+  (defvar company-mode/enable-yas t
+    "Enable yasnippet for all backends.")
+
+  (defun company-mode/backend-with-yas (backend)
+    (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+        backend
+      (append (if (consp backend) backend (list backend))
+              '(:with company-yasnippet))))
+
+  (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+#+END_SRC
 * Gc
 #+BEGIN_SRC emacs-lisp
   ;; gc / make org faster
