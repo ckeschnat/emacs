@@ -1593,7 +1593,7 @@ Look at this if needed.
 
   (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 #+END_SRC
-* git
+* Git
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :ensure t
