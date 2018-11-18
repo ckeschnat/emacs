@@ -1598,7 +1598,13 @@ Look at this if needed.
     :ensure t
     :config
     (use-package evil-magit
-      :ensure t))
+      :ensure t)
+    (general-define-key
+      :states '(normal visual insert emacs)
+      :prefix "SPC"
+      :non-normal-prefix "M-SPC"
+      "g"  '(:ignore t :which-key "Magit")
+      "gg" '(magit :which-key "Magit")))
 #+END_SRC
 * Gc
 #+BEGIN_SRC emacs-lisp
