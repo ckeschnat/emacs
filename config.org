@@ -127,11 +127,15 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
 #+BEGIN_SRC emacs-lisp
   (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
-*** Backup and lock files
+*** Backup, autosaves and lock files
 #+BEGIN_SRC emacs-lisp
   ;; Set backup directory
   (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
-  (setq auto-save-default nil) ; stop creating #autosave# files
+
+  (setq delete-old-versions -1)
+  (setq version-control t)
+  (setq vc-make-backup-files t)
+  (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
 
   ;; No lock files
   (setq create-lockfiles nil)
