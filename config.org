@@ -961,7 +961,16 @@ belongs as a list."
                               `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
                               `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.5))))
                               `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
-                              `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil)))))))
+                              `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil))))))
+
+    (setq org-fontify-done-headline t)
+    (custom-set-faces
+     '(org-done ((t (:foreground "PaleGreen"
+                     :weight normal
+                     :strike-through t))))
+     '(org-headline-done
+                ((((class color) (min-colors 16) (background dark))
+                   (:foreground "LightSalmon" :strike-through t))))))
 
   ;; circles instead of dashes in lists
   (font-lock-add-keywords 'org-mode
