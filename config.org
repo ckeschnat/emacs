@@ -915,7 +915,14 @@ https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_impro
           '(("j" "Journal entry" entry (function org-journal-find-location)
             "* TODO %?\n%T\n%i"))
         org-capture-templates))
-  )
+
+      (general-define-key
+        :states '(normal visual insert emacs)
+        :prefix "SPC"
+        :non-normal-prefix "M-SPC"
+        "j"  '(:ignore t :which-key "Journal")
+        "jc" '(org-capture :which-key "org-capture")
+        "js" '(org-journal-new-scheduled-entry :which-key "scheduled capture")))
 #+END_SRC
 *** htmlize
 To export to html.
