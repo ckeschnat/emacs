@@ -788,8 +788,9 @@ belongs as a list."
 #+END_SRC
 *** src-blocks
 #+BEGIN_SRC emacs-lisp
-(setq org-src-fontify-natively t)
-(setq org-src-tab-acts-natively t)
+  (setq org-src-fontify-natively t)
+  (setq org-src-tab-acts-natively t)
+  (setq org-src-window-setup 'current-window)
 #+END_SRC
 *** Agenda
 #+BEGIN_SRC emacs-lisp
