@@ -1435,7 +1435,6 @@ https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-fro
 #+BEGIN_SRC emacs-lisp
   (use-package company
     :ensure t
-    :defer 2
     :diminish
     :custom
       (company-begin-commands '(self-insert-command))
@@ -1450,7 +1449,6 @@ https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-fro
     :config
       (use-package company-go
         :ensure t
-        :defer 2
         :after company
         :diminish))
 
