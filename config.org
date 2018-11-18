@@ -887,6 +887,8 @@ belongs as a list."
   ) ;; END use-package org
 #+END_SRC
 *** org-journal
+https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_improve_my/
+
 #+BEGIN_SRC emacs-lisp
   (use-package org-journal
     :ensure t
