@@ -823,6 +823,9 @@ belongs as a list."
   (setq org-log-reschedule (quote time))
   (setq org-log-done (quote time))
 
+  (setq org-clock-persist 'history)
+  (org-clock-persistence-insinuate)
+
   (setq org-default-notes-file (concat (car org-agenda-files) "inbox.org"))
   ;; More headings for refile
   ;; (setq org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
