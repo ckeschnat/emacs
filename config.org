@@ -802,6 +802,7 @@ belongs as a list."
           (quote (("CANCELLED" ("CANCELLED" . t))
                   ("WAITING" ("WAITING" . t))
                   (done ("WAITING"))
+                  ("" ("WAITING") ("CANCELLED"))
                   ("TODO" ("WAITING") ("CANCELLED"))
                   ("NEXT" ("WAITING") ("CANCELLED"))
                   ("DONE" ("WAITING") ("CANCELLED")))))
