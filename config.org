@@ -68,7 +68,7 @@ Set Symbola as fallback font to display unicode characters.
   (setenv "PATH" (concat "C:\\msys64\\usr\\bin;" "C:\\msys64\\mingw64\\bin;" "C:\\texlive\\2018\\bin\\win32;" "w:\\handmade\\misc;" (getenv "PATH")))
 #+END_SRC
 *** Encoding
-See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emacs][masteringemacs]]
+See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emacs][masteringemacs]] and [[https://zhangda.wordpress.com/2016/02/15/configurations-for-beautifying-emacs-org-mode/]]
 #+BEGIN_SRC emacs-lisp
   ;; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
   (setq utf-translate-cjk-mode nil)
