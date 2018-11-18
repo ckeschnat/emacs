@@ -1607,6 +1607,26 @@ Look at this if needed.
       "g"  '(:ignore t :which-key "Magit")
       "gg" '(magit :which-key "Magit")))
 #+END_SRC
+* Engine
+#+BEGIN_SRC emacs-lisp
+  (use-package engine-mode
+    :ensure t
+    :config
+    (progn
+      (defengine google "http://google.de/search?q=%s" :keybinding "g")
+      (defengine mail "https://mail.google.com/mail/u/0/#search/%s" :keybinding "m")
+      (defengine jira "https://TODO" :keybinding "j")
+      (engine-mode))
+
+    (general-define-key
+      :states '(normal visual insert emacs)
+      :prefix "SPC"
+      :non-normal-prefix "M-SPC"
+      "e"  '(:ignore t :which-key "Engine")
+      "eg" '(engine/search-google "goole" :which-key "Google")
+      "em" '(engine/search-mail "mail" :which-key "Mail")
+      "ej" '(engine/search-jira "jira" :which-key "Jira")))
+#+END_SRC
 * Gc
 #+BEGIN_SRC emacs-lisp
   ;; gc / make org faster
