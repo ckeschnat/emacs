@@ -912,7 +912,7 @@ https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_impro
       (setq org-capture-templates
         (append
           '(("j" "Journal entry" entry (function org-journal-find-location)
-            "* TODO %(format-time-string org-journal-time-format)%^{Title}\n%i%?"))
+            "* TODO %?\n%T\n%i"))
         org-capture-templates))
   )
 #+END_SRC
