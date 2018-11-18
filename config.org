@@ -795,6 +795,7 @@ belongs as a list."
                                   ":EXPORT_TITLE:\n"
                                   ":EXPORT_OPTIONS: html-postamble:nil num:nil")))
 
+  (add-hook 'org-capture-mode-hook 'evil-insert-state)
 
   (setq org-use-fast-todo-selection t)
   (setq org-todo-state-tags-triggers
