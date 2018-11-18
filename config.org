@@ -152,6 +152,18 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
           search-ring
           regexp-search-ring))
 #+END_SRC
+*** Time in modeline
+#+BEGIN_SRC emacs-lisp
+  (display-time-mode 1)
+#+END_SRC
+*** Sentences end with a single space
+#+BEGIN_SRC emacs-lisp
+  (setq sentence-end-double-space nil)
+#+END_SRC
+*** Winner
+#+BEGIN_SRC emacs-lisp
+  (winner-mode 1)
+#+END_SRC
 *** persistent undo
 #+BEGIN_SRC emacs-lisp
   (setq undo-tree-auto-save-history t)
