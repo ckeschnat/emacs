@@ -226,8 +226,9 @@ https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-
   (use-package tramp
     :ensure t
     :config
+      (when (eq system-type 'windows-nt)
         (set-default 'tramp-auto-save-directory "C:\\Users\\chris.keschnat\\AppData\\Local\\Temp")
-        (set-default 'tramp-default-method "plink"))
+        (set-default 'tramp-default-method "plink")))
 #+END_SRC
 *** smart-mode-line
 #+BEGIN_SRC emacs-lisp
