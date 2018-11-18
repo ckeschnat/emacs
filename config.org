@@ -123,6 +123,10 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
   (setq show-paren-delay 0)
   (show-paren-mode 1)
 #+END_SRC
+*** Change "yes or no" to "y or n"
+#+BEGIN_SRC emacs-lisp
+  (fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
 *** Backup and lock files
 #+BEGIN_SRC emacs-lisp
   ;; Disable backup files
