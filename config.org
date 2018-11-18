@@ -32,18 +32,36 @@ Set Symbola as fallback font to display unicode characters.
 #+END_SRC
 *** Theme
 #+BEGIN_SRC emacs-lisp
-;; Theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-  (setq zenburn-override-colors-alist '(
-                                        ("zenburn-bg-05" . "#131818")
-                                        ("zenburn-bg-1" . "#6A714A")
-                                        ))
-(load-theme 'zenburn t)
+  ;; Theme
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+    (setq zenburn-override-colors-alist '(
+                                          ("zenburn-bg-05" . "#131818")
+                                          ("zenburn-bg-1" . "#6A714A")
+                                          ))
+  (load-theme 'zenburn t)
 
-;;(use-package doom-themes
-;;  :ensure t
-;;  :config
-;;  (load-theme 'doom-one t))
+  ;;(use-package doom-themes
+  ;;  :ensure t
+  ;;  :config
+  ;;  (load-theme 'doom-one t))
+#+END_SRC
+
+https://github.com/jasonm23/emacs-select-themes
+#+BEGIN_SRC emacs-lisp
+  (defun select-themes (theme)
+    "Interactively select a THEME, from the available custom themes.
+  You can also select '*Emacs default*' to return to Emacs default theme.
+  Note: multiple enabled themes cause Emacs to slow down, so we
+  disable them before selecting the new theme."
+    (interactive (list (completing-read "Select theme: "
+                                  (sort (custom-available-themes) 'string<)
+                                  nil nil nil nil
+                                  "*Emacs default*")))
+    (mapc 'disable-theme custom-enabled-themes)
+    (unless (string= "*Emacs default*" theme)
+      (load-theme (intern-soft theme))))
+
+  (provide 'select-themes)
 #+END_SRC
 * Packages and use-package
 #+BEGIN_SRC emacs-lisp
