@@ -821,6 +821,7 @@ belongs as a list."
 
   (setq org-log-redeadline (quote time))
   (setq org-log-reschedule (quote time))
+  (setq org-log-done (quote time))
 
   (setq org-default-notes-file (concat (car org-agenda-files) "inbox.org"))
   ;; More headings for refile
