@@ -1592,6 +1592,14 @@ Look at this if needed.
 
   (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 #+END_SRC
+* git
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :ensure t
+    :config
+    (use-package evil-magit
+      :ensure t))
+#+END_SRC
 * Gc
 #+BEGIN_SRC emacs-lisp
   ;; gc / make org faster
