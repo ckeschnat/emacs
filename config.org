@@ -140,6 +140,18 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
   ;; No lock files
   (setq create-lockfiles nil)
 #+END_SRC
+*** History
+#+BEGIN_SRC emacs-lisp
+  (setq savehist-file "~/.emacs.d/savehist")
+  (savehist-mode 1)
+  (setq history-length t)
+  (setq history-delete-duplicates t)
+  (setq savehist-save-minibuffer-history 1)
+  (setq savehist-additional-variables
+        '(kill-ring
+          search-ring
+          regexp-search-ring))
+#+END_SRC
 *** persistent undo
 #+BEGIN_SRC emacs-lisp
   (setq undo-tree-auto-save-history t)
