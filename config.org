@@ -1429,6 +1429,9 @@ The variable puppet-indent-level controls the amount of indentation.
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 #+END_SRC
 * Company
+** TODO evtl. company enter key verbessern
+https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-from-triggering-a-completion-in-company-mode
+
 #+BEGIN_SRC emacs-lisp
   (use-package company
     :ensure t
