@@ -161,6 +161,13 @@ https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-
         (set-default 'tramp-auto-save-directory "C:\\Users\\chris.keschnat\\AppData\\Local\\Temp")
         (set-default 'tramp-default-method "plink"))
 #+END_SRC
+*** smart-mode-line
+#+BEGIN_SRC emacs-lisp
+  (use-package smart-mode-line
+    :ensure t
+    :config
+      (sml/setup))
+#+END_SRC
 * Evil
 [[https://github.com/emacs-evil/evil-collection][Evil-Collection]]
 
