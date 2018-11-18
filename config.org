@@ -1428,6 +1428,20 @@ The variable puppet-indent-level controls the amount of indentation.
 
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 #+END_SRC
+* Company
+#+BEGIN_SRC emacs-lisp
+  (use-package company
+    :ensure t
+    :defer 2
+    :diminish
+    :custom
+      (company-begin-commands '(self-insert-command))
+      (company-idle-delay .1)
+      (company-minimum-prefix-length 2)
+      (company-show-numbers t)
+      (company-tooltip-align-annotations 't)
+      (global-company-mode t))
+#+END_SRC
 * Gc
 #+BEGIN_SRC emacs-lisp
   ;; gc / make org faster
