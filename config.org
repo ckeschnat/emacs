@@ -1009,6 +1009,11 @@ https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_impro
             "* TODO %?\n%T\n%i"))
         org-capture-templates))
 
+      (defun ck/org-journal-find-location ()
+        "The foo"
+        (interactive)
+        (org-journal-new-entry t))
+
       (general-define-key
         :states '(normal visual insert emacs)
         :prefix "SPC"
@@ -1016,6 +1021,7 @@ https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_impro
         "j"  '(:ignore t :which-key "Org/Journal")
         "jc" '(org-capture :which-key "org-capture")
         "js" '(org-journal-new-scheduled-entry :which-key "scheduled capture")
+        "jv" '(ck/org-journal-find-location :which-key "view today")
         "ji" '(org-clock-in :which-key "org-clock-in")
         "jo" '(org-clock-out :which-key "org-clock-out")))
 #+END_SRC
