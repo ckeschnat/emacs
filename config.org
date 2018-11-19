@@ -207,7 +207,7 @@ This lets you use =C-x u= (=undo-tree-visualize=) to visually walk through the c
       :prefix "SPC"
       :non-normal-prefix "M-SPC"
       "u"  '(:ignore t :which-key "Undo")
-      "uv" '(undo-tree-visualize :which-key "Ranger")))
+      "uv" '(undo-tree-visualize :which-key "Visualize")))
 #+END_SRC
 *** center after search
 #+BEGIN_SRC emacs-lisp
