@@ -1621,7 +1621,8 @@ Look at this if needed.
       :non-normal-prefix "M-SPC"
       "g"  '(:ignore t :which-key "Magit")
       "gg" '(magit :which-key "Magit")
-      "gs" '(magit-status :which-key "Status")))
+      "gs" '(magit-status :which-key "Status")
+      "gl" '(magit-log :which-key "Log")))
 #+END_SRC
 * Engine
 #+BEGIN_SRC emacs-lisp
