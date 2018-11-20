@@ -557,6 +557,12 @@ https://zhangda.wordpress.com/2016/02/15/configurations-for-beautifying-emacs-or
 
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+END_SRC
+**** make org-bullets faster under windows
+https://github.com/sabof/org-bullets/issues/11#issuecomment-439228372
+
+#+BEGIN_SRC emacs-lisp
+  (setq inhibit-compacting-font-caches t)
+#+END_SRC
 *** misc
 
 
