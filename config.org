@@ -794,16 +794,21 @@ belongs as a list."
   (setq org-src-window-setup 'current-window)
 #+END_SRC
 *** Agenda
+**** TODO improve conditional org-agenda-tag-filter-preset (home/work)
 #+BEGIN_SRC emacs-lisp
-(setq home-org-dir "c:/Users/NOBODY/Documents/Seafile/docs/org/")
-(setq work-org-dir "c:/Users/chris.keschnat/Documents/docs/org/")
-(setq org-agenda-files
-        (cond ((file-directory-p home-org-dir) (list home-org-dir))
-            ((file-directory-p work-org-dir) (list work-org-dir))
-        )
-)
+  (setq home-org-dir "c:/Users/NOBODY/Documents/Seafile/docs/org/")
+  (setq work-org-dir "c:/Users/chris.keschnat/Documents/docs/org/")
+  (setq org-agenda-files
+        (cond
+         ((file-directory-p home-org-dir) (list home-org-dir))
+         ((file-directory-p work-org-dir) (list work-org-dir))))
 
-(setq org-agenda-text-search-extra-files '(agenda-archives))
+  (setq org-agenda-tag-filter-preset
+        (cond
+         ((file-directory-p home-org-dir) '("-@work" "-elk" "-REFILE"))
+         ((file-directory-p work-org-dir) '("-@home" "-elk" "-REFILE"))))
+
+  (setq org-agenda-text-search-extra-files '(agenda-archives))
 #+END_SRC
 *** Not yet sorted
 #+BEGIN_SRC emacs-lisp
