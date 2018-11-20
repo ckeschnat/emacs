@@ -1005,6 +1005,7 @@ https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_impro
 
     (setq org-journal-file-format "%Y%m%d.org")
     (setq org-journal-enable-agenda-integration t)
+    (setq org-journal-carryover-items "TODO=\"TODO\"|TODO=\"WAITING\"|TODO=\"SOMEDAY\"")
     :config
       (defun org-journal-find-location ()
         ;; Open today's journal, but specify a non-nil prefix argument in order to
