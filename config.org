@@ -1605,7 +1605,7 @@ https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-fro
 
   (yas-global-mode 1)
 #+END_SRC
-** CANCELLED company/yasnippets                                  :CANCELLED:
+** CANCELLED company/yasnippets                                                    :CANCELLED:
 Look at this if needed.
 #+BEGIN_SRC emacs-lisp
   ;; https://emacs.stackexchange.com/questions/10431/get-company-to-show-suggestions-for-yasnippet-names
@@ -1667,7 +1667,7 @@ Look at this if needed.
   (run-with-idle-timer 5 t #'garbage-collect)
   (setq garbage-collection-messages t)
 #+END_SRC
-* CANCELLED Helm                                                  :CANCELLED:
+* CANCELLED Helm                                                                   :CANCELLED:
 #+BEGIN_SRC emacs-lisp
 ;; Helm
 (use-package helm
