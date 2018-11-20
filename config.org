@@ -990,6 +990,8 @@ belongs as a list."
   ) ;; END use-package org
 #+END_SRC
 *** org-journal
+****  TODO negate org-journal-carryover-items if possible
+
 https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_improve_my/
 
 #+BEGIN_SRC emacs-lisp
