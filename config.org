@@ -1036,6 +1036,7 @@ https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_impro
         "jc" '(org-capture :which-key "org-capture")
         "js" '(org-journal-new-scheduled-entry :which-key "scheduled capture")
         "jv" '(ck/org-journal-find-location :which-key "view today")
+        "j/" '(org-journal-search-forever :which-key "search")
         "ji" '(org-clock-in :which-key "org-clock-in")
         "jo" '(org-clock-out :which-key "org-clock-out")))
 #+END_SRC
