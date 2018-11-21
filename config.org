@@ -320,6 +320,7 @@ Key bindings.
       :states '(normal visual insert emacs)
       :prefix "SPC"
       :non-normal-prefix "M-SPC"
+      "" nil
       "TAB" '(spacemacs/alternate-buffer :which-key "previous buffer")
       ;; Window
       "w"  '(:ignore t :which-key "Windows")
