@@ -2,7 +2,6 @@
 #+OPTIONS: html-postamble:nil num:nil
 #+FILETAGS: emacs
 #+TITLE: Emacs config
-
 * Introduction
 Headings tagged "CANCELLED" will not be tangled.
 * UI
@@ -213,11 +212,6 @@ This lets you use =C-x u= (=undo-tree-visualize=) to visually walk through the c
 #+BEGIN_SRC emacs-lisp
   ;; center after search
   (setq scroll-conservatively 0)
-#+END_SRC
-*** filetypes to modes
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'auto-mode-alist '("\\.asciidoc\\'" . adoc-mode))
-  (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
 #+END_SRC
 *** tramp
 https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-Emacs-Under-Windows/
@@ -511,7 +505,10 @@ Use amx to save recent M-x items
 * Org
 *** use-package
 #+BEGIN_SRC emacs-lisp
-(use-package org
+  (use-package org
+    :mode
+    (("\\.txt$" . org-mode))
+
     :config
 #+END_SRC
 *** Keybindings
