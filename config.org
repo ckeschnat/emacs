@@ -1621,7 +1621,7 @@ Look at this if needed.
 
   (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 #+END_SRC
-* Git
+* Magit
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :ensure t
@@ -1633,7 +1633,6 @@ Look at this if needed.
       :prefix "SPC"
       :non-normal-prefix "M-SPC"
       "g"  '(:ignore t :which-key "Magit")
-      "gg" '(magit :which-key "Magit")
       "gs" '(magit-status :which-key "Status")
       "gl" '(magit-log :which-key "Log")))
 #+END_SRC
