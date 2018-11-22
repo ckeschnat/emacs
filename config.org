@@ -336,7 +336,8 @@ Key bindings.
       "o"  '(:ignore t :which-key "Other"))
 
     (general-define-key
-     "C-x k" 'kill-this-buffer))
+      "C-x k" 'kill-this-buffer
+      "M-o" 'other-window))
 #+END_SRC
 
 * Ivy
