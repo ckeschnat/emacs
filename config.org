@@ -300,6 +300,8 @@ https://github.com/noctuid/general.el#integration-with-other-packages
 
 https://github.com/noctuid/general.el/issues/22
 
+https://www.reddit.com/r/emacs/comments/6ljtex/noob_how_i_should_organize_my_keybindings_using/
+
 Learn when what is loaded. ~SPC j v~ is not available before org-mode
 for example.
 
