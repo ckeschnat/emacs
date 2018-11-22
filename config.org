@@ -333,7 +333,10 @@ Key bindings.
       ;; Search
       "s"  '(:ignore t :which-key "Search")
       ;; Others
-      "o"  '(:ignore t :which-key "Other")))
+      "o"  '(:ignore t :which-key "Other"))
+
+    (general-define-key
+     "C-x k" 'kill-this-buffer))
 #+END_SRC
 
 * Ivy
