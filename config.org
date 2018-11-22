@@ -1051,6 +1051,27 @@ https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_impro
         "ji" '(org-clock-in :which-key "org-clock-in")
         "jo" '(org-clock-out :which-key "org-clock-out")))
 #+END_SRC
+*** CANCELLED org-brain                                         :CANCELLED:
+CLOSED: [2018-11-22 Thu 15:31]
+
+https://github.com/Kungsgeten/org-brain
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-brain :ensure t
+    :init
+    (setq org-brain-path "c:/Users/NOBODY/Documents/Seafile/docs/org/brain")
+    ;; For Evil users
+    (with-eval-after-load 'evil
+      (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
+    :config
+    (setq org-id-track-globally t)
+    (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
+    (push '("b" "Brain" plain (function org-brain-goto-end)
+            "* %i%?" :empty-lines 1)
+          org-capture-templates)
+    (setq org-brain-visualize-default-choices 'all)
+    (setq org-brain-title-max-length 12))
+#+END_SRC
 *** CANCELLED org-outlook                                       :CANCELLED:
 CLOSED: [2018-11-22 Thu 11:49]
 #+BEGIN_SRC emacs-lisp
