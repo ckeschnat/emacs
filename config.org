@@ -341,6 +341,9 @@ for example.
       ;; Buffers
       "b"  '(:ignore t :which-key "Buffers")
       "bd"  '(kill-this-buffer :which-key "delete buffer")
+      ;; Org/Journal
+      "j"  '(:ignore t :which-key "Org/Journal")
+      "jc" '(org-capture :which-key "org-capture")
       ;; Search
       "s"  '(:ignore t :which-key "Search")
       ;; Others
@@ -1045,8 +1048,6 @@ https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_impro
         :states '(normal visual insert emacs)
         :prefix "SPC"
         :non-normal-prefix "M-SPC"
-        "j"  '(:ignore t :which-key "Org/Journal")
-        "jc" '(org-capture :which-key "org-capture")
         "js" '(org-journal-new-scheduled-entry :which-key "scheduled capture")
         "jv" '(ck/org-journal-find-location :which-key "view today")
         "j/" '(org-journal-search-forever :which-key "search")
