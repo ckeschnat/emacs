@@ -1634,6 +1634,7 @@ Look at this if needed.
       :non-normal-prefix "M-SPC"
       "g"  '(:ignore t :which-key "Magit")
       "gs" '(magit-status :which-key "Status")
+      "gp" '(magit-push-other :which-key "Push")
       "gl" '(magit-log :which-key "Log")))
 #+END_SRC
 * Engine
