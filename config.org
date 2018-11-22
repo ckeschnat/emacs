@@ -1042,6 +1042,20 @@ https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_impro
         "ji" '(org-clock-in :which-key "org-clock-in")
         "jo" '(org-clock-out :which-key "org-clock-out")))
 #+END_SRC
+*** CANCELLED org-outlook                                       :CANCELLED:
+CLOSED: [2018-11-22 Thu 11:49]
+#+BEGIN_SRC emacs-lisp
+  ;;; org-outlook.el - Support for links to Outlook items in Org
+  (defun org-outlook-open (id)
+     "Open the Outlook item identified by ID.  ID should be an Outlook GUID."
+     (w32-shell-execute "open" (concat "outlook:" id)))
+
+  (org-add-link-type "outlook" 'org-outlook-open)
+
+  (provide 'org-outlook)
+
+  ;;; org-outlook.el ends here
+#+END_SRC
 *** htmlize
 To export to html.
 
