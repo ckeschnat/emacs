@@ -887,7 +887,8 @@ belongs as a list."
                               )))
 
   (setq org-capture-templates
-          (quote (("t" "todo" entry (file "") "* TODO %?\n%U\n%a\n")
+          (quote (("t" "todo" entry (file "") "* TODO %?\nEntered: %U\n")
+                  ("l" "linked todo" entry (file "") "* TODO %?\nEntered: %U\n%a\n")
                   ("n" "note" entry (file "") "* %? :NOTE:\n%U\n%a\n")
                   )))
 
