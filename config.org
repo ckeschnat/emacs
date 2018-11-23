@@ -341,13 +341,13 @@ for example.
       ;; Buffers
       "b"  '(:ignore t :which-key "Buffers")
       "bd"  '(kill-this-buffer :which-key "delete buffer")
-      ;; Org/Journal
-      "j"  '(:ignore t :which-key "Org/Journal")
-      "jc" '(org-capture :which-key "org-capture")
+      ;; Org
+      "o"  '(:ignore t :which-key "Org")
+      "oc" '(org-capture :which-key "org-capture")
+      "oi" '(org-clock-in :which-key "org-clock-in")
+      "oo" '(org-clock-out :which-key "org-clock-out")
       ;; Search
-      "s"  '(:ignore t :which-key "Search")
-      ;; Others
-      "o"  '(:ignore t :which-key "Other"))
+      "s"  '(:ignore t :which-key "Search"))
 
     (general-define-key
       "C-x k" 'kill-this-buffer
@@ -495,7 +495,7 @@ Use amx to save recent M-x items
       :states '(normal visual insert emacs)
       :prefix "SPC"
       :non-normal-prefix "M-SPC"
-      "or" '(ranger :which-key "Ranger"))
+      "fn" '(ranger :which-key "Ranger"))
   )
 #+END_SRC
 * Projectile
@@ -1005,8 +1005,10 @@ belongs as a list."
                               (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
   ) ;; END use-package org
 #+END_SRC
-*** org-journal
-****  TODO negate org-journal-carryover-items if possible
+*** CANCELLED org-journal                                       :CANCELLED:
+CLOSED: [2018-11-23 Fri 13:42]
+**** CANCELLED negate org-journal-carryover-items if possible  :CANCELLED:
+CLOSED: [2018-11-23 Fri 13:42]
 
 https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_improve_my/
 
