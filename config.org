@@ -1005,57 +1005,6 @@ belongs as a list."
                               (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
   ) ;; END use-package org
 #+END_SRC
-*** CANCELLED org-journal                                       :CANCELLED:
-CLOSED: [2018-11-23 Fri 13:42]
-**** CANCELLED negate org-journal-carryover-items if possible  :CANCELLED:
-CLOSED: [2018-11-23 Fri 13:42]
-
-https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_improve_my/
-
-#+BEGIN_SRC emacs-lisp
-  (use-package org-journal
-    :ensure t
-    :after org
-    :init
-
-    (setq org-journal-dir
-            (concat (cond
-              ((file-directory-p home-org-dir) home-org-dir)
-              ((file-directory-p work-org-dir) work-org-dir)) "journal"))
-
-    (setq org-journal-file-format "%Y%m%d.org")
-    (setq org-journal-enable-agenda-integration t)
-    (setq org-journal-carryover-items "TODO=\"TODO\"|TODO=\"WAITING\"|TODO=\"SOMEDAY\"")
-    :config
-      (defun org-journal-find-location ()
-        ;; Open today's journal, but specify a non-nil prefix argument in order to
-        ;; inhibit inserting the heading; org-capture will insert the heading.
-        (org-journal-new-entry t)
-        ;; Position point on the journal's top-level heading so that org-capture
-        ;; will add the new entry as a child entry.
-        (goto-char (point-min)))
-
-      (setq org-capture-templates
-        (append
-          '(("j" "Journal entry" entry (function org-journal-find-location)
-            "* TODO %?\n%T\n%i"))
-        org-capture-templates))
-
-      (defun ck/org-journal-find-location ()
-        "The foo"
-        (interactive)
-        (org-journal-new-entry t))
-
-      (general-define-key
-        :states '(normal visual insert emacs)
-        :prefix "SPC"
-        :non-normal-prefix "M-SPC"
-        "js" '(org-journal-new-scheduled-entry :which-key "scheduled capture")
-        "jv" '(ck/org-journal-find-location :which-key "view today")
-        "j/" '(org-journal-search-forever :which-key "search")
-        "ji" '(org-clock-in :which-key "org-clock-in")
-        "jo" '(org-clock-out :which-key "org-clock-out")))
-#+END_SRC
 *** CANCELLED org-brain                                         :CANCELLED:
 CLOSED: [2018-11-22 Thu 15:31]
 
