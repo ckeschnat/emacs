@@ -19,6 +19,7 @@ Headings tagged "CANCELLED" will not be tangled.
     (package-refresh-contents)
     (package-install 'use-package))
   (require 'use-package)
+  (setq use-package-always-ensure t)
 #+END_SRC
 
 * UI
@@ -56,16 +57,11 @@ Set Symbola as fallback font to display unicode characters.
                                           ))
   (load-theme 'zenburn t)
 
-  ;;(use-package doom-themes
-  ;;  :ensure t
-  ;;  :config
-  ;;  (load-theme 'doom-one t))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'load-path "~/.emacs.d/elpa/doom-themes-20181101.218/")
   (use-package doom-themes
-    :ensure t
     :config
     (load-theme 'doom-one t))
 #+END_SRC
@@ -177,7 +173,6 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
 #+BEGIN_SRC emacs-lisp
   (setq help-window-select t)
   (use-package helpful
-    :ensure t
     :config
       (general-define-key
         :states '(normal visual insert emacs)
@@ -286,7 +281,6 @@ https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-
 
 #+BEGIN_SRC emacs-lisp
   (use-package tramp
-    :ensure t
     :config
       (when (eq system-type 'windows-nt)
         (set-default 'tramp-auto-save-directory "C:\\Users\\chris.keschnat\\AppData\\Local\\Temp")
@@ -295,7 +289,6 @@ https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-
 *** smart-mode-line
 #+BEGIN_SRC emacs-lisp
   (use-package smart-mode-line
-    :ensure t
     :config
       (sml/setup))
 #+END_SRC
@@ -307,7 +300,6 @@ https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-
 #+BEGIN_SRC emacs-lisp
   ;; Vim mode
   (use-package evil
-    :ensure t
     :init
     (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
     (setq evil-want-keybinding nil)
@@ -315,7 +307,6 @@ https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-
     (evil-mode 1))
 
   (use-package evil-escape
-    :ensure t
     :init
     (setq-default evil-escape-key-sequence "fd")
     :config
@@ -323,12 +314,10 @@ https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-
 
   (use-package evil-collection
     :after evil
-    :ensure t
     :config
     (evil-collection-init))
 
   (use-package evil-org
-    :ensure t
     :after org
     :config
     (add-hook 'org-mode-hook 'evil-org-mode)
@@ -355,8 +344,7 @@ in your configuration and just ignore the rest of its features.
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-  (use-package lispyville
-   :ensure t)
+  (use-package lispyville)
 
   (add-hook 'emacs-lisp-mode-hook #'lispyville-mode)
   (add-hook 'lisp-mode-hook #'lispyville-mode)
@@ -380,7 +368,6 @@ for example.
 #+BEGIN_SRC emacs-lisp
   ;; Custom keybinding
   (use-package general
-    :ensure t
     :config
     (general-evil-setup t)
 
@@ -428,13 +415,11 @@ for example.
 Use amx to save recent M-x items
 
 #+BEGIN_SRC emacs-lisp
-  (use-package amx
-    :ensure t)
+  (use-package amx)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
-    :ensure t
     :defer 0.1
     :diminish (ivy-mode . "") ; does not display ivy in the modeline
     :init (ivy-mode 1)        ; enable ivy globally at startup
@@ -465,7 +450,6 @@ Use amx to save recent M-x items
 
   ;; https://www.reddit.com/r/emacs/comments/910pga/tip_how_to_use_ivy_and_its_utilities_in_your/
   (use-package ivy-rich
-    :ensure t
     :after ivy
     :custom
     (ivy-virtual-abbreviate 'full
@@ -516,12 +500,10 @@ Use amx to save recent M-x items
 
 
   (use-package swiper
-    :ensure t
     :after ivy)
 
-  ;(use-package avy :ensure t)
+  ;(use-package avy)
   (use-package counsel
-    :ensure t
     :diminish
     :after ivy
   ;  :bind*                           ; load counsel when pressed
@@ -549,7 +531,6 @@ Use amx to save recent M-x items
 #+BEGIN_SRC emacs-lisp
 ;; Which Key
 (use-package which-key
-  :ensure t
   :init
   (setq which-key-separator " ")
   (setq which-key-prefix-prefix "+")
@@ -559,7 +540,6 @@ Use amx to save recent M-x items
 * Ranger
 #+BEGIN_SRC emacs-lisp
   (use-package ranger
-  :ensure t
   :config
     (ranger-override-dired-mode t)
     (general-define-key
@@ -573,7 +553,6 @@ Use amx to save recent M-x items
 #+BEGIN_SRC emacs-lisp
 ;; Projectile
 (use-package projectile
-  :ensure t
   :init
   (setq projectile-require-project-root nil)
   :config
@@ -582,7 +561,6 @@ Use amx to save recent M-x items
 * ripgrep
 #+BEGIN_SRC emacs-lisp
   (use-package rg
-    :ensure t
     :config
 
     (general-define-key
@@ -631,7 +609,6 @@ https://zhangda.wordpress.com/2016/02/15/configurations-for-beautifying-emacs-or
 
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
-  :ensure t
   :config
     ;;(setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
     (setq org-bullets-bullet-list '("✙" "♱" "♰" "☥" "✞" "✟" "✝" "†" "✠" "✚" "✜" "✛" "✢" "✣" "✤" "✥"))
@@ -1084,7 +1061,7 @@ CLOSED: [2018-11-22 Thu 15:31]
 https://github.com/Kungsgeten/org-brain
 
 #+BEGIN_SRC emacs-lisp
-  (use-package org-brain :ensure t
+  (use-package org-brain
     :init
     (setq org-brain-path "c:/Users/NOBODY/Documents/Seafile/docs/org/brain")
     ;; For Evil users
@@ -1103,8 +1080,7 @@ https://github.com/Kungsgeten/org-brain
 To export to html.
 
 #+BEGIN_SRC emacs-lisp
-(use-package htmlize
-  :ensure t)
+(use-package htmlize)
 #+END_SRC
 
 * Navigation
@@ -1631,7 +1607,6 @@ https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-fro
 
 #+BEGIN_SRC emacs-lisp
   (use-package company
-    :ensure t
     :diminish
     :custom
       (company-begin-commands '(self-insert-command))
@@ -1645,7 +1620,6 @@ https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-fro
       (global-company-mode t)
     :config
       (use-package company-go
-        :ensure t
         :after company
         :diminish))
 
@@ -1658,12 +1632,9 @@ https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-fro
 * Yasnippets
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
-    :ensure t
     :config
-      (use-package yasnippet-snippets
-        :ensure t))
+      (use-package yasnippet-snippets))
       (use-package ivy-yasnippet
-        :ensure t
         :config
         (general-define-key
           :states '(insert motion)
@@ -1691,10 +1662,8 @@ Look at this if needed.
 * Magit
 #+BEGIN_SRC emacs-lisp
   (use-package magit
-    :ensure t
     :config
-    (use-package evil-magit
-      :ensure t)
+    (use-package evil-magit)
     (general-define-key
       :states '(normal visual insert emacs)
       :prefix "SPC"
@@ -1707,7 +1676,6 @@ Look at this if needed.
 * Engine
 #+BEGIN_SRC emacs-lisp
   (use-package engine-mode
-    :ensure t
     :config
     (progn
       (defengine google "http://google.de/search?q=%s" :keybinding "g")
@@ -1737,7 +1705,6 @@ Look at this if needed.
 #+BEGIN_SRC emacs-lisp
 ;; Helm
 (use-package helm
-  :ensure t
   :init
   (setq helm-M-x-fuzzy-match t
   helm-mode-fuzzy-match t
