@@ -88,9 +88,57 @@ https://github.com/jasonm23/emacs-select-themes
   (provide 'select-themes)
 #+END_SRC
 * Misc
+A lot of this is from https://github.com/hrs/sensible-defaults.el/blob/master/sensible-defaults.el
 *** Cleanup whitespace
 #+BEGIN_SRC emacs-lisp
   (add-hook 'before-save-hook 'whitespace-cleanup)
+#+END_SRC
+*** Follow symlinks
+#+BEGIN_SRC emacs-lisp
+  (setq vc-follow-symlinks t)
+#+END_SRC
+*** Scipts auto executable
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+#+END_SRC
+*** CamelCase-Movement
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'prog-mode-hook 'subword-mode)
+#+END_SRC
+*** Final newline
+If you save a file that doesn't end with a newline,
+automatically append one.
+#+BEGIN_SRC emacs-lisp
+  (setq require-final-newline t)
+#+END_SRC
+*** Confirm kill emacs
+Ask if you're sure that you want to close Emacs.
+#+BEGIN_SRC emacs-lisp
+  (setq confirm-kill-emacs 'y-or-n-p)
+#+END_SRC
+*** Visible bell
+When you perform a problematic operation, flash the screen
+instead of ringing the terminal bell.
+#+BEGIN_SRC emacs-lisp
+  (setq visible-bell t)
+#+END_SRC
+*** Create directories
+When saving a file in a directory that doesn't exist, offer
+to (recursively) create the file's parent directories.
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'before-save-hook
+              (lambda ()
+                (when buffer-file-name
+                  (let ((dir (file-name-directory buffer-file-name)))
+                    (when (and (not (file-exists-p dir))
+                               (y-or-n-p (format "Directory %s does not exist. Create it?" dir)))
+  (make-directory dir t))))))
+#+END_SRC
+*** Auto reload
+When something changes a file, automatically refresh the
+buffer containing that file so they can't get out of sync.
+#+BEGIN_SRC emacs-lisp
+  (global-auto-revert-mode t)
 #+END_SRC
 *** Paths
 #+BEGIN_SRC emacs-lisp
