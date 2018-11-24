@@ -411,6 +411,10 @@ for example.
       "M-o" 'other-window))
 #+END_SRC
 
+* ripgrep
+#+BEGIN_SRC emacs-lisp
+  (use-package rg)
+#+END_SRC
 * Ivy
 Use amx to save recent M-x items
 
@@ -443,10 +447,9 @@ Use amx to save recent M-x items
     "ff"  '(counsel-find-file :which-key "find files")
     "fr"  '(counsel-recentf :which-key "recent files")
     ;; Search
-    "ss"   '(swiper :which-key "swiper")
+    "ss"   '(counsel-grep-or-swiper :which-key "swiper")
     "sa"   '(swiper-all :which-key "swiper-all")
-    ;; "/"   '(counsel-rg :which-key "ripgrep") ; You'll need counsel package for this
-  )
+    "s/"   '(counsel-rg :which-key "ripgrep"))
 
   ;; https://www.reddit.com/r/emacs/comments/910pga/tip_how_to_use_ivy_and_its_utilities_in_your/
   (use-package ivy-rich
@@ -557,17 +560,6 @@ Use amx to save recent M-x items
   (setq projectile-require-project-root nil)
   :config
   (projectile-mode 1))
-#+END_SRC
-* ripgrep
-#+BEGIN_SRC emacs-lisp
-  (use-package rg
-    :config
-
-    (general-define-key
-      :states '(normal visual insert emacs)
-      :prefix "SPC"
-      :non-normal-prefix "M-SPC"
-      "sr" '(rg :which-key "ripgrep")))
 #+END_SRC
 * Org
 *** use-package
@@ -1734,6 +1726,5 @@ Look at this if needed.
   "bb"  '(helm-buffers-list :which-key "buffers list")
   ;; Files
   "ff"  '(helm-find-files :which-key "find files")
-  ;; "/"   '(counsel-rg :which-key "ripgrep") ; You'll need counsel package for this
 )
 #+END_SRC
