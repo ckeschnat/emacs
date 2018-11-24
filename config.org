@@ -4,6 +4,8 @@
 #+TITLE: Emacs config
 * Introduction
 Headings tagged "CANCELLED" will not be tangled.
+
+Install fonts from fonts folder.
 * Packages and use-package
 #+BEGIN_SRC emacs-lisp
   ;; Package configs
@@ -82,6 +84,14 @@ https://github.com/jasonm23/emacs-select-themes
       (load-theme (intern-soft theme))))
 
   (provide 'select-themes)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (use-package all-the-icons)
+  (use-package doom-modeline
+    :ensure t
+    :defer t
+    :hook (after-init . doom-modeline-init))
 #+END_SRC
 * Misc
 A lot of this is from https://github.com/hrs/sensible-defaults.el/blob/master/sensible-defaults.el
@@ -285,12 +295,6 @@ https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-
       (when (eq system-type 'windows-nt)
         (set-default 'tramp-auto-save-directory "C:\\Users\\chris.keschnat\\AppData\\Local\\Temp")
         (set-default 'tramp-default-method "plink")))
-#+END_SRC
-*** smart-mode-line
-#+BEGIN_SRC emacs-lisp
-  (use-package smart-mode-line
-    :config
-      (sml/setup))
 #+END_SRC
 * Evil
 [[https://github.com/emacs-evil/evil-collection][Evil-Collection]]
