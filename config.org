@@ -1,5 +1,5 @@
 #+SETUPFILE: themes/theme-readtheorg-local.setup
-#+OPTIONS: html-postamble:nil num:nil toc
+#+OPTIONS: html-postamble:nil num:nil
 #+FILETAGS: emacs
 #+TITLE: Emacs config
 * Introduction
