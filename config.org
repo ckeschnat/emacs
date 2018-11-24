@@ -3,6 +3,7 @@
 #+FILETAGS: emacs
 #+TITLE: Emacs config
 * Introduction
+
 Headings tagged "CANCELLED" will not be tangled.
 
 Install fonts from fonts folder.
@@ -320,6 +321,9 @@ https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-
     :after evil
     :config
     (evil-collection-init))
+
+  (use-package evil-commentary)
+  (evil-commentary-mode)
 
   (use-package evil-org
     :after org
