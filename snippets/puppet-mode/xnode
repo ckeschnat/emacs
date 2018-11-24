@@ -1,0 +1,6 @@
+# name: xnode { ... }
+# key: xnode
+# --
+node '${1:name}' inherits ${2:parent} {
+  include $0
+}

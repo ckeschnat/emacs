@@ -1,0 +1,8 @@
+# name: service { ... }
+# key: service
+# --
+service { "${1:name}":
+  ensure    => ${2:running},
+  require   => ${3:Package["require"]},
+  subscribe => ${4:File["require"]},
+}

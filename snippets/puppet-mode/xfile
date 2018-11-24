@@ -1,0 +1,11 @@
+# name: xfile { ... }
+# key: xfile
+# --
+"${1:name}":
+  owner   => ${2:owner},
+  group   => ${3:group},
+  mode    => ${4:mode},
+  ensure  => ${5:ensure},
+  require => ${6:require},
+  content => ${7:content},
+  source  => ${8:source};

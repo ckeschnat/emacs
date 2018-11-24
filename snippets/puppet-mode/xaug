@@ -1,0 +1,8 @@
+# name: xaugeas { ... }
+# key: xaug
+# --
+"${1:name}":
+  context => "${2:/files/etc/}",
+  changes => [
+    set $0,
+  ];
