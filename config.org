@@ -1,5 +1,5 @@
 #+SETUPFILE: themes/theme-readtheorg-local.setup
-#+OPTIONS: html-postamble:nil num:nil
+#+OPTIONS: html-postamble:nil num:nil toc
 #+FILETAGS: emacs
 #+TITLE: Emacs config
 * Introduction
@@ -269,9 +269,17 @@ This lets you use =C-x u= (=undo-tree-visualize=) to visually walk through the c
       "uv" '(undo-tree-visualize :which-key "Visualize")))
 #+END_SRC
 *** center after search
+I had this on 0 to center after searches.
+But then scrolling also recenters point.
 #+BEGIN_SRC emacs-lisp
   ;; center after search
-  (setq scroll-conservatively 0)
+  (setq scroll-conservatively 100)
+#+END_SRC
+*** Highlight current line
+#+BEGIN_SRC emacs-lisp
+  (when window-system
+    (global-hl-line-mode))
+  (set-face-background 'hl-line "#000000")
 #+END_SRC
 *** tramp
 https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-Emacs-Under-Windows/
@@ -527,8 +535,9 @@ Use amx to save recent M-x items
     )
 
   (general-define-key
-    :states '(normal visual insert emacs)
+    :states '(motion normal visual insert emacs)
     "C-s" 'swiper
+    "C-c C-r" 'ivy-resume
     "M-x" 'counsel-M-x)
 
   ; fuzzy matching except with swiper
@@ -665,9 +674,9 @@ other symbols
 …, ▼, ↴, , ∞, ⬎, ⤷, ⤵
 
 →
-
+⤵
 #+BEGIN_SRC emacs-lisp
-  (setq org-ellipsis " ↴")
+  (setq org-ellipsis " ⤵")
 #+END_SRC
 *** org-super-agenda
 #+BEGIN_SRC emacs-lisp
