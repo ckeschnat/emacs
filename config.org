@@ -88,6 +88,10 @@ https://github.com/jasonm23/emacs-select-themes
   (provide 'select-themes)
 #+END_SRC
 * Misc
+*** Cleanup whitespace
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'before-save-hook 'whitespace-cleanup)
+#+END_SRC
 *** Paths
 #+BEGIN_SRC emacs-lisp
   (setenv "PATH" (concat "C:\\msys64\\usr\\bin;" "C:\\msys64\\mingw64\\bin;" "C:\\texlive\\2018\\bin\\win32;" "w:\\handmade\\misc;" (getenv "PATH")))
