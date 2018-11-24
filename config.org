@@ -1603,7 +1603,7 @@ https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-fro
         :ensure t
         :config
         (general-define-key
-          :states 'motion
+          :states '(insert motion)
           "C-c y" 'ivy-yasnippet))
 
   (yas-global-mode 1)
