@@ -499,6 +499,10 @@ Use amx to save recent M-x items
          (ivy-rich-file-last-modified-time (:face font-lock-comment-face)))))) ; return the last modified time of the file
   )
 
+  (use-package all-the-icons-ivy
+    :ensure t
+    :config
+    (all-the-icons-ivy-setup))
 
   (use-package swiper
     :after ivy)
