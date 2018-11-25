@@ -469,7 +469,6 @@ Use amx to save recent M-x items
     :config
     (ivy-rich-mode 1)
 
-
     (setq ivy-rich--display-transformers-list
      '(ivy-switch-buffer
        (:columns
@@ -500,9 +499,8 @@ Use amx to save recent M-x items
   )
 
   (use-package all-the-icons-ivy
-    :ensure t
     :config
-    (all-the-icons-ivy-setup))
+      (all-the-icons-ivy-setup))
 
   (use-package swiper
     :after ivy)
