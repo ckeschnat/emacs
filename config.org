@@ -482,10 +482,6 @@ Use amx to save recent M-x items
          (ivy-rich-file-last-modified-time (:face font-lock-comment-face)))))) ; return the last modified time of the file
   )
 
-  (use-package all-the-icons-ivy
-    :config
-      (all-the-icons-ivy-setup))
-
   (use-package swiper
     :after ivy)
 
@@ -503,13 +499,13 @@ Use amx to save recent M-x items
   ;   ("C-c l"   . counsel-locate))   ; search for files or else using locate
     )
 
-    (general-define-key
-      :states '(motion normal visual insert emacs)
-      "C-s" 'swiper
-      "C-c C-r" 'ivy-resume
-      "C-h f" 'counsel-describe-function
-      "C-h v" 'counsel-describe-variable
-      "M-x" 'counsel-M-x)
+  (general-define-key
+    :states '(motion normal visual insert emacs)
+    "C-s" 'swiper
+    "C-c C-r" 'ivy-resume
+    "C-h f" 'counsel-describe-function
+    "C-h v" 'counsel-describe-variable
+    "M-x" 'counsel-M-x)
 
   ; fuzzy matching except with swiper
   (setq ivy-re-builders-alist
