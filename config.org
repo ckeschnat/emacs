@@ -183,22 +183,6 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
 *** Help
 #+BEGIN_SRC emacs-lisp
   (setq help-window-select t)
-  (use-package helpful
-    :config
-      (general-define-key
-        :states '(normal visual insert emacs)
-        :prefix "C-h"
-        :non-normal-prefix "C-M-h"
-        "v" '(helpful-variable :which-key "helpful-variable")
-        "f" '(helpful-function :which-key "helpful-function"))
-
-      (general-define-key
-        :states '(normal visual insert emacs)
-        :prefix "SPC"
-        :non-normal-prefix "M-SPC"
-        "h"  '(:ignore t :which-key "Help")
-        "hv" '(helpful-variable :which-key "helpful-variable")
-        "hf" '(helpful-function :which-key "helpful-function")))
 #+END_SRC
 *** Parens
 #+BEGIN_SRC emacs-lisp
@@ -519,11 +503,13 @@ Use amx to save recent M-x items
   ;   ("C-c l"   . counsel-locate))   ; search for files or else using locate
     )
 
-  (general-define-key
-    :states '(motion normal visual insert emacs)
-    "C-s" 'swiper
-    "C-c C-r" 'ivy-resume
-    "M-x" 'counsel-M-x)
+    (general-define-key
+      :states '(motion normal visual insert emacs)
+      "C-s" 'swiper
+      "C-c C-r" 'ivy-resume
+      "C-h f" 'counsel-describe-function
+      "C-h v" 'counsel-describe-variable
+      "M-x" 'counsel-M-x)
 
   ; fuzzy matching except with swiper
   (setq ivy-re-builders-alist
