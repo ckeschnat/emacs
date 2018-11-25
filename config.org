@@ -1675,38 +1675,3 @@ Look at this if needed.
   (run-with-idle-timer 5 t #'garbage-collect)
   (setq garbage-collection-messages t)
 #+END_SRC
-* CANCELLED Helm                                                                   :CANCELLED:
-#+BEGIN_SRC emacs-lisp
-;; Helm
-(use-package helm
-  :init
-  (setq helm-M-x-fuzzy-match t
-  helm-mode-fuzzy-match t
-  helm-buffers-fuzzy-matching t
-  helm-recentf-fuzzy-match t
-  helm-locate-fuzzy-match t
-  helm-semantic-fuzzy-match t
-  helm-imenu-fuzzy-match t
-  helm-completion-in-region-fuzzy-match t
-  helm-candidate-number-list 150
-  helm-split-window-in-side-p t
-  helm-move-to-line-cycle-in-source t
-  helm-echo-input-in-header-line t
-  helm-autoresize-max-height 0
-  helm-autoresize-min-height 20)
-  :config
-  (helm-mode 1))
-
-(global-set-key (kbd "M-x") #'helm-M-x)
-
-(general-define-key
-  :states '(normal visual insert emacs)
-  :prefix "SPC"
-  :non-normal-prefix "M-SPC"
-  "SPC" '(helm-M-x :which-key "M-x")
-  ;; Buffers
-  "bb"  '(helm-buffers-list :which-key "buffers list")
-  ;; Files
-  "ff"  '(helm-find-files :which-key "find files")
-)
-#+END_SRC
