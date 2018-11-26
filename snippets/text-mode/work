@@ -1,0 +1,13 @@
+# name: errormail { ... }
+# key: errormail
+# --
+Moin,
+folgende Errormail ist aufgefallen. Bitte analysieren:
+
+{code}
+${1:mail}
+{code}
+
+{code}
+${2:beans}
+{code}
