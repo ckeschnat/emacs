@@ -501,7 +501,7 @@ Use amx to save recent M-x items
 
   (general-define-key
     :states '(motion normal visual insert emacs)
-    "C-s" 'swiper
+    "C-s" 'counsel-grep-or-swiper
     "C-c C-r" 'ivy-resume
     "C-h f" 'counsel-describe-function
     "C-h v" 'counsel-describe-variable
