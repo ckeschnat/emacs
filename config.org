@@ -1702,7 +1702,6 @@ Look at this if needed.
       "sej" '(engine/search-jira "jira" :which-key "Jira")))
 #+END_SRC
 * Gc
-
 https://www.reddit.com/r/emacs/comments/55ork0/is_emacs_251_noticeably_slower_than_245_on_windows/d8cmm7v/
 
 http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/
