@@ -506,11 +506,6 @@ Use amx to save recent M-x items
     "C-h f" 'counsel-describe-function
     "C-h v" 'counsel-describe-variable
     "M-x" 'counsel-M-x)
-
-  ; fuzzy matching except with swiper
-  (setq ivy-re-builders-alist
-        '((swiper . ivy--regex-plus)
-          (t      . ivy--regex-fuzzy)))
 #+END_SRC
 * Which-key
 #+BEGIN_SRC emacs-lisp
