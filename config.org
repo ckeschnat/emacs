@@ -868,9 +868,10 @@ belongs as a list."
 #+END_SRC
 *** src-blocks
 #+BEGIN_SRC emacs-lisp
-  (setq org-src-fontify-natively t)
-  (setq org-src-tab-acts-natively t)
-  (setq org-src-window-setup 'current-window)
+  (setq org-confirm-babel-evaluate nil)
+        org-src-fontify-natively t
+        org-src-tab-acts-natively t
+        org-src-window-setup 'current-window)
 #+END_SRC
 *** Agenda
 **** TODO improve conditional org-agenda-tag-filter-preset (home/work)
