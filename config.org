@@ -506,6 +506,12 @@ Use amx to save recent M-x items
     "C-h f" 'counsel-describe-function
     "C-h v" 'counsel-describe-variable
     "M-x" 'counsel-M-x)
+
+  (setq ivy-re-builders-alist
+    '((counsel-M-x . ivy--regex-fuzzy)
+      (counsel-describe-function . ivy--regex-fuzzy)
+      (counsel-describe-variable . ivy--regex-fuzzy)
+      (t . ivy--regex-plus)))
 #+END_SRC
 * Which-key
 #+BEGIN_SRC emacs-lisp
