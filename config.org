@@ -611,6 +611,15 @@ https://github.com/sabof/org-bullets/issues/11#issuecomment-439228372
 *** Screenshots
 http://www.sastibe.de/2018/11/take-screenshots-straight-into-org-files-in-emacs-on-win10/
 
+Maybe inside a subdirectory? E.g.:
+#+BEGIN_EXAMPLE
+(concat default-directory
+        "images/"
+        (file-name-nondirectory buffer-file-name)
+        "_"
+        (format-time-string "%Y%m%d_%H%M%S_"))  ".png"
+#+END_EXAMPLE
+
 #+BEGIN_SRC emacs-lisp
   (defun ck/org-screenshot ()
     "Take a screenshot into a time stamped unique-named file in the
