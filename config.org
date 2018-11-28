@@ -395,6 +395,7 @@ for example.
       "oc" '(org-capture :which-key "org-capture")
       "oi" '(org-clock-in :which-key "org-clock-in")
       "oo" '(org-clock-out :which-key "org-clock-out")
+      "os" '(ck/org-screenshot :which-key "org-screenshot")
       ;; Search
       "s"  '(:ignore t :which-key "Search"))
 
@@ -611,7 +612,7 @@ https://github.com/sabof/org-bullets/issues/11#issuecomment-439228372
 http://www.sastibe.de/2018/11/take-screenshots-straight-into-org-files-in-emacs-on-win10/
 
 #+BEGIN_SRC emacs-lisp
-  (defun my-org-screenshot ()
+  (defun ck/org-screenshot ()
     "Take a screenshot into a time stamped unique-named file in the
   same directory as the org-buffer and insert a link to this file."
     (interactive)
