@@ -414,6 +414,8 @@ Use amx to save recent M-x items
   (use-package amx)
 #+END_SRC
 
+https://oremacs.com/2017/08/04/ripgrep/
+
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
     :defer 0.1
@@ -427,6 +429,9 @@ Use amx to save recent M-x items
     (setq ivy-count-format "(%d/%d) ")  ; count format, from the ivy help page
     (setq ivy-initial-inputs-alist nil) ; no "^" at beginning
     )
+
+  (setq counsel-grep-base-command
+    "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
 
   (general-define-key
     :states '(normal visual insert emacs)
