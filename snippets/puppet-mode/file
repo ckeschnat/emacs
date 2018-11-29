@@ -7,6 +7,6 @@ file { "${1:name}":
   group   => ${4:root},
   mode    => '${5:0644}',
   require => ${6:require},
-  content => ${7:content},
+  content => '${7:content}',
   source  => ${8:source},
 }
