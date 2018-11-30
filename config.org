@@ -905,8 +905,15 @@ belongs as a list."
         org-src-window-setup 'current-window)
 #+END_SRC
 *** Agenda
-**** TODO improve conditional org-agenda-tag-filter-preset (home/work)
 #+BEGIN_SRC emacs-lisp
+  (defun ck-set-home-agenda ()
+    (interactive)
+    (setq org-agenda-tag-filter-preset '("-@work" "-elk" "-REFILE")))
+
+  (defun ck-set-work-agenda ()
+    (interactive)
+    (setq org-agenda-tag-filter-preset '("-@home" "-elk" "-REFILE")))
+
   (when (my-system-is-mypc)
     (setq my-org-dir "c:/Users/NOBODY/Documents/Seafile/docs/org/"
           org-agenda-tag-filter-preset '("-@work" "-elk" "-REFILE")))
@@ -916,6 +923,7 @@ belongs as a list."
           org-agenda-tag-filter-preset '("-@home" "-elk" "-REFILE")))
 
   (setq org-agenda-files (list my-org-dir))
+
   (setq org-agenda-text-search-extra-files '(agenda-archives))
 #+END_SRC
 *** Not yet sorted
