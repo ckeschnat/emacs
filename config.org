@@ -1312,6 +1312,15 @@ To export to html.
   ;;; org-learn.el ends here
 
 #+END_SRC
+*** org-drill
+#+BEGIN_SRC emacs-lisp
+  (use-package org-plus-contrib :ensure t)
+  (require 'org-drill)
+#+END_SRC
+*** pamparam
+#+BEGIN_SRC emacs-lisp
+  (use-package pamparam :ensure t)
+#+END_SRC
 * Navigation
 *** Alternate buffer
 #+BEGIN_SRC emacs-lisp
