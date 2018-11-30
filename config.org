@@ -7,6 +7,37 @@
 Headings tagged "CANCELLED" will not be tangled.
 
 Install fonts from fonts folder.
+* Hostname
+Functions to determine which machine I'm on
+
+https://karl-voit.at/2017/02/11/my-system-is-foobar/
+
+#+BEGIN_SRC emacs-lisp
+  ;; Check if system is Darwin/macOS
+  (defun my-system-type-is-darwin ()
+    "Return true if system is darwin-based (Mac OS X)"
+    (string-equal system-type "darwin"))
+
+  ;; Check if system is Microsoft Windows
+  (defun my-system-type-is-windows ()
+    "Return true if system is Windows-based (at least up to Win7)"
+    (string-equal system-type "windows-nt"))
+
+  ;; Check if system is GNU/Linux
+  (defun my-system-type-is-gnu ()
+    "Return true if system is GNU/Linux-based"
+    (string-equal system-type "gnu/linux"))
+
+  ;; Check if the hostname is mynotebook
+  (defun my-system-is-mypc ()
+    "Return true if the system we are running on is mynotebook"
+    (string-equal system-name "BEZEL"))
+
+  ;; Check if the hostname is mydesktop
+  (defun my-system-is-myworkpc ()
+    "Return true if the system we are running on is mydesktop"
+    (string-equal system-name "P1WN0259"))
+#+END_SRC
 * Packages and use-package
 #+BEGIN_SRC emacs-lisp
   ;; Package configs
@@ -876,18 +907,15 @@ belongs as a list."
 *** Agenda
 **** TODO improve conditional org-agenda-tag-filter-preset (home/work)
 #+BEGIN_SRC emacs-lisp
-  (setq home-org-dir "c:/Users/NOBODY/Documents/Seafile/docs/org/")
-  (setq work-org-dir "c:/Users/chris.keschnat/Documents/docs/org/")
-  (setq org-agenda-files
-        (cond
-         ((file-directory-p home-org-dir) (list home-org-dir))
-         ((file-directory-p work-org-dir) (list work-org-dir))))
+  (when (my-system-is-mypc)
+    (setq my-org-dir "c:/Users/NOBODY/Documents/Seafile/docs/org/"
+          org-agenda-tag-filter-preset '("-@work" "-elk" "-REFILE")))
 
-  (setq org-agenda-tag-filter-preset
-        (cond
-         ((file-directory-p home-org-dir) '("-@work" "-elk" "-REFILE"))
-         ((file-directory-p work-org-dir) '("-@home" "-elk" "-REFILE"))))
+  (when (my-system-is-myworkpc)
+    (setq my-org-dir "c:/Users/chris.keschnat/Documents/docs/org/"
+          org-agenda-tag-filter-preset '("-@home" "-elk" "-REFILE")))
 
+  (setq org-agenda-files (list my-org-dir))
   (setq org-agenda-text-search-extra-files '(agenda-archives))
 #+END_SRC
 *** Not yet sorted
