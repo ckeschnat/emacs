@@ -31,12 +31,12 @@ https://karl-voit.at/2017/02/11/my-system-is-foobar/
   ;; Check if the hostname is mynotebook
   (defun my-system-is-mypc ()
     "Return true if the system we are running on is mynotebook"
-    (string-equal system-name "BEZEL"))
+    (string-equal (system-name) "BEZEL"))
 
   ;; Check if the hostname is mydesktop
   (defun my-system-is-myworkpc ()
     "Return true if the system we are running on is mydesktop"
-    (string-equal system-name "P1WN0259"))
+    (string-equal (system-name) "P1WN0259"))
 #+END_SRC
 * Packages and use-package
 #+BEGIN_SRC emacs-lisp
