@@ -21,7 +21,32 @@ disabled. Learn how to load it properly and lazily.
                                (float-time
                                 (time-subtract after-init-time before-init-time)))
                        gcs-done)))
+
+#+END_SRC
+* Gc
+https://www.reddit.com/r/emacs/comments/55ork0/is_emacs_251_noticeably_slower_than_245_on_windows/d8cmm7v/
+
+http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/
+
+#+BEGIN_SRC emacs-lisp
+  (defun my-minibuffer-setup-hook ()
+    (setq gc-cons-threshold most-positive-fixnum))
+
+  (defun my-minibuffer-exit-hook ()
+    (setq gc-cons-threshold (* 63 1024 1024)))
+
+  (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
+  (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
+
   (setq gc-cons-threshold most-positive-fixnum)
+
+  (add-hook 'after-init-hook #'(lambda ()
+                                 ;; restore after startup
+                                (setq gc-cons-threshold (* 63 1024 1024))))
+
+  (setq gc-cons-percentage 0.5)
+  (run-with-idle-timer 5 t #'garbage-collect)
+  (setq garbage-collection-messages t)
 #+END_SRC
 * OS and Hostname
 Functions to determine which machine I'm on
@@ -1780,24 +1805,4 @@ Look at this if needed.
       "seg" '(engine/search-google "goole" :which-key "Google")
       "sem" '(engine/search-mail "mail" :which-key "Mail")
       "sej" '(engine/search-jira "jira" :which-key "Jira")))
-#+END_SRC
-* Gc
-https://www.reddit.com/r/emacs/comments/55ork0/is_emacs_251_noticeably_slower_than_245_on_windows/d8cmm7v/
-
-http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/
-
-#+BEGIN_SRC emacs-lisp
-  ;; gc / make org faster
-  (defun my-minibuffer-setup-hook ()
-    (setq gc-cons-threshold most-positive-fixnum))
-
-  (defun my-minibuffer-exit-hook ()
-    (setq gc-cons-threshold (* 63 1024 1024)))
-
-  (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
-  (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
-
-  (setq gc-cons-percentage 0.5)
-  (run-with-idle-timer 5 t #'garbage-collect)
-  (setq garbage-collection-messages t)
 #+END_SRC
