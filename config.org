@@ -621,6 +621,7 @@ https://oremacs.com/2017/08/04/ripgrep/
 * Ranger
 #+BEGIN_SRC emacs-lisp
   (use-package ranger
+  :defer nil
   :config
     (ranger-override-dired-mode t)
     (general-define-key
