@@ -484,6 +484,14 @@ for example.
     (general-define-key
       "C-x k" 'kill-this-buffer
       "M-o" 'other-window))
+
+   (defun config-visit ()
+    (interactive)
+    (find-file "~/.emacs.d/config.org"))
+
+    (general-define-key
+      :states '(normal visual insert emacs)
+      "C-c e" 'config-visit)
 #+END_SRC
 
 * ripgrep
