@@ -921,6 +921,9 @@ belongs as a list."
     (interactive)
     (setq org-agenda-tag-filter-preset '("+learnsrs")))
 
+  (when (my-system-type-is-gnu)
+    (setq my-org-dir "~/org/"))
+
   (when (my-system-is-mypc)
     (setq my-org-dir "c:/Users/NOBODY/Documents/Seafile/docs/org/"
           org-agenda-tag-filter-preset '("-@work" "-elk" "-REFILE" "-learnsrs")))
