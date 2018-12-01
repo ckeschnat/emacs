@@ -132,6 +132,7 @@ https://github.com/jasonm23/emacs-select-themes
 A lot of this is from https://github.com/hrs/sensible-defaults.el/blob/master/sensible-defaults.el
 *** Cleanup whitespace
 #+BEGIN_SRC emacs-lisp
+  (setq show-trailing-whitespace t)
   (add-hook 'before-save-hook 'whitespace-cleanup)
 #+END_SRC
 *** Follow symlinks
