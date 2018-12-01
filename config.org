@@ -302,8 +302,8 @@ But then scrolling also recenters point.
 *** Highlight current line
 #+BEGIN_SRC emacs-lisp
   (when window-system
-    (global-hl-line-mode))
-  (set-face-background 'hl-line "#000000")
+    (global-hl-line-mode)
+    (set-face-background 'hl-line "#000000"))
 #+END_SRC
 *** tramp
 https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-Emacs-Under-Windows/
