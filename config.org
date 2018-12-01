@@ -11,6 +11,18 @@ Install fonts from fonts folder.
 Install ~org-plus-contrib~ manually with =M-x package-install org-plus-contrib=
 ~use-package~ does not really work, see e.g. [[https://emacs.stackexchange.com/questions/8182/how-to-use-org-plus-contrib/8231][here]]. Currently, org-drill is
 disabled. Learn how to load it properly and lazily.
+* Startup
+#+BEGIN_SRC emacs-lisp
+  ;; Use a hook so the message doesn't get clobbered by other messages.
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (message "Emacs ready in %s with %d garbage collections."
+                       (format "%.2f seconds"
+                               (float-time
+                                (time-subtract after-init-time before-init-time)))
+                       gcs-done)))
+  (setq gc-cons-threshold most-positive-fixnum)
+#+END_SRC
 * OS and Hostname
 Functions to determine which machine I'm on
 
