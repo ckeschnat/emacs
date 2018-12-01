@@ -642,6 +642,34 @@ https://github.com/sabof/org-bullets/issues/11#issuecomment-439228372
 #+BEGIN_SRC emacs-lisp
   (setq inhibit-compacting-font-caches t)
 #+END_SRC
+*** Ellipsis
+
+
+"↝" "⇉" "⇝" "⇢" "⇨" "⇰" "➔" "➙" "➛" "➜" "➝" "➞"
+
+"➟" "➠" "➡" "➥" "➦" "➧" "➨"
+
+"➩" "➪" "➮" "➯" "➱" "➲"
+
+"➳" "➵" "➸" "➺" "➻" "➼" "➽"
+arrow heads
+
+"➢" "➣" "➤" "≪", "≫", "«", "»"
+other arrows
+
+"↞" "↠" "↟" "↡" "↺" "↻"
+lightening
+
+"⚡"
+other symbols
+
+…, ▼, ↴, , ∞, ⬎, ⤷, ⤵
+
+→
+⤵
+#+BEGIN_SRC emacs-lisp
+  (setq org-ellipsis " ⤵")
+#+END_SRC
 *** Screenshots
 http://www.sastibe.de/2018/11/take-screenshots-straight-into-org-files-in-emacs-on-win10/
 
@@ -669,34 +697,6 @@ Maybe inside a subdirectory? E.g.:
     (shell-command (concat "powershell -command \"Add-Type -AssemblyName System.Windows.Forms;if ($([System.Windows.Forms.Clipboard]::ContainsImage())) {$image = [System.Windows.Forms.Clipboard]::GetImage();[System.Drawing.Bitmap]$image.Save('" filename "',[System.Drawing.Imaging.ImageFormat]::Png); Write-Output 'clipboard content saved as file'} else {Write-Output 'clipboard does not contain image data'}\""))
     (insert (concat "[[file:" filename "]]"))
     (org-display-inline-images))
-#+END_SRC
-*** misc
-
-
-"↝" "⇉" "⇝" "⇢" "⇨" "⇰" "➔" "➙" "➛" "➜" "➝" "➞"
-
-"➟" "➠" "➡" "➥" "➦" "➧" "➨"
-
-"➩" "➪" "➮" "➯" "➱" "➲"
-
-"➳" "➵" "➸" "➺" "➻" "➼" "➽"
-arrow heads
-
-"➢" "➣" "➤" "≪", "≫", "«", "»"
-other arrows
-
-"↞" "↠" "↟" "↡" "↺" "↻"
-lightening
-
-"⚡"
-other symbols
-
-…, ▼, ↴, , ∞, ⬎, ⤷, ⤵
-
-→
-⤵
-#+BEGIN_SRC emacs-lisp
-  (setq org-ellipsis " ⤵")
 #+END_SRC
 *** org-super-agenda
 #+BEGIN_SRC emacs-lisp
