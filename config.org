@@ -441,6 +441,7 @@ for example.
 #+BEGIN_SRC emacs-lisp
   ;; Custom keybinding
   (use-package general
+    :defer nil
     :config
     (general-evil-setup t)
 
@@ -601,13 +602,14 @@ https://oremacs.com/2017/08/04/ripgrep/
 #+END_SRC
 * Which-key
 #+BEGIN_SRC emacs-lisp
-;; Which Key
-(use-package which-key
-  :init
-  (setq which-key-separator " ")
-  (setq which-key-prefix-prefix "+")
-  :config
-  (which-key-mode 1))
+  ;; Which Key
+  (use-package which-key
+    :defer nil
+    :init
+    (setq which-key-separator " ")
+    (setq which-key-prefix-prefix "+")
+    :config
+    (which-key-mode 1))
 #+END_SRC
 * Ranger
 #+BEGIN_SRC emacs-lisp
