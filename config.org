@@ -9,7 +9,8 @@ Headings tagged "CANCELLED" will not be tangled.
 Install fonts from fonts folder.
 
 Install ~org-plus-contrib~ manually with =M-x package-install org-plus-contrib=
-~use-package~ does not really work, see e.g. [[https://emacs.stackexchange.com/questions/8182/how-to-use-org-plus-contrib/8231][here]].
+~use-package~ does not really work, see e.g. [[https://emacs.stackexchange.com/questions/8182/how-to-use-org-plus-contrib/8231][here]]. Currently, org-drill is
+disabled. Learn how to load it properly and lazily.
 * OS and Hostname
 Functions to determine which machine I'm on
 
@@ -57,8 +58,12 @@ https://karl-voit.at/2017/02/11/my-system-is-foobar/
     (package-install 'use-package))
   (require 'use-package)
   (setq use-package-always-ensure t)
+  (setq use-package-always-defer t)
 #+END_SRC
-
+* Profiling
+#+BEGIN_SRC emacs-lisp
+  (use-package esup)
+#+END_SRC
 * UI
 https://huytd.github.io/emacs-from-scratch.html
 
@@ -99,6 +104,7 @@ Set Symbola as fallback font to display unicode characters.
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'load-path "~/.emacs.d/elpa/doom-themes-20181101.218/")
   (use-package doom-themes
+    :defer nil
     :config
     (load-theme 'doom-one t))
 #+END_SRC
@@ -341,10 +347,13 @@ https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-
     :config
     (evil-collection-init))
 
-  (use-package evil-commentary)
-  (evil-commentary-mode)
+  (use-package evil-commentary
+    :defer 2
+    :config
+    (evil-commentary-mode))
 
   (use-package evil-org
+    :defer 2
     :after org
     :config
     (add-hook 'org-mode-hook 'evil-org-mode)
@@ -454,7 +463,6 @@ https://oremacs.com/2017/08/04/ripgrep/
 
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
-    :defer 0.1
     :diminish (ivy-mode . "") ; does not display ivy in the modeline
     :init (ivy-mode 1)        ; enable ivy globally at startup
     ;:bind (:map ivy-mode-map  ; bind in the ivy buffer
@@ -1139,7 +1147,8 @@ To export to html.
 #+BEGIN_SRC emacs-lisp
 (use-package htmlize)
 #+END_SRC
-*** org-drill
+*** CANCELLED org-drill                                         :CANCELLED:
+CLOSED: [2018-12-01 Sat 15:16]
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'load-path "~/.emacs.d/elpa/org-plus-contrib-20181126/")
   (require 'org-drill)
@@ -1697,6 +1706,10 @@ https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-fro
 * Yasnippets
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
+    :commands (yas-reload-all yas-minor-mode)
+    :init
+    (add-hook 'c++-mode-hook (lambda() (yas-reload-all)(yas-minor-mode)))
+    (add-hook 'go-mode-hook (lambda() (yas-reload-all)(yas-minor-mode)))
     :config
       (use-package yasnippet-snippets))
       (use-package ivy-yasnippet
@@ -1704,8 +1717,6 @@ https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-fro
         (general-define-key
           :states '(insert motion)
           "C-c y" 'ivy-yasnippet))
-
-  (yas-global-mode 1)
 #+END_SRC
 ** CANCELLED company/yasnippets                                                    :CANCELLED:
 Look at this if needed.
@@ -1727,8 +1738,9 @@ Look at this if needed.
 * Magit
 #+BEGIN_SRC emacs-lisp
   (use-package magit
+    :defer 2
     :config
-    (use-package evil-magit)
+    (use-package evil-magit :defer 2)
     (general-define-key
       :states '(normal visual insert emacs)
       :prefix "SPC"
