@@ -1740,17 +1740,19 @@ https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-fro
       (company-tooltip-limit 20)
       (company-echo-delay 0)
       (company-dabbrev-downcase nil)
-      (global-company-mode t)
     :config
       (use-package company-go
         :after company
-        :diminish))
+        :diminish)
 
-  ;; https://emacs.stackexchange.com/questions/17537/best-company-backends-lists/17548
-  (add-hook 'go-mode-hook
-    (lambda ()
-      (add-to-list (make-local-variable 'company-backends)
-                    'company-go)))
+      (general-define-key
+        :states '(insert motion)
+        "C-n" 'company-select-next-or-abort
+        "C-p" 'company-select-previous-or-abort))
+
+  (add-hook 'go-mode-hook (lambda ()
+                            (set (make-local-variable 'company-backends) '(company-go))
+                            (company-mode)))
 #+END_SRC
 * Yasnippets
 #+BEGIN_SRC emacs-lisp
