@@ -539,9 +539,9 @@ https://oremacs.com/2017/08/04/ripgrep/
     "ff"  '(counsel-find-file :which-key "find files")
     "fr"  '(counsel-recentf :which-key "recent files")
     ;; Search
-    "ss"   '(counsel-grep-or-swiper :which-key "swiper")
+    "s/"   '(counsel-grep-or-swiper :which-key "swiper")
     "sa"   '(swiper-all :which-key "swiper-all")
-    "s/"   '(counsel-rg :which-key "ripgrep"))
+    "ss"   '(counsel-rg :which-key "ripgrep"))
 
   ;; https://www.reddit.com/r/emacs/comments/910pga/tip_how_to_use_ivy_and_its_utilities_in_your/
   (use-package ivy-rich
