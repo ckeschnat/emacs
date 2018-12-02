@@ -389,6 +389,10 @@ https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-
     :config
     (evil-collection-init))
 
+  (use-package evil-surround
+    :config
+    (global-evil-surround-mode 1))
+
   (use-package evil-commentary
     :defer 2
     :config
