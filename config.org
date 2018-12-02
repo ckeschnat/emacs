@@ -1796,9 +1796,7 @@ Look at this if needed.
 * Magit
 #+BEGIN_SRC emacs-lisp
   (use-package magit
-    :defer 2
-    :config
-    (use-package evil-magit :defer 2)
+    :init
     (general-define-key
       :states '(normal visual insert emacs)
       :prefix "SPC"
@@ -1806,7 +1804,9 @@ Look at this if needed.
       "g"  '(:ignore t :which-key "Magit")
       "gs" '(magit-status :which-key "Status")
       "gp" '(magit-push-other :which-key "Push")
-      "gl" '(magit-log :which-key "Log")))
+      "gl" '(magit-log :which-key "Log"))
+    :config
+      (require 'evil-magit))
 #+END_SRC
 * Engine
 #+BEGIN_SRC emacs-lisp
