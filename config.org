@@ -79,7 +79,7 @@ https://karl-voit.at/2017/02/11/my-system-is-foobar/
     "Return true if the system we are running on is mydesktop"
     (string-equal (system-name) "P1WN0259"))
 #+END_SRC
-* Packages and use-package
+* Packages
 #+BEGIN_SRC emacs-lisp
   ;; Package configs
   (require 'package)
@@ -93,6 +93,9 @@ https://karl-voit.at/2017/02/11/my-system-is-foobar/
   (unless (package-installed-p 'use-package)
     (package-refresh-contents)
     (package-install 'use-package))
+#+END_SRC
+* use-package
+#+BEGIN_SRC emacs-lisp
   (require 'use-package)
   (setq use-package-always-ensure t)
   (setq use-package-always-defer t)
