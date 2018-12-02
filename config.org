@@ -375,8 +375,14 @@ https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-
   (use-package evil-escape
     :init
     (setq-default evil-escape-key-sequence "fd")
-    :config
-    (evil-escape-mode 1))
+    :defer t
+    ;; Only needed for functions without an autoload comment (;;;###autoload).
+    :commands (evil-escape-pre-command-hook)
+
+    ;; Adding to a hook won't load the function until we invoke it.
+    ;; With pre-command-hook, that means the first command we run will
+    ;; load evil-escape.
+    :init (add-hook 'pre-command-hook 'evil-escape-pre-command-hook))
 
   (use-package evil-collection
     :after evil
