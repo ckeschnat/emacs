@@ -627,14 +627,14 @@ https://oremacs.com/2017/08/04/ripgrep/
 * Ranger
 #+BEGIN_SRC emacs-lisp
   (use-package ranger
-  :defer nil
-  :config
-    (ranger-override-dired-mode t)
+  :init
     (general-define-key
       :states '(normal visual insert emacs)
       :prefix "SPC"
       :non-normal-prefix "M-SPC"
       "fn" '(ranger :which-key "Ranger"))
+  :config
+    (ranger-override-dired-mode t)
   )
 #+END_SRC
 * Projectile
