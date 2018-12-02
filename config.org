@@ -255,7 +255,8 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
 #+END_SRC
 *** Customize
 #+BEGIN_SRC emacs-lisp
-  (setq custom-file null-device)
+  (setq custom-file "~/.emacs.d/custom.el")
+  (load custom-file 'noerror)
 #+END_SRC
 *** Help
 #+BEGIN_SRC emacs-lisp
