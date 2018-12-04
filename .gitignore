@@ -8,7 +8,6 @@ bookmarks
 config.el
 undo
 .cache
-eshell
 custom.el
 tramp
 amx-items
