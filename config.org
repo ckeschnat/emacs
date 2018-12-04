@@ -355,10 +355,18 @@ But then scrolling also recenters point.
 *** tramp
 https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-Emacs-Under-Windows/
 
+#+BEGIN_EXAMPLE
+  /plink:user@host:
+  /plink:user@host|sudo:host:
+#+END_EXAMPLE
+
 #+BEGIN_SRC emacs-lisp
   (use-package tramp
     :config
-      (when (eq system-type 'windows-nt)
+      (when (my-system-is-mypc)
+        (set-default 'tramp-auto-save-directory "C:\\Users\\NOBODY\\AppData\\Local\\Temp")
+        (set-default 'tramp-default-method "plink"))
+      (when (my-system-is-myworkpc)
         (set-default 'tramp-auto-save-directory "C:\\Users\\chris.keschnat\\AppData\\Local\\Temp")
         (set-default 'tramp-default-method "plink")))
 #+END_SRC
