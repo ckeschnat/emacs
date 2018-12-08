@@ -1857,3 +1857,22 @@ Look at this if needed.
       "sem" '(engine/search-mail "mail" :which-key "Mail")
       "sej" '(engine/search-jira "jira" :which-key "Jira")))
 #+END_SRC
+* Elfeed
+#+BEGIN_SRC emacs-lisp
+  (use-package elfeed
+    :config
+    (add-to-list 'evil-emacs-state-modes 'elfeed-search-mode)
+    (add-to-list 'evil-emacs-state-modes 'elfeed-show-mode)
+
+    (setq elfeed-feeds
+          '("http://nullprogram.com/feed/"
+            "http://planet.emacsen.org/atom.xml"))
+
+    (use-package elfeed-goodies
+      :config
+        (require 'elfeed-goodies)
+        (elfeed-goodies/setup)))
+#+END_SRC
+
+#+RESULTS:
+| http://nullprogram.com/feed/ | http://planet.emacsen.org/atom.xml |
