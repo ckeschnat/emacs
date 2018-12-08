@@ -1870,7 +1870,8 @@ https://emacs.stackexchange.com/questions/26560/bookmarking-remote-directories-t
       (setq counsel-tramp-custom-connections '(/plink:hugo.rivered.de|sudo:ck@hugo.rivered.de:/ /plink:moon.rivered.de|sudo:ck@moon.rivered.de:/)))
 
 #+END_SRC
-* Elfeed
+* CANCELLED Elfeed                                                :CANCELLED:
+CLOSED: [2018-12-09 Sun 00:26]
 #+BEGIN_SRC emacs-lisp
   (use-package elfeed
     :config
@@ -1879,13 +1880,11 @@ https://emacs.stackexchange.com/questions/26560/bookmarking-remote-directories-t
 
     (setq elfeed-feeds
           '("http://nullprogram.com/feed/"
-            "http://planet.emacsen.org/atom.xml"))
+            "http://planet.emacsen.org/atom.xml"
+            "https://hnrss.org/frontpage"))
 
     (use-package elfeed-goodies
       :config
         (require 'elfeed-goodies)
         (elfeed-goodies/setup)))
 #+END_SRC
-
-#+RESULTS:
-| http://nullprogram.com/feed/ | http://planet.emacsen.org/atom.xml |
