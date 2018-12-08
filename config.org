@@ -352,35 +352,6 @@ But then scrolling also recenters point.
     (global-hl-line-mode)
     (set-face-background 'hl-line "#000000"))
 #+END_SRC
-*** tramp
-https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-Emacs-Under-Windows/
-
-#+BEGIN_EXAMPLE
-  /plink:user@host:
-  /plink:user@host|sudo:host:
-
-#+END_EXAMPLE
-
-With tramp-default-proxies-alist:
-https://emacs.stackexchange.com/questions/26560/bookmarking-remote-directories-trampsudo
-#+BEGIN_EXAMPLE
-  /sudo:hugo.rivered.de:
-#+END_EXAMPLE
-
-#+BEGIN_SRC emacs-lisp
-  (use-package tramp
-    :config
-      (when (my-system-is-mypc)
-        (set-default 'tramp-auto-save-directory "C:\\Users\\NOBODY\\AppData\\Local\\Temp")
-        (set-default 'tramp-default-method "plink"))
-      (when (my-system-is-myworkpc)
-        (set-default 'tramp-auto-save-directory "C:\\Users\\chris.keschnat\\AppData\\Local\\Temp")
-        (set-default 'tramp-default-method "plink"))
-      (add-to-list 'tramp-default-proxies-alist
-                   '("\\`hugo.rivered.de\\'" "\\`root\\'" "/plink:ck@%h:"))
-      (add-to-list 'tramp-default-proxies-alist
-                   '("\\`moon.rivered.de\\'" "\\`root\\'" "/plink:ck@%h:")))
-#+END_SRC
 * Evil
 [[https://github.com/emacs-evil/evil-collection][Evil-Collection]]
 
@@ -1856,6 +1827,48 @@ Look at this if needed.
       "seg" '(engine/search-google "goole" :which-key "Google")
       "sem" '(engine/search-mail "mail" :which-key "Mail")
       "sej" '(engine/search-jira "jira" :which-key "Jira")))
+#+END_SRC
+* Tramp
+https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-Emacs-Under-Windows/
+
+#+BEGIN_EXAMPLE
+  /plink:user@host:
+  /plink:user@host|sudo:host:
+#+END_EXAMPLE
+
+With tramp-default-proxies-alist:
+https://emacs.stackexchange.com/questions/26560/bookmarking-remote-directories-trampsudo
+#+BEGIN_EXAMPLE
+  /sudo:hugo.rivered.de:
+#+END_EXAMPLE
+
+#+BEGIN_SRC emacs-lisp
+  (use-package tramp
+    :init
+      (setq tramp-persistency-file-name nil)
+    :config
+      (when (my-system-is-mypc)
+        (set-default 'tramp-auto-save-directory "C:\\Users\\NOBODY\\AppData\\Local\\Temp")
+        (set-default 'tramp-default-method "plink"))
+      (when (my-system-is-myworkpc)
+        (set-default 'tramp-auto-save-directory "C:\\Users\\chris.keschnat\\AppData\\Local\\Temp")
+        (set-default 'tramp-default-method "plink"))
+      (add-to-list 'tramp-default-proxies-alist
+                   '("\\`hugo.rivered.de\\'" "\\`root\\'" "/plink:ck@%h:"))
+      (add-to-list 'tramp-default-proxies-alist
+                   '("\\`moon.rivered.de\\'" "\\`root\\'" "/plink:ck@%h:"))
+
+      (use-package counsel-tramp)
+
+      (add-hook 'counsel-tramp-pre-command-hook '(lambda ()
+                                           (projectile-mode 0)))
+      (add-hook 'counsel-tramp-quit-hook '(lambda ()
+                                    (projectile-mode 1)))
+
+      (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
+
+      (setq counsel-tramp-custom-connections '(/plink:hugo.rivered.de|sudo:ck@hugo.rivered.de:/ /plink:moon.rivered.de|sudo:ck@moon.rivered.de:/)))
+
 #+END_SRC
 * Elfeed
 #+BEGIN_SRC emacs-lisp
