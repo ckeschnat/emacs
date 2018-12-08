@@ -422,15 +422,17 @@ https://emacs.stackexchange.com/questions/26560/bookmarking-remote-directories-t
     (evil-commentary-mode))
 
   (use-package evil-org
-    :defer 2
     :after org
     :config
     (add-hook 'org-mode-hook 'evil-org-mode)
     (add-hook 'evil-org-mode-hook
               (lambda ()
-                (evil-org-set-key-theme)))
-    (require 'evil-org-agenda)
-    (evil-org-agenda-set-keys))
+                (evil-org-set-key-theme))))
+
+  (add-hook 'org-agenda-mode-hook
+            (lambda ()
+              (require 'evil-org-agenda)
+              (evil-org-agenda-set-keys)))
 
   (defun my-center-line (&rest _)
     (evil-scroll-line-to-center nil))
