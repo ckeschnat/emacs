@@ -352,6 +352,10 @@ But then scrolling also recenters point.
     (global-hl-line-mode)
     (set-face-background 'hl-line "#000000"))
 #+END_SRC
+*** Tabs
+#+BEGIN_SRC emacs-lisp
+  (setq-default tab-width 4 indent-tabs-mode nil)
+#+END_SRC
 * Evil
 [[https://github.com/emacs-evil/evil-collection][Evil-Collection]]
 
