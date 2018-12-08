@@ -679,6 +679,30 @@ https://oremacs.com/2017/08/04/ripgrep/
 *** use-package
 #+BEGIN_SRC emacs-lisp
   (use-package org
+    :init
+      (defun ck-set-home-agenda ()
+        (interactive)
+        (setq org-agenda-tag-filter-preset '("-@work" "-elk" "-REFILE" "-learnsrs")))
+
+      (defun ck-set-work-agenda ()
+        (interactive)
+        (setq org-agenda-tag-filter-preset '("-@home" "-elk" "-REFILE" "-learnsrs")))
+
+      (defun ck-set-learn-agenda ()
+        (interactive)
+        (setq org-agenda-tag-filter-preset '("+learnsrs")))
+
+      (when (my-system-type-is-gnu)
+        (setq my-org-dir "~/org/"))
+
+      (when (my-system-is-mypc)
+        (setq my-org-dir "c:/Users/NOBODY/Documents/Seafile/docs/org/"
+              org-agenda-tag-filter-preset '("-@work" "-elk" "-REFILE" "-learnsrs")))
+
+      (when (my-system-is-myworkpc)
+        (setq my-org-dir "c:/Users/chris.keschnat/Documents/docs/org/"
+              org-agenda-tag-filter-preset '("-@home" "-elk" "-REFILE" "-learnsrs")))
+
     :mode
     (("\\.txt$" . org-mode))
 
@@ -1000,29 +1024,6 @@ belongs as a list."
 #+END_SRC
 *** Agenda
 #+BEGIN_SRC emacs-lisp
-  (defun ck-set-home-agenda ()
-    (interactive)
-    (setq org-agenda-tag-filter-preset '("-@work" "-elk" "-REFILE" "-learnsrs")))
-
-  (defun ck-set-work-agenda ()
-    (interactive)
-    (setq org-agenda-tag-filter-preset '("-@home" "-elk" "-REFILE" "-learnsrs")))
-
-  (defun ck-set-learn-agenda ()
-    (interactive)
-    (setq org-agenda-tag-filter-preset '("+learnsrs")))
-
-  (when (my-system-type-is-gnu)
-    (setq my-org-dir "~/org/"))
-
-  (when (my-system-is-mypc)
-    (setq my-org-dir "c:/Users/NOBODY/Documents/Seafile/docs/org/"
-          org-agenda-tag-filter-preset '("-@work" "-elk" "-REFILE" "-learnsrs")))
-
-  (when (my-system-is-myworkpc)
-    (setq my-org-dir "c:/Users/chris.keschnat/Documents/docs/org/"
-          org-agenda-tag-filter-preset '("-@home" "-elk" "-REFILE" "-learnsrs")))
-
   (setq org-agenda-files (list my-org-dir))
 
   (setq org-agenda-text-search-extra-files '(agenda-archives))
