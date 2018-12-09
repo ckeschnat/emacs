@@ -369,6 +369,11 @@ But then scrolling also recenters point.
 #+BEGIN_SRC emacs-lisp
   (setq-default tab-width 4 indent-tabs-mode nil)
 #+END_SRC
+*** Always load newest
+https://ambrevar.xyz/emacs2/
+#+BEGIN_SRC emacs-lisp
+  (setq load-prefer-newer t)
+#+END_SRC
 * Evil
 [[https://github.com/emacs-evil/evil-collection][Evil-Collection]]
 
