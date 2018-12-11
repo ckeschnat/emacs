@@ -751,7 +751,7 @@ other symbols
 →
 ⤵
 #+BEGIN_SRC emacs-lisp
-  (setq org-ellipsis " ⤵")
+  (setq org-ellipsis " ▼")
 #+END_SRC
 *** Screenshots
 http://www.sastibe.de/2018/11/take-screenshots-straight-into-org-files-in-emacs-on-win10/
