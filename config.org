@@ -727,32 +727,7 @@ https://oremacs.com/2017/08/04/ripgrep/
     (add-hook 'org-export-before-processing-hook 'imalison:org-inline-css-hook))
 #+END_SRC
 
-*** Bullets
-https://zhangda.wordpress.com/2016/02/15/configurations-for-beautifying-emacs-org-mode/
-
-#+BEGIN_SRC emacs-lisp
-  (use-package org-bullets
-  :config
-    ;;(setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
-    (setq org-bullets-bullet-list '("✙" "♱" "♰" "☥" "✞" "✟" "✝" "†" "✠" "✚" "✜" "✛" "✢" "✣" "✤" "✥"))
-    ;;(setq org-bullets-bullet-list '("✡" "⎈" "✽" "✲" "✱" "✻" "✼" "✽" "✾" "✿" "❀" "❁" "❂" "❃" "❄" "❅" "❆" "❇"))
-    ;;(setq org-bullets-bullet-list '("○" "☉" "◎" "◉" "○" "◌" "◎" "●" "◦" "◯" "⚪" "⚫" "⚬" "❍" "￮" "⊙" "⊚" "⊛" "∙" "∘"))
-    ;;(setq org-bullets-bullet-list '("◐" "◑" "◒" "◓" "◴" "◵" "◶" "◷" "⚆" "⚇" "⚈" "⚉" "♁" "⊖" "⊗" "⊘"))
-    ;;(setq org-bullets-bullet-list '("♠" "♣" "♥" "♦" "♤" "♧" "♡" "♢"))
-    ;;(setq org-bullets-bullet-list '("☯" "☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷"))
-    ;;(setq org-bullets-bullet-list '("☀" "♼" "☼" "☾" "☽" "☣" "§" "¶" "‡" "※" "✕" "△" "◇" "▶" "◀" "◈"))
-
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-#+END_SRC
-**** make org-bullets faster under windows
-https://github.com/sabof/org-bullets/issues/11#issuecomment-439228372
-
-#+BEGIN_SRC emacs-lisp
-  (setq inhibit-compacting-font-caches t)
-#+END_SRC
 *** Ellipsis
-
-
 "↝" "⇉" "⇝" "⇢" "⇨" "⇰" "➔" "➙" "➛" "➜" "➝" "➞"
 
 "➟" "➠" "➡" "➥" "➦" "➧" "➨"
@@ -1198,6 +1173,29 @@ belongs as a list."
                           '(("^ *\\([-]\\) "
                               (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
   ) ;; END use-package org
+#+END_SRC
+*** Bullets
+https://zhangda.wordpress.com/2016/02/15/configurations-for-beautifying-emacs-org-mode/
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-bullets
+  :config
+    ;;(setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
+    (setq org-bullets-bullet-list '("✙" "♱" "♰" "☥" "✞" "✟" "✝" "†" "✠" "✚" "✜" "✛" "✢" "✣" "✤" "✥")))
+    ;;(setq org-bullets-bullet-list '("✡" "⎈" "✽" "✲" "✱" "✻" "✼" "✽" "✾" "✿" "❀" "❁" "❂" "❃" "❄" "❅" "❆" "❇"))
+    ;;(setq org-bullets-bullet-list '("○" "☉" "◎" "◉" "○" "◌" "◎" "●" "◦" "◯" "⚪" "⚫" "⚬" "❍" "￮" "⊙" "⊚" "⊛" "∙" "∘"))
+    ;;(setq org-bullets-bullet-list '("◐" "◑" "◒" "◓" "◴" "◵" "◶" "◷" "⚆" "⚇" "⚈" "⚉" "♁" "⊖" "⊗" "⊘"))
+    ;;(setq org-bullets-bullet-list '("♠" "♣" "♥" "♦" "♤" "♧" "♡" "♢"))
+    ;;(setq org-bullets-bullet-list '("☯" "☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷"))
+    ;;(setq org-bullets-bullet-list '("☀" "♼" "☼" "☾" "☽" "☣" "§" "¶" "‡" "※" "✕" "△" "◇" "▶" "◀" "◈"))
+
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+END_SRC
+**** make org-bullets faster under windows
+https://github.com/sabof/org-bullets/issues/11#issuecomment-439228372
+
+#+BEGIN_SRC emacs-lisp
+  (setq inhibit-compacting-font-caches t)
 #+END_SRC
 *** CANCELLED org-brain                                         :CANCELLED:
 CLOSED: [2018-11-22 Thu 15:31]
