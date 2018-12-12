@@ -88,9 +88,14 @@ https://karl-voit.at/2017/02/11/my-system-is-foobar/
     (string-equal (system-name) "BEZEL"))
 
   ;; Check if the hostname is mydesktop
-  (defun my-system-is-myworkpc ()
+  (defun my-system-is-myoldworkpc ()
     "Return true if the system we are running on is mydesktop"
     (string-equal (system-name) "P1WN0259"))
+
+  ;; Check if the hostname is mydesktop
+  (defun my-system-is-myworkpc ()
+    "Return true if the system we are running on is mydesktop"
+    (string-equal (system-name) "P1WN0669"))
 #+END_SRC
 * Packages
 #+BEGIN_SRC emacs-lisp
@@ -692,8 +697,12 @@ https://oremacs.com/2017/08/04/ripgrep/
         (setq my-org-dir "c:/Users/NOBODY/Documents/Seafile/docs/org/"
               org-agenda-tag-filter-preset '("-@work" "-elk" "-REFILE" "-learnsrs")))
 
-      (when (my-system-is-myworkpc)
+      (when (my-system-is-myoldworkpc)
         (setq my-org-dir "c:/Users/chris.keschnat/Documents/docs/org/"
+              org-agenda-tag-filter-preset '("-@home" "-elk" "-REFILE" "-learnsrs")))
+
+      (when (my-system-is-myworkpc)
+        (setq my-org-dir "c:/docs/org/"
               org-agenda-tag-filter-preset '("-@home" "-elk" "-REFILE" "-learnsrs")))
 
     :mode
