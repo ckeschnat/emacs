@@ -1243,6 +1243,11 @@ CLOSED: [2018-12-01 Sat 15:16]
 #+BEGIN_SRC emacs-lisp
   (use-package pamparam :ensure t)
 #+END_SRC
+*** ox-jira
+#+BEGIN_SRC emacs-lisp
+  (use-package ox-jira
+    :defer 1)
+#+END_SRC
 * Navigation
 *** Alternate buffer
 #+BEGIN_SRC emacs-lisp
