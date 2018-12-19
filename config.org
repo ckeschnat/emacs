@@ -1043,15 +1043,15 @@ belongs as a list."
   (setq org-todo-keyword-faces
           '(("TODO" . org-warning)
           ("SOMEDAY" . (:foreground "moccasin" :weight bold))
-          ("WAITING" . (:foreground "lavender blush" :weight bold))
+          ("WAIT" . (:foreground "lavender blush" :weight bold))
           ("CANCELLED" . org-done)))
 
   (setq org-todo-keywords
-          '((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "|" "CANCELLED(c)" "DONE(d)")))
+          '((sequence "TODO(t)" "WAIT(w@/!)" "SOMEDAY(s)" "|" "CANCELLED(c@)" "DONE(d!)")))
   (setq org-tag-alist (quote (
                               ("@home" . ?H)
                               ("@work" . ?W)
-                              ("WAITING" . ?A)
+                              ("WAIT" . ?A)
                               ("PERSONAL" . ?P)
                               ("NOTE" . ?n)
                               ("CANCELLED" . ?C)
@@ -1090,11 +1090,11 @@ belongs as a list."
   (setq org-use-fast-todo-selection t)
   (setq org-todo-state-tags-triggers
           (quote (("CANCELLED" ("CANCELLED" . t))
-                  ("WAITING" ("WAITING" . t))
-                  (done ("WAITING"))
-                  ("" ("WAITING") ("CANCELLED"))
-                  ("TODO" ("WAITING") ("CANCELLED"))
-                  ("DONE" ("WAITING") ("CANCELLED")))))
+                  ("WAIT" ("WAIT" . t))
+                  (done ("WAIT"))
+                  ("" ("WAIT") ("CANCELLED"))
+                  ("TODO" ("WAIT") ("CANCELLED"))
+                  ("DONE" ("WAIT") ("CANCELLED")))))
 
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
