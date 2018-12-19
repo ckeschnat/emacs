@@ -1231,7 +1231,7 @@ https://github.com/Kungsgeten/org-brain
 To export to html.
 
 #+BEGIN_SRC emacs-lisp
-(use-package htmlize)
+  (use-package htmlize)
 #+END_SRC
 *** CANCELLED org-drill                                         :CANCELLED:
 CLOSED: [2018-12-01 Sat 15:16]
