@@ -980,11 +980,6 @@ belongs as a list."
 #+BEGIN_SRC emacs-lisp
 (setq org-archive-location "archive/%s_archive::")
 #+END_SRC
-*** Drawer
-Log notes, schedules etc. into drawer
-#+BEGIN_SRC emacs-lisp
-  (setq org-log-into-drawer t)
-#+END_SRC
 *** Hide markers
 #+BEGIN_SRC emacs-lisp
 (setq org-hide-emphasis-markers t)
@@ -1026,6 +1021,7 @@ Log notes, schedules etc. into drawer
   (setq org-enforce-todo-dependencies t)
   (setq org-enforce-todo-checkbox-dependencies t)
 
+  (setq org-log-into-drawer t)
   (setq org-log-redeadline (quote time))
   (setq org-log-reschedule (quote time))
   (setq org-log-done (quote time))
