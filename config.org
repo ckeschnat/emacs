@@ -1844,6 +1844,9 @@ Look at this if needed.
       "gl" '(magit-log :which-key "Log"))
     :config
       (require 'evil-magit))
+
+  (use-package evil-magit
+    :after magit)
 #+END_SRC
 * Engine
 #+BEGIN_SRC emacs-lisp
