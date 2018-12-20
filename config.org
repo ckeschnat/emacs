@@ -1062,6 +1062,7 @@ belongs as a list."
 
   (setq org-capture-templates
           (quote (("t" "todo" entry (file "") "* TODO %?\nEntered: %U\n")
+                  ("w" "wait" entry (file "") "* WAIT %?\nEntered: %U\n")
                   ("c" "clipboard" entry (file "") "* TODO %?\n\n#+BEGIN_QUOTE\n  %c\n#+END_QUOTE\n\nEntered: %U\n")
                   ("l" "linked todo" entry (file "") "* TODO %?\nEntered: %U\n%a\n")
                   ("n" "note" entry (file "") "* %? :NOTE:\n%U\n%a\n")
