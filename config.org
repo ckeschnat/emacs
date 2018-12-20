@@ -1855,7 +1855,7 @@ Look at this if needed.
     (progn
       (defengine google "http://google.de/search?q=%s" :keybinding "g")
       (defengine mail "https://mail.google.com/mail/u/0/#search/%s" :keybinding "m")
-      (defengine jira "https://jira.payone-office.de/issues/?jql=text ~ \"%s\" ORDER BY created DESC" :keybinding "j")
+      (defengine jira "https://jira.payone-office.de/issues/?jql=text ~ \"\"%s\"\" ORDER BY created DESC" :keybinding "j")
       (engine-mode))
 
     (general-define-key
