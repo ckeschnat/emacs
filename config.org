@@ -694,7 +694,7 @@ https://oremacs.com/2017/08/04/ripgrep/
         (setq my-org-dir "~/org/"))
 
       (when (my-system-is-mypc)
-        (setq my-org-dir "c:/Users/NOBODY/Documents/Seafile/docs/org/"
+        (setq my-org-dir "c:/docs/org/"
               org-agenda-tag-filter-preset '("-@work" "-elk" "-REFILE" "-learnsrs")))
 
       (when (my-system-is-myoldworkpc)
@@ -1010,8 +1010,8 @@ belongs as a list."
   ;; TODO(chris) use this?
   ;; (setq org-publish-project-alist
   ;;       '(("org"
-  ;;          :base-directory "c:/Users/NOBODY/Documents/Seafile/docs/org/"
-  ;;          :publishing-directory "c:/Users/NOBODY/Documents/Seafile/docs/org/html/"
+  ;;          :base-directory "c:/docs/org/"
+  ;;          :publishing-directory "c:/docs/org/html/"
   ;;          :publishing-function org-html-publish-to-html
   ;;          :section-numbers nil
   ;;          :table-of-contents nil)))
@@ -1215,7 +1215,7 @@ https://github.com/Kungsgeten/org-brain
 #+BEGIN_SRC emacs-lisp
   (use-package org-brain
     :init
-    (setq org-brain-path "c:/Users/NOBODY/Documents/Seafile/docs/org/brain")
+    (setq org-brain-path "c:/docs/org/brain")
     ;; For Evil users
     (with-eval-after-load 'evil
       (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
