@@ -7,10 +7,6 @@
 Headings tagged "CANCELLED" will not be tangled.
 
 Install fonts from fonts folder.
-
-Install ~org-plus-contrib~ manually with =M-x package-install org-plus-contrib=
-~use-package~ does not really work, see e.g. [[https://emacs.stackexchange.com/questions/8182/how-to-use-org-plus-contrib/8231][here]]. Currently, org-drill is
-disabled. Learn how to load it properly and lazily.
 * Startup
 #+BEGIN_SRC emacs-lisp
   ;; Use a hook so the message doesn't get clobbered by other messages.
@@ -677,6 +673,7 @@ https://oremacs.com/2017/08/04/ripgrep/
 *** use-package
 #+BEGIN_SRC emacs-lisp
   (use-package org
+    :ensure org-plus-contrib
     :init
       (defun ck-set-home-agenda ()
         (interactive)
@@ -1244,10 +1241,11 @@ To export to html.
 #+BEGIN_SRC emacs-lisp
   (use-package htmlize)
 #+END_SRC
-*** CANCELLED org-drill                                         :CANCELLED:
-CLOSED: [2018-12-01 Sat 15:16]
+*** org-drill
+https://stackoverflow.com/questions/34983106/how-to-install-org-drill
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'load-path "~/.emacs.d/elpa/org-plus-contrib-20181126/")
+  ;;(add-to-list 'load-path "~/.emacs.d/elpa/org-plus-contrib-20181217/")
+  (require 'cl)
   (require 'org-drill)
 #+END_SRC
 *** pamparam
