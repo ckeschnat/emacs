@@ -1124,7 +1124,6 @@ belongs as a list."
 #+END_SRC
 *** Custom agenda
 #+BEGIN_SRC emacs-lisp
-
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html
   ;; maybe use https://github.com/alphapapa/org-super-agenda
@@ -1159,8 +1158,14 @@ belongs as a list."
               (agenda "" ((org-agenda-span 'day)))
               (alltodo ""
                       ((org-agenda-skip-function '(or (air-org-skip-subtree-if-priority ?A)
-                                                      (org-agenda-skip-if nil '(scheduled deadline))))
-                      (org-agenda-overriding-header "ALL normal priority tasks:"))))
+                                                      (org-agenda-skip-if nil '(scheduled deadline))
+                                                      (org-agenda-skip-entry-if 'todo '("SOMEDAY"))))
+                       (org-agenda-overriding-header "Normal priority TODO tasks:")))
+              (alltodo ""
+                      ((org-agenda-skip-function '(or (air-org-skip-subtree-if-priority ?A)
+                                                      (org-agenda-skip-if nil '(scheduled deadline))
+                                                      (org-agenda-skip-entry-if 'nottodo '("SOMEDAY"))))
+                      (org-agenda-overriding-header "SOMEDAY list:"))))
               ((org-agenda-compact-blocks t)))))
 
 
