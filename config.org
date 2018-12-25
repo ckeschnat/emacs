@@ -681,6 +681,13 @@ https://www.reddit.com/r/emacs/comments/9vk7iz/emacs_popup_shell/
   (projectile-mode 1))
 #+END_SRC
 * Org
+*** org-drill
+#+BEGIN_SRC emacs-lisp
+  (require 'cl)
+  (use-package org-drill
+    :ensure org-plus-contrib
+    :commands (org-drill))
+#+END_SRC
 *** use-package
 #+BEGIN_SRC emacs-lisp
   (use-package org
@@ -1158,14 +1165,6 @@ To export to html.
 
 #+BEGIN_SRC emacs-lisp
   (use-package htmlize)
-#+END_SRC
-*** CANCELLED org-drill                                         :CANCELLED:
-CLOSED: [2018-12-22 Sat 00:41]
-https://stackoverflow.com/questions/34983106/how-to-install-org-drill
-#+BEGIN_SRC emacs-lisp
-  ;;(add-to-list 'load-path "~/.emacs.d/elpa/org-plus-contrib-20181217/")
-  (require 'cl)
-  (require 'org-drill)
 #+END_SRC
 *** pamparam
 #+BEGIN_SRC emacs-lisp
