@@ -695,30 +695,26 @@ https://www.reddit.com/r/emacs/comments/9vk7iz/emacs_popup_shell/
     :init
       (defun ck-set-home-agenda ()
         (interactive)
-        (setq org-agenda-tag-filter-preset '("-@work" "-elk" "-REFILE" "-learnsrs")))
+        (setq org-agenda-tag-filter-preset '("-@work" "-elk" "-REFILE")))
 
       (defun ck-set-work-agenda ()
         (interactive)
-        (setq org-agenda-tag-filter-preset '("-@home" "-elk" "-REFILE" "-learnsrs")))
-
-      (defun ck-set-learn-agenda ()
-        (interactive)
-        (setq org-agenda-tag-filter-preset '("+learnsrs")))
+        (setq org-agenda-tag-filter-preset '("-@home" "-elk" "-REFILE")))
 
       (when (my-system-type-is-gnu)
         (setq my-org-dir "~/org/"))
 
       (when (my-system-is-mypc)
         (setq my-org-dir "c:/docs/org/"
-              org-agenda-tag-filter-preset '("-@work" "-elk" "-REFILE" "-learnsrs")))
+              org-agenda-tag-filter-preset '("-@work" "-elk" "-REFILE")))
 
       (when (my-system-is-myoldworkpc)
         (setq my-org-dir "c:/Users/chris.keschnat/Documents/docs/org/"
-              org-agenda-tag-filter-preset '("-@home" "-elk" "-REFILE" "-learnsrs")))
+              org-agenda-tag-filter-preset '("-@home" "-elk" "-REFILE")))
 
       (when (my-system-is-myworkpc)
         (setq my-org-dir "c:/docs/org/"
-              org-agenda-tag-filter-preset '("-@home" "-elk" "-REFILE" "-learnsrs")))
+              org-agenda-tag-filter-preset '("-@home" "-elk" "-REFILE")))
 
     :mode
     (("\\.txt$" . org-mode))
