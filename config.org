@@ -992,13 +992,8 @@ belongs as a list."
   (setq org-todo-keywords
           '((sequence "TODO(t)" "WAIT(w@/!)" "SOMEDAY(s)" "|" "CANCELLED(c@)" "DONE(d!)")))
   (setq org-tag-alist (quote (
-                              ("@home" . ?H)
-                              ("@work" . ?W)
                               ("WAIT" . ?A)
-                              ("PERSONAL" . ?P)
-                              ("NOTE" . ?n)
                               ("CANCELLED" . ?C)
-                              ("FLAGGED" . ??)
                               ("watch" . ?w)
                               ("read" . ?r)
                               )))
