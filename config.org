@@ -184,9 +184,10 @@ https://github.com/jasonm23/emacs-select-themes
 #+BEGIN_SRC emacs-lisp
   (use-package all-the-icons)
   (use-package doom-modeline
-    :ensure t
     :defer t
-    :hook (after-init . doom-modeline-init))
+    :hook (after-init . doom-modeline-init)
+    :config
+      (setq doom-modeline-height 10))
 #+END_SRC
 * Misc
 A lot of this is from https://github.com/hrs/sensible-defaults.el/blob/master/sensible-defaults.el
