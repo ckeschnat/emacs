@@ -504,8 +504,7 @@ Key bindings.
 
     (general-define-key
       "C-x j" 'kill-this-buffer
-      "C-x k" 'kill-buffer-and-window
-      "M-o" 'other-window))
+      "C-x k" 'kill-buffer-and-window))
 
    (defun config-visit ()
     (interactive)
@@ -666,6 +665,13 @@ Use amx to save recent M-x items
       (counsel-describe-function . ivy--regex-fuzzy)
       (counsel-describe-variable . ivy--regex-fuzzy)
       (t . ivy--regex-plus)))
+#+END_SRC
+* Ace-window
+#+BEGIN_SRC emacs-lisp
+  (use-package ace-window
+    :general
+    ("M-o" 'ace-window))
+
 #+END_SRC
 * Which-key
 #+BEGIN_SRC emacs-lisp
