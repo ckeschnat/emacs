@@ -514,6 +514,34 @@ Key bindings.
 #+BEGIN_SRC emacs-lisp
   (use-package rg)
 #+END_SRC
+* CANCELLED Key-chord                                             :CANCELLED:
+CLOSED: [2018-12-27 Thu 20:37]
+:LOGBOOK:
+- State "CANCELLED"  from              [2018-12-27 Thu 20:37] \\
+  not sure if I want to use this
+:END:
+Good candidates, taken from comment [[https://www.emacswiki.org/emacs/KeyChord][here]].
+=bv, bk, cf, vc, xs, xv=
+#+BEGIN_SRC emacs-lisp
+  ;; should i use this, move this function
+  (defun ck-show-org-agenda(&optional arg)
+    (interactive "P")
+    (org-agenda arg "d"))
+
+  (use-package key-chord
+     :defer nil
+     :config
+     (key-chord-mode 1))
+
+  (general-define-key
+        :states '(normal visual insert emacs motion)
+                      (general-chord "xc") 'counsel-recentf
+                      (general-chord "xv") 'counsel-find-file
+                      (general-chord "xs") 'ck-show-org-agenda)
+
+
+  ;; (org-agenda-show-unscheduled)
+#+END_SRC
 * Ivy
 Use amx to save recent M-x items
 
