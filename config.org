@@ -596,7 +596,13 @@ https://oremacs.com/2017/08/04/ripgrep/
   (use-package swiper
     :after ivy)
 
-  ;(use-package avy)
+  (use-package avy
+    :config
+    (general-define-key
+      :prefix "C-c"
+     :states '(motion normal visual insert emacs)
+     "v"  'avy-goto-char-2))
+
   (use-package counsel
     :diminish
     :after ivy
