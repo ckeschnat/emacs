@@ -498,7 +498,8 @@ Key bindings.
       "s"  '(:ignore t :which-key "Search"))
 
     (general-define-key
-      "C-x k" 'kill-this-buffer
+      "C-x j" 'kill-this-buffer
+      "C-x k" 'kill-buffer-and-window
       "M-o" 'other-window))
 
    (defun config-visit ()
