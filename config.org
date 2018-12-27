@@ -512,6 +512,8 @@ Key bindings.
 #+END_SRC
 
 * ripgrep
+https://oremacs.com/2017/08/04/ripgrep/
+
 #+BEGIN_SRC emacs-lisp
   (use-package rg)
   (setq counsel-git-cmd "rg --files")
@@ -552,8 +554,6 @@ Use amx to save recent M-x items
 #+BEGIN_SRC emacs-lisp
   (use-package amx)
 #+END_SRC
-
-https://oremacs.com/2017/08/04/ripgrep/
 
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
