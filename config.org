@@ -629,8 +629,8 @@ https://oremacs.com/2017/08/04/ripgrep/
     :config
     (general-define-key
       :prefix "C-c"
-     :states '(motion normal visual insert emacs)
-     "v"  'avy-goto-char-2))
+      :states '(motion normal visual insert emacs)
+      "v"  'avy-goto-char-0))
 
   (use-package counsel
     :diminish
