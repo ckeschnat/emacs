@@ -1205,6 +1205,15 @@ current window."
   ;; (evil-define-key 'evilified org-agenda-mode-map (kbd "j") 'org-agenda-next-item)
   ;; (evil-define-key 'evilified org-agenda-mode-map (kbd "k") 'org-agenda-previous-item)
 #+END_SRC
+*** expand-region
+#+BEGIN_SRC emacs-lisp
+  (use-package expand-region
+    :config
+      (general-define-key
+          :states '(motion normal visual insert emacs)
+          "M-n" 'er/expand-region)
+    )
+#+END_SRC
 * Hydra
 https://github.com/abo-abo/hydra/wiki/Org-agenda
 
