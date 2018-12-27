@@ -1770,6 +1770,7 @@ Look at this if needed.
 
   (use-package evil-magit
     :after magit)
+  (add-hook 'git-commit-mode-hook 'evil-insert-state)
 #+END_SRC
 * Engine
 #+BEGIN_SRC emacs-lisp
