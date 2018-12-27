@@ -504,6 +504,7 @@ Key bindings.
 
     (general-define-key
       "C-x j" 'kill-this-buffer
+      "M-o" 'other-window
       "C-x k" 'kill-buffer-and-window))
 
    (defun config-visit ()
@@ -667,11 +668,16 @@ Use amx to save recent M-x items
       (t . ivy--regex-plus)))
 #+END_SRC
 * Ace-window
+https://cestlaz-nikola.github.io/posts/using-emacs-5-windows/
 #+BEGIN_SRC emacs-lisp
   (use-package ace-window
-    :general
-    ("M-o" 'ace-window))
-
+    :ensure t
+    :init
+    (progn
+      (global-set-key [remap other-window] 'ace-window)
+      (custom-set-faces
+       '(aw-leading-char-face
+         ((t (:inherit ace-jump-face-foreground :height 3.0)))))))
 #+END_SRC
 * Which-key
 #+BEGIN_SRC emacs-lisp
