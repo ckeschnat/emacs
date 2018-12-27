@@ -1062,19 +1062,10 @@ https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html
                                                       (org-agenda-skip-entry-if 'todo '("SOMEDAY"))))
                        (org-agenda-overriding-header "Normal priority scheduled TODO tasks:")))
               (alltodo ""
-                       ((org-agenda-skip-function '(or (air-org-skip-subtree-if-priority ?A)
-                                                       (org-agenda-skip-entry-if 'nottodo '("WAIT"))))
-                        (org-agenda-overriding-header "WAIT:")))
-              (alltodo ""
                       ((org-agenda-skip-function '(or (air-org-skip-subtree-if-priority ?A)
                                                       (org-agenda-skip-if nil '(scheduled deadline))
                                                       (org-agenda-skip-entry-if 'nottodo '("SOMEDAY"))))
-                       (org-agenda-overriding-header "SOMEDAY:")))
-
-              (alltodo ""
-                       ((org-agenda-skip-function '(or (air-org-skip-subtree-if-priority ?A)
-                                                       (org-agenda-skip-entry-if 'nottodo '("TODO"))))
-                        (org-agenda-overriding-header "ALL TODO (except #A, but including scheduled):"))))
+                       (org-agenda-overriding-header "SOMEDAY:"))))
               ((org-agenda-compact-blocks t)))))
 #+END_SRC
 *** Faces/UI
