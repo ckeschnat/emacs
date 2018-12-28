@@ -412,7 +412,7 @@ http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html
 
 
   (general-define-key
-    :prefix "C-x"
+    :prefix "C-h"
     "t" 'narrow-or-widen-dwim)
 
   (eval-after-load 'org-src
