@@ -1778,12 +1778,10 @@ https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-fro
                             (company-mode)))
 #+END_SRC
 * Yasnippets
+https://emacs.stackexchange.com/questions/29758/yasnippets-and-org-mode-yas-next-field-or-maybe-expand-does-not-expand
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
     :commands (yas-reload-all yas-minor-mode)
-    :init
-    (add-hook 'c++-mode-hook (lambda() (yas-reload-all)(yas-minor-mode)))
-    (add-hook 'go-mode-hook (lambda() (yas-reload-all)(yas-minor-mode)))
     :config
       (use-package yasnippet-snippets))
       (use-package ivy-yasnippet
@@ -1791,6 +1789,19 @@ https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-fro
         (general-define-key
           :states '(insert motion)
           "C-c y" 'ivy-yasnippet))
+
+  (add-hook 'c++-mode-hook (lambda() (yas-reload-all)(yas-minor-mode)))
+  (add-hook 'go-mode-hook (lambda() (yas-reload-all)(yas-minor-mode)))
+
+  ;;(defun yas-org-very-safe-expand ()
+  ;;  (let ((yas-fallback-behavior 'return-nil)) (yas-expand)))
+  ;;
+  ;;(add-hook 'org-mode-hook
+  ;;      (lambda ()
+  ;;        (add-to-list 'org-tab-first-hook 'yas-org-very-safe-expand)
+  ;;        (define-key yas-keymap [tab] 'yas-next-field)))
+
+  (add-hook 'org-mode-hook (lambda() (yas-reload-all)(yas-minor-mode)))
 #+END_SRC
 ** CANCELLED company/yasnippets                                                    :CANCELLED:
 Look at this if needed.

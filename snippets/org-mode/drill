@@ -1,0 +1,7 @@
+# name: drill { ... }
+# key: dri
+# --
+${1:title}${0\\} :drill:
+   ${2:question}
+  **** The answer
+    ${3:answer}
