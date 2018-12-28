@@ -377,6 +377,7 @@ https://ambrevar.xyz/emacs2/
   (setq load-prefer-newer t)
 #+END_SRC
 *** narrow-or-widen-dwim
+http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html
 #+BEGIN_SRC emacs-lisp
   (defun narrow-or-widen-dwim (p)
     "Widen if buffer is narrowed, narrow-dwim otherwise.
