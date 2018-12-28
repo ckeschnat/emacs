@@ -638,7 +638,7 @@ Use amx to save recent M-x items
     (general-define-key
       :prefix "C-c"
       :states '(motion normal visual insert emacs)
-      "v"  'avy-goto-char-0))
+      "v"  'avy-goto-char-timer))
 
   (use-package counsel
     :diminish
