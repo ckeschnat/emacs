@@ -189,6 +189,11 @@ https://github.com/jasonm23/emacs-select-themes
     :config
       (setq doom-modeline-height 10))
 #+END_SRC
+**** Disable git vc info
+See https://github.com/seagle0128/doom-modeline and https://magit.vc/manual/magit/The-mode_002dline-information-isn_0027t-always-up_002dto_002ddate.html
+#+BEGIN_SRC emacs-lisp
+  (setq vc-handled-backends (delq 'Git vc-handled-backends))
+#+END_SRC
 * Misc
 A lot of this is from https://github.com/hrs/sensible-defaults.el/blob/master/sensible-defaults.el
 *** Cleanup whitespace
