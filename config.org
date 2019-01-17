@@ -678,6 +678,7 @@ Use amx to save recent M-x items
 
   (use-package avy
     :config
+      (setq avy-timeout-seconds 0.2)
     (general-define-key
       :states '(motion normal visual insert emacs)
       "C-d"  'avy-goto-char-timer))
