@@ -1107,6 +1107,7 @@ belongs as a list."
                   ("w" "wait" entry (file "") "* WAIT %?\nEntered: %U\n")
                   ("c" "clipboard" entry (file "") "* TODO %?\n\n#+BEGIN_QUOTE\n  %c\n#+END_QUOTE\n\nEntered: %U\n")
                   ("l" "linked todo" entry (file "") "* TODO %?\nEntered: %U\n%a\n")
+                  ("s" "calendar entry" entry (file org-caldav-inbox) "* %?\nSCHEDULED: %^{Scheduled to begin}t\n")
                   ("n" "note" entry (file "") "* %? :NOTE:\n%U\n%a\n")
                   )))
 
@@ -1965,4 +1966,47 @@ CLOSED: [2018-12-09 Sun 00:26]
       :config
         (require 'elfeed-goodies)
         (elfeed-goodies/setup)))
+#+END_SRC
+* caldav
+https://www.reddit.com/r/orgmode/comments/8rl8ep/making_orgcaldav_useable/
+#+BEGIN_SRC emacs-lisp
+  (use-package org-caldav
+    :init
+    ;; This is the sync on close function; it also prompts for save after syncing so
+    ;; no late changes get lost
+    (defun org-caldav-sync-at-close ()
+      (org-caldav-sync)
+      (save-some-buffers))
+
+    ;; This is the delayed sync function; it waits until emacs has been idle for
+    ;; "secs" seconds before syncing.  The delay is important because the caldav-sync
+    ;; can take five or ten seconds, which would be painful if it did that right at save.
+    ;; This way it just waits until you've been idle for a while to avoid disturbing
+    ;; the user.
+    (defvar org-caldav-sync-timer nil
+       "Timer that `org-caldav-push-timer' used to reschedule itself, or nil.")
+    (defun org-caldav-sync-with-delay (secs)
+      (when org-caldav-sync-timer
+        (cancel-timer org-caldav-sync-timer))
+      (setq org-caldav-sync-timer
+        (run-with-idle-timer
+         (* 1 secs) nil 'org-caldav-sync)))
+    (setq org-caldav-files nil)
+    :config
+    (setq org-caldav-url "http://hugo.rivered.de:5232/ckeschnat/")
+    (setq org-caldav-calendar-id "e03543b6-1a19-95fa-799a-01bb289a4b2b")
+    (setq org-caldav-inbox "C:/docs/org/cal.org")
+    (setq org-icalendar-timezone "Europe/Berlin")
+    ;; This ensures all org "deadlines" show up, and show up as due dates
+    (setq org-icalendar-use-deadline '(event-if-todo event-if-not-todo todo-due))
+    ;; This ensures "scheduled" org items show up, and show up as start times
+    (setq org-icalendar-use-scheduled '(todo-start event-if-todo event-if-not-todo))
+
+    ;; Add the delayed save hook with a five minute idle timer
+    (add-hook 'after-save-hook
+          (lambda ()
+            (when (eq major-mode 'org-mode)
+          (org-caldav-sync-with-delay 300)))))
+    ;; Add the close emacs hook
+    ;;(add-hook 'kill-emacs-hook 'org-caldav-sync-at-close))
 #+END_SRC

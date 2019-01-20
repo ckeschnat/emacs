@@ -18,3 +18,4 @@ server
 straight
 url
 .org-id-locations
+org-caldav-*
