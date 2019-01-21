@@ -1993,7 +1993,7 @@ https://www.reddit.com/r/orgmode/comments/8rl8ep/making_orgcaldav_useable/
          (* 1 secs) nil 'org-caldav-sync)))
     (setq org-caldav-files nil)
     :config
-    (setq org-caldav-url "http://hugo.rivered.de:5232/ckeschnat/")
+    (setq org-caldav-url "https://hugo.rivered.de:5232/ckeschnat")
     (setq org-caldav-calendar-id "e03543b6-1a19-95fa-799a-01bb289a4b2b")
     (setq org-caldav-inbox "C:/docs/org/cal.org")
     (setq org-icalendar-timezone "Europe/Berlin")
