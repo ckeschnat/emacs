@@ -799,11 +799,20 @@ https://www.reddit.com/r/emacs/comments/9vk7iz/emacs_popup_shell/
     :init
       (defun ck-set-home-agenda ()
         (interactive)
+        (setq my-org-dir "c:/docs/org/")
+        (setq org-agenda-files (list my-org-dir))
         (setq org-agenda-tag-filter-preset '("-@work" "-REFILE")))
 
       (defun ck-set-work-agenda ()
         (interactive)
+        (setq my-org-dir "c:/docs/org/")
+        (setq org-agenda-files (list my-org-dir))
         (setq org-agenda-tag-filter-preset '("-@home" "-REFILE")))
+
+      (defun ck-set-calendar-agenda ()
+        (interactive)
+        (setq my-org-dir "c:/docs/org/calendar/")
+        (setq org-agenda-files (list my-org-dir)))
 
       (when (my-system-type-is-gnu)
         (setq my-org-dir "~/org/"))
