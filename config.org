@@ -442,7 +442,7 @@ But then scrolling also recenters point.
 #+BEGIN_SRC emacs-lisp
   (when window-system
     (global-hl-line-mode)
-    (set-face-background 'hl-line "#321907"))
+    (set-face-background 'hl-line "#333333"))
 #+END_SRC
 *** Tabs
 #+BEGIN_SRC emacs-lisp
