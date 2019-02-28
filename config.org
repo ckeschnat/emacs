@@ -927,7 +927,7 @@ Use amx to save recent M-x items
     "ff"  '(counsel-find-file :which-key "find files")
     "fr"  '(counsel-recentf :which-key "recent files")
     ;; Search
-    "s/"   '(counsel-grep-or-swiper :which-key "swiper")
+    "s/"   '(swiper :which-key "swiper")
     "sa"   '(swiper-all :which-key "swiper-all")
     "ss"   '(counsel-rg :which-key "ripgrep"))
 
@@ -995,7 +995,7 @@ Use amx to save recent M-x items
 
   (general-define-key
     :states '(motion normal visual insert emacs)
-    "C-s" 'counsel-grep-or-swiper
+    "C-s" 'swiper
     "C-c C-r" 'ivy-resume
     "C-h f" 'counsel-describe-function
     "C-h v" 'counsel-describe-variable
