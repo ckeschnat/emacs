@@ -165,8 +165,9 @@ Set Symbola as fallback font to display unicode characters.
 
 #+BEGIN_SRC emacs-lisp
   (use-package distinguished-theme
+      :defer nil
       :config
-      (load-theme 'distinguished-theme t))
+      (load-theme 'distinguished t))
 #+END_SRC
 
 https://github.com/jasonm23/emacs-select-themes
