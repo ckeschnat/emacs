@@ -1533,8 +1533,7 @@ https://github.com/sabof/org-bullets/issues/11#issuecomment-439228372
 #+BEGIN_SRC emacs-lisp
   (setq inhibit-compacting-font-caches t)
 #+END_SRC
-*** CANCELLED org-brain                                         :CANCELLED:
-CLOSED: [2018-11-22 Thu 15:31]
+*** org-brain
 
 https://github.com/Kungsgeten/org-brain
 
