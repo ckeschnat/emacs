@@ -2297,5 +2297,6 @@ https://www.reddit.com/r/orgmode/comments/8rl8ep/making_orgcaldav_useable/
 * ox-hugo
 #+BEGIN_SRC emacs-lisp
   (use-package ox-hugo
-    :after ox)
+    :after ox
+    :defer 1)
 #+END_SRC
