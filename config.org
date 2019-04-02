@@ -2305,3 +2305,10 @@ https://www.reddit.com/r/orgmode/comments/8rl8ep/making_orgcaldav_useable/
     :after ox
     :defer 1)
 #+END_SRC
+* ledger
+#+BEGIN_SRC emacs-lisp
+  (use-package ledger-mode
+      :mode ("\\.dat\\'"
+             "\\.ledger\\'")
+      :custom (ledger-clear-whole-transactions t))
+#+END_SRC
