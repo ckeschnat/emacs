@@ -1094,6 +1094,7 @@ https://www.reddit.com/r/emacs/comments/9vk7iz/emacs_popup_shell/
 #+BEGIN_SRC emacs-lisp
   (use-package org
     :ensure org-plus-contrib
+    :after evil
     :init
       (defun ck-set-home-agenda ()
     (interactive)
