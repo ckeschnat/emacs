@@ -857,10 +857,10 @@ in your configuration and just ignore the rest of its features.
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-  (use-package lispyville)
-
-  (add-hook 'emacs-lisp-mode-hook #'lispyville-mode)
-  (add-hook 'lisp-mode-hook #'lispyville-mode)
+  (use-package lispyville
+    :config
+    (add-hook 'emacs-lisp-mode-hook 'lispyville-mode)
+    (add-hook 'lisp-mode-hook 'lispyville-mode))
 #+END_SRC
 * ripgrep
 https://oremacs.com/2017/08/04/ripgrep/
