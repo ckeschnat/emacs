@@ -1301,23 +1301,9 @@ Maybe inside a subdirectory? E.g.:
           ("n" "note" entry (file "") "* %? :NOTE:\n%U\n%a\n")
           )))
 
-  (add-to-list 'org-structure-template-alist
-          (list "hh" (concat "#+SETUPFILE: themes/theme-readtheorg-local.setup\n"
-                  "#+OPTIONS: html-postamble:nil num:nil\n"
-                  "#+FILETAGS: ?\n")))
-
-  (add-to-list 'org-structure-template-alist
-          (list "p" (concat ":PROPERTIES:\n"
-                  "?\n"
-                  ":END:")))
-
-  (add-to-list 'org-structure-template-alist
-          (list "eh" (concat ":EXPORT_FILE_NAME: ?\n"
-                  ":EXPORT_TITLE:\n"
-                  ":EXPORT_OPTIONS: html-postamble:nil num:nil")))
-
-  (add-to-list 'org-structure-template-alist
-           '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
+  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
+  (require 'org-tempo)
 
   (add-hook 'org-capture-mode-hook 'evil-insert-state)
 
