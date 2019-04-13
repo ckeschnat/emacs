@@ -1443,6 +1443,11 @@ To export to html.
   (use-package ox-jira
     :defer 1)
 #+END_SRC
+*** org-web-tools
+#+BEGIN_SRC emacs-lisp
+  (use-package org-web-tools
+    :commands 'org-web-tools-read-url-as-org)
+#+END_SRC
 * Navigation
 *** Alternate buffer
 #+BEGIN_SRC emacs-lisp
