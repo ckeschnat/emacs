@@ -1235,6 +1235,8 @@ Maybe inside a subdirectory? E.g.:
     org-src-fontify-natively t
     org-src-tab-acts-natively t
     org-src-window-setup 'current-window)
+
+  (org-babel-do-load-languages 'org-babel-load-languages '((emacs-lisp . t) (ruby . t) (shell . t)))
 #+END_SRC
 *** Agenda
 #+BEGIN_SRC emacs-lisp
