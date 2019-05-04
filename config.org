@@ -1236,7 +1236,12 @@ Maybe inside a subdirectory? E.g.:
     org-src-tab-acts-natively t
     org-src-window-setup 'current-window)
 
-  (org-babel-do-load-languages 'org-babel-load-languages '((emacs-lisp . t) (ruby . t) (shell . t)))
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (ruby . t)
+     (shell . t)
+     (ledger . t)))
 #+END_SRC
 *** Agenda
 #+BEGIN_SRC emacs-lisp
