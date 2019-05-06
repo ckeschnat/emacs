@@ -2203,7 +2203,7 @@ https://www.reddit.com/r/orgmode/comments/8rl8ep/making_orgcaldav_useable/
     (defun my-ledger-mode-before-save-hook ()
     (when (eq major-mode 'ledger-mode)
       (message "Cleaning up formatting.")))
-    (add-hook 'before-save-hook 'ledger-mode-clean-buffer)
+    (add-hook 'before-save-hook 'my-ledger-mode-clean-buffer)
     :custom
     (ledger-clear-whole-transactions t))
 
