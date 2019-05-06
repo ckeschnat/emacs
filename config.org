@@ -2202,8 +2202,8 @@ https://www.reddit.com/r/orgmode/comments/8rl8ep/making_orgcaldav_useable/
     (setq ledger-post-amount-alignment-column 85)
     (defun my-ledger-mode-before-save-hook ()
     (when (eq major-mode 'ledger-mode)
-      (message "Cleaning up formatting.")))
-    (add-hook 'before-save-hook 'my-ledger-mode-clean-buffer)
+      (ledger-mode-clean-buffer)))
+    (add-hook 'before-save-hook 'my-ledger-mode-before-save-hook)
     :custom
     (ledger-clear-whole-transactions t))
 
