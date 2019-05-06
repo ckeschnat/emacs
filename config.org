@@ -2204,6 +2204,11 @@ https://www.reddit.com/r/orgmode/comments/8rl8ep/making_orgcaldav_useable/
     (when (eq major-mode 'ledger-mode)
       (ledger-mode-clean-buffer)))
     (add-hook 'before-save-hook 'my-ledger-mode-before-save-hook)
+    (define-advice org-edit-src-exit (:before (&rest _args) format-ledger)
+      "Run `ledger-mode-clean-buffer' on ledger."
+      (when (eq major-mode 'ledger-mode)
+        (message "Formatting python ledger...")
+        (ledger-mode-clean-buffer)))
     :custom
     (ledger-clear-whole-transactions t))
 
