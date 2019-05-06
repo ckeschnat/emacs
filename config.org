@@ -2200,7 +2200,12 @@ https://www.reddit.com/r/orgmode/comments/8rl8ep/making_orgcaldav_useable/
     (require 'flycheck-ledger)
     (setq ledger-post-auto-adjust-amounts t)
     (setq ledger-post-amount-alignment-column 85)
-    :custom (ledger-clear-whole-transactions t))
+    (defun my-ledger-mode-before-save-hook ()
+    (when (eq major-mode 'ledger-mode)
+      (message "Cleaning up formatting.")))
+    (add-hook 'before-save-hook 'ledger-mode-clean-buffer)
+    :custom
+    (ledger-clear-whole-transactions t))
 
   (require 'ob-ledger)
 
