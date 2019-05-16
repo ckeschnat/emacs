@@ -988,6 +988,7 @@ Use amx to save recent M-x items
     :after ivy)
 
   (use-package avy
+    :demand t
     :config
       (setq avy-timeout-seconds 0.2)
     (general-define-key
