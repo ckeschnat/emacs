@@ -163,11 +163,19 @@ Set Symbola as fallback font to display unicode characters.
     (load-theme 'doom-one t))
 #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
   (use-package distinguished-theme
       :defer nil
       :config
       (load-theme 'distinguished t))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (use-package zerodark-theme
+      :defer nil
+      :config
+      (load-theme 'zerodark t)
+      (zerodark-setup-modeline-format))
 #+END_SRC
 
 https://github.com/jasonm23/emacs-select-themes
