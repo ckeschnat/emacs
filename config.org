@@ -2037,15 +2037,17 @@ https://emacs.stackexchange.com/questions/29758/yasnippets-and-org-mode-yas-next
   (use-package yasnippet
     :commands (yas-reload-all yas-minor-mode)
     :config
-      (use-package yasnippet-snippets))
-      (use-package ivy-yasnippet
+    (use-package yasnippet-snippets))
+
+  (use-package ivy-yasnippet
     :config
     (general-define-key
-      :states '(insert motion)
-      "C-c y" 'ivy-yasnippet))
+     :states '(insert motion)
+     "C-c y" 'ivy-yasnippet))
 
   (add-hook 'c++-mode-hook (lambda() (yas-reload-all)(yas-minor-mode)))
   (add-hook 'go-mode-hook (lambda() (yas-reload-all)(yas-minor-mode)))
+  (add-hook 'rust-mode-hook (lambda() (yas-reload-all)(yas-minor-mode)))
 
   ;;(defun yas-org-very-safe-expand ()
   ;;  (let ((yas-fallback-behavior 'return-nil)) (yas-expand)))
@@ -2055,7 +2057,7 @@ https://emacs.stackexchange.com/questions/29758/yasnippets-and-org-mode-yas-next
   ;;        (add-to-list 'org-tab-first-hook 'yas-org-very-safe-expand)
   ;;        (define-key yas-keymap [tab] 'yas-next-field)))
 
-  (add-hook 'org-mode-hook (lambda() (yas-reload-all)(yas-minor-mode)))
+  ;;(add-hook 'org-mode-hook (lambda() (yas-reload-all)(yas-minor-mode)))
 #+END_SRC
 ** CANCELLED company/yasnippets                                                    :CANCELLED:
 Look at this if needed.
@@ -2236,10 +2238,16 @@ https://www.reddit.com/r/orgmode/comments/8rl8ep/making_orgcaldav_useable/
     :after (flycheck ledger-mode))
 #+END_SRC
 * Rust
+
+https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in_fewer_than_20/
+
 #+begin_src emacs-lisp
   (use-package lsp-mode
     :commands lsp
-    :config (require 'lsp-clients))
+    :init
+    (setq lsp-enable-snippet nil)
+    :config
+    (require 'lsp-clients))
 
   (use-package lsp-ui)
 

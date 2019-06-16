@@ -20,3 +20,4 @@ url
 .org-id-locations
 org-caldav-*
 transient
+.lsp-session-v1
