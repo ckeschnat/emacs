@@ -2218,6 +2218,7 @@ https://www.reddit.com/r/orgmode/comments/8rl8ep/making_orgcaldav_useable/
            "\\.ledger\\'")
     :config
     (require 'flycheck-ledger)
+    (setq ledger-default-date-format "%Y-%m-%d")
     (setq ledger-post-auto-adjust-amounts t)
     (setq ledger-post-amount-alignment-column 85)
     (defun my-ledger-mode-before-save-hook ()
