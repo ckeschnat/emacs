@@ -2243,19 +2243,20 @@ https://www.reddit.com/r/orgmode/comments/8rl8ep/making_orgcaldav_useable/
 https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in_fewer_than_20/
 
 #+begin_src emacs-lisp
-  (use-package lsp-mode
-    :commands lsp
-    :init
-    (setq lsp-enable-snippet nil)
-    :config
-    (require 'lsp-clients))
+  ;; (use-package lsp-mode
+  ;;   :commands lsp
+  ;;   :init
+  ;;   (setq lsp-enable-snippet nil)
+  ;;   :config
+  ;;   (require 'lsp-clients))
 
-  (use-package lsp-ui)
+  ;; (use-package lsp-ui)
 
   (use-package toml-mode)
 
-  (use-package rust-mode
-    :hook (rust-mode . lsp))
+  ;; (use-package rust-mode
+    ;; :hook (rust-mode . lsp))
+  (use-package rust-mode)
 
   ;; Add keybindings for interacting with Cargo
   (use-package cargo
