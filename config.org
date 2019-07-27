@@ -2335,7 +2335,7 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
     "<meta name=\"author\" content=\"Chris Keschnat\">
     <meta name=\"referrer\" content=\"no-referrer\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
-    <link href= \"static/style.css\" rel=\"stylesheet\" type=\"text/css\" />
+    <link href= \"static/m-dark.compiled.css\" rel=\"stylesheet\" type=\"text/css\" />
     <link rel=\"icon\" href=\"static/favicon.ico\">")
 
     ;; This preamble is inserted at the beginning of the <body> of every page:
