@@ -2342,10 +2342,28 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
     ;;   This particular HTML creates a <div> with a simple linked headline
     (setq org-static-blog-page-preamble
     "<main>
+
+    <header><nav id=\"navigation\">
+      <div class=\"m-container\">
+        <div class=\"m-row\">
+          <a href=\"https://blog.catsu.it\" id=\"m-navbar-brand\" class=\"m-col-t-9 m-col-m-none m-left-m\">Cats everywhere!</a>
+          <a id=\"m-navbar-show\" href=\"#navigation\" title=\"Show navigation\" class=\"m-col-t-3 m-hide-m m-text-right\"></a>
+          <a id=\"m-navbar-hide\" href=\"#\" title=\"Hide navigation\" class=\"m-col-t-3 m-hide-m m-text-right\"></a>
+          <div id=\"m-navbar-collapse\" class=\"m-col-t-12 m-show-m m-col-m-none m-right-m\">
+            <ul>
+              <li><a href=\"https://blog.catsu.it/rss.xml\">RSS</a></li>
+              <li><a href=\"https://blog.catsu.it/impress.html\">Impressum</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav></header>
+
+
     <div class=\"m-container\">
     <div class=\"mrow\"><br >
     <div class=\"header\">
-      <a href=\"https://blog.catsu.it\">Cats everywhere!</a>
+      <a href=\"https://blog.catsu.it\">Cats everywhere!</a>, <a href=\"https://blog.catsu.it/rss.xml\">RSS</a>, <a href=\"https://blog.catsu.it/impress.html\">Impressum</a>
     </div>
     <br />
     <article class=\"m-col-m-10 m-push-m-1\"></article>"
@@ -2357,8 +2375,6 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
     (setq org-static-blog-page-postamble
     "<div id=\"archive\">
       <a href=\"https://blog.catsu.it/archive.html\">Other posts</a>
-      <br />
-      <a href=\"https://blog.catsu.it/rss.xml\">RSS</a>
     </div>
     </div>
     </div>
