@@ -2312,3 +2312,44 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
   (use-package flycheck-rust
     :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 #+end_src
+* org-static-blog
+
+#+begin_src emacs-lisp
+  (use-package org-static-blog
+    :config
+    (setq org-static-blog-publish-title "Cats everywhere!")
+    (setq org-static-blog-publish-url "https://blog.catsu.it/")
+    (setq org-static-blog-publish-directory (concat my-org-dir "blog/blog/"))
+    (setq org-static-blog-posts-directory (concat my-org-dir "blog/posts/"))
+    (setq org-static-blog-drafts-directory (concat my-org-dir "blog/drafts/"))
+    (setq org-static-blog-enable-tags t)
+    (setq org-export-with-toc nil)
+    (setq org-export-with-section-numbers nil)
+
+    ;; This header is inserted into the <head> section of every page:
+    ;;   (you will need to create the style sheet at
+    ;;    ~/projects/blog/static/style.css
+    ;;    and the favicon at
+    ;;    ~/projects/blog/static/favicon.ico)
+    (setq org-static-blog-page-header
+    "<meta name=\"author\" content=\"Chris Keschnat\">
+    <meta name=\"referrer\" content=\"no-referrer\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
+    <link href= \"static/style.css\" rel=\"stylesheet\" type=\"text/css\" />
+    <link rel=\"icon\" href=\"static/favicon.ico\">")
+
+    ;; This preamble is inserted at the beginning of the <body> of every page:
+    ;;   This particular HTML creates a <div> with a simple linked headline
+    (setq org-static-blog-page-preamble
+    "<div class=\"m-container\">
+      <a href=\"https://blog.catsu.it\">Cats everywhere!</a>
+    </div>")
+
+    ;; This postamble is inserted at the end of the <body> of every page:
+    ;;   This particular HTML creates a <div> with a link to the archive page
+    ;;   and a licensing stub.
+    (setq org-static-blog-page-postamble
+    "<div id=\"archive\">
+      <a href=\"https://blog.catsu.it/archive.html\">Other posts</a>
+    </div>"))
+#+end_src
