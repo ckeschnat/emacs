@@ -2342,7 +2342,7 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
     ;;   This particular HTML creates a <div> with a simple linked headline
     (setq org-static-blog-page-preamble
     "<main><div class=\"m-container\">
-    <div class=\"mrow\">
+    <div class=\"mrow\"><br >
     <div class=\"header\"> <a href=\"https://blog.catsu.it\">Cats everywhere!</a></div><br />
     <article class=\"m-col-m-10 m-push-m-1\">"
     )
