@@ -2341,15 +2341,20 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
     ;; This preamble is inserted at the beginning of the <body> of every page:
     ;;   This particular HTML creates a <div> with a simple linked headline
     (setq org-static-blog-page-preamble
-    "<div class=\"m-container\">
-      <a href=\"https://blog.catsu.it\">Cats everywhere!</a>
-    </div>")
+    "<main><div class=\"m-container\">
+    <div class=\"mrow\">
+    <div class=\"header\"> <a href=\"https://blog.catsu.it\">Cats everywhere!</a></div><br />
+    <article class=\"m-col-m-10 m-push-m-1\">"
+    )
 
     ;; This postamble is inserted at the end of the <body> of every page:
     ;;   This particular HTML creates a <div> with a link to the archive page
     ;;   and a licensing stub.
     (setq org-static-blog-page-postamble
-    "<div id=\"archive\">
-      <a href=\"https://blog.catsu.it/archive.html\">Other posts</a>
-    </div>"))
+    "</article>
+    </div>
+    <div id=\"archive\"><a href=\"https://blog.catsu.it/archive.html\">Other posts</a> </div>
+    </div></main>
+    "
+    ))
 #+end_src
