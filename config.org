@@ -2316,205 +2316,7 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
 
 #+begin_src emacs-lisp
   (use-package org-static-blog
-    ;; :init
-    ;; (defun org-static-blog-post-preamble (post-filename)
-    ;;   "Returns the formatted date and headline of the post.
-    ;; This function is called for every post and prepended to the post body.
-    ;; Modify this function if you want to change a posts headline."
-    ;;   (concat
-    ;;    "<main><div class=\"m-container\">"
-    ;;    "<div class=\"m-row\">"
-    ;;    "<article class=\"m-col-m-10 m-push-m-1\">"
-    ;;    "<div class=\"post-date\">" (format-time-string (org-static-blog-gettext 'date-format)
-    ;;                            (org-static-blog-get-date post-filename))
-    ;;    "</div>"
-    ;;    "<h1 class=\"post-title\">"
-    ;;    "<a href=\"" (org-static-blog-get-url post-filename) "\">" (org-static-blog-get-title post-filename) "</a>"
-    ;;    "</h1>\n"))
-
-    ;; (defun org-static-blog-post-postamble (post-filename)
-    ;;   "Returns the tag list of the post.
-    ;; This function is called for every post and appended to the post body.
-    ;; Modify this function if you want to change a posts footline.""
-    ;;   (let ((taglist-content ""))
-    ;;     (when (and (org-static-blog-get-tags post-filename) org-static-blog-enable-tags)
-    ;;       (setq taglist-content (concat "<div class=\"taglist\">"
-    ;;                                     "<a href=\""
-    ;;                                     org-static-blog-tags-file
-    ;;                                     "\">" (org-static-blog-gettext 'tags) "</a>: "))
-    ;;       (dolist (tag (org-static-blog-get-tags post-filename))
-    ;;         (setq taglist-content (concat taglist-content "<a href=\""
-    ;;                                       "tag-" (downcase tag) ".html"
-    ;;                                       "\">" tag "</a> ")))
-    ;;       (setq taglist-content (concat taglist-content "</div>")))
-        ;; taglist-content))
     :config
-
-
-
-
-    (defun org-static-blog-publish-file (post-filename)
-      "Publish a single POST-FILENAME.
-    The index, archive, tags, and RSS feed are not updated."
-      (interactive "f")
-      (org-static-blog-with-find-file
-       (org-static-blog-matching-publish-filename post-filename)
-       (concat
-        "<!DOCTYPE html>\n"
-        "<html lang=\"" org-static-blog-langcode "\">\n"
-        "<head>\n"
-        "<meta charset=\"UTF-8\">\n"
-        "<link rel=\"alternate\"\n"
-        "      type=\"application/rss+xml\"\n"
-        "      href=\"" org-static-blog-publish-url org-static-blog-rss-file "\"\n"
-        "      title=\"RSS feed for " org-static-blog-publish-url "\"/>\n"
-        "<title>" (org-static-blog-get-title post-filename) "</title>\n"
-        org-static-blog-page-header
-        "</head>\n"
-        "<body>\n"
-        "<div id=\"preamble\" class=\"status\">\n"
-        org-static-blog-page-preamble
-        "</div>\n"
-        "<div id=\"content\">\n"
-
-        "<main><div class=\"m-container\">"
-        "<div class=\"m-row\">"
-        "<article class=\"m-col-m-10 m-push-m-1\">"
-        "<did id=\"fffffff\">\nSINGLE SITE STUFF</div>"
-
-        (org-static-blog-post-preamble post-filename)
-        (org-static-blog-render-post-content post-filename)
-        (org-static-blog-post-postamble post-filename)
-        "</div>\n"
-        "<div id=\"postamble\" class=\"status\">"
-        org-static-blog-page-postamble
-        "</div>\n"
-        "</body>\n"
-        "</html>\n")))
-
-
-
-
-
-
-    (defun org-static-blog-assemble-multipost-page (pub-filename post-filenames &optional front-matter)
-      "Assemble a page that contains multiple posts one after another.
-    Posts are sorted in descending time."
-      (setq post-filenames (sort post-filenames (lambda (x y) (time-less-p (org-static-blog-get-date y)
-                                                                      (org-static-blog-get-date x)))))
-      (org-static-blog-with-find-file
-       pub-filename
-       (concat
-        "<!DOCTYPE html>\n"
-        "<html lang=\"" org-static-blog-langcode "\">\n"
-        "<head>\n"
-        "<meta charset=\"UTF-8\">\n"
-        "<link rel=\"alternate\"\n"
-        "      type=\"application/rss+xml\"\n"
-        "      href=\"" org-static-blog-publish-url org-static-blog-rss-file "\"\n"
-        "      title=\"RSS feed for " org-static-blog-publish-url "\"/>\n"
-        "<title>" org-static-blog-publish-title "</title>\n"
-        org-static-blog-page-header
-        "</head>\n"
-        "<body>\n"
-        "<div id=\"preamble\" class=\"status\">"
-        org-static-blog-page-preamble
-        "</div>\n"
-        "<div id=\"content\">\n"
-
-        "<main><div class=\"m-container\">"
-        "<div class=\"m-row\">"
-        "<article class=\"m-col-m-10 m-push-m-1\">"
-        "<did id=\"fffffff\">\nMULTI SITE STUFF</div>"
-
-        (when front-matter front-matter)
-        (apply 'concat (mapcar 'org-static-blog-get-body post-filenames))
-        "<div id=\"archive\">\n"
-        "<a href=\"" org-static-blog-archive-file "\">" (org-static-blog-gettext 'other-posts) "</a>\n"
-        "</div>\n"
-        "</div>\n"
-        "</body>\n"
-        "</html>\n")))
-
-
-    (defun org-static-blog-assemble-archive ()
-      "Re-render the blog archive page.
-    The archive page contains single-line links and dates for every
-    blog post, but no post body."
-      (let ((archive-filename (concat org-static-blog-publish-directory org-static-blog-archive-file))
-            (archive-entries nil)
-            (post-filenames (org-static-blog-get-post-filenames)))
-        (setq post-filenames (sort post-filenames (lambda (x y) (time-less-p
-                                                            (org-static-blog-get-date y)
-                                                            (org-static-blog-get-date x)))))
-        (org-static-blog-with-find-file
-         archive-filename
-         (concat
-          "<!DOCTYPE html>\n"
-          "<html lang=\"" org-static-blog-langcode "\">\n"
-          "<head>\n"
-          "<meta charset=\"UTF-8\">\n"
-          "<link rel=\"alternate\"\n"
-          "      type=\"application/rss+xml\"\n"
-          "      href=\"" org-static-blog-publish-url org-static-blog-rss-file "\"\n"
-          "      title=\"RSS feed for " org-static-blog-publish-url "\">\n"
-          "<title>" org-static-blog-publish-title "</title>\n"
-          org-static-blog-page-header
-          "</head>\n"
-          "<body>\n"
-          "<div id=\"preamble\" class=\"status\">\n"
-          org-static-blog-page-preamble
-          "</div>\n"
-          "<div id=\"content\">\n"
-          "ARCHIVE STUFF"
-          "<h1 class=\"title\">" (org-static-blog-gettext 'archive) "</h1>\n"
-          (apply 'concat (mapcar 'org-static-blog-get-post-summary post-filenames))
-          "</body>\n"
-          "</html>"))))
-
-
-
-    (defun org-static-blog-assemble-tags-archive ()
-      "Assemble the blog tag archive page.
-    The archive page contains single-line links and dates for every
-    blog post, sorted by tags, but no post body."
-      (let ((tags-archive-filename (concat org-static-blog-publish-directory org-static-blog-tags-file))
-            (tag-tree (org-static-blog-get-tag-tree)))
-        (setq tag-tree (sort tag-tree (lambda (x y) (string-greaterp (car y) (car x)))))
-        (org-static-blog-with-find-file
-         tags-archive-filename
-         (concat
-          "<!DOCTYPE html>\n"
-          "<html lang=\"" org-static-blog-langcode "\">\n"
-          "<head>\n"
-          "<meta charset=\"UTF-8\">\n"
-          "<link rel=\"alternate\"\n"
-          "      type=\"application/rss+xml\"\n"
-          "      href=\"" org-static-blog-publish-url org-static-blog-rss-file "\"\n"
-          "      title=\"RSS feed for " org-static-blog-publish-url "\">\n"
-          "<title>" org-static-blog-publish-title "</title>\n"
-          org-static-blog-page-header
-          "</head>\n"
-          "<body>\n"
-          "<div id=\"preamble\" class=\"status\">"
-          org-static-blog-page-preamble
-          "</div>\n"
-          "<div id=\"content\">\n"
-          "TAGS ARCHIVE STUFF"
-          "<h1 class=\"title\">" (org-static-blog-gettext 'tags) "</h1>\n"
-          (apply 'concat (mapcar 'org-static-blog-assemble-tags-archive-tag tag-tree))
-          "</body>\n"
-          ;; "</html>\n"))))
-
-
-
-
-
-
-
-
-
-
     (setq org-static-blog-publish-title "Cats everywhere!")
     (setq org-static-blog-publish-url "https://blog.catsu.it/")
     (setq org-static-blog-publish-directory (concat my-org-dir "blog/blog/"))
@@ -2532,39 +2334,37 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
     (setq org-static-blog-page-header
     "<meta name=\"author\" content=\"Chris Keschnat\">
     <meta name=\"referrer\" content=\"no-referrer\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
-    <link href=\"static/m-dark.compiled.css\" rel=\"stylesheet\" type=\"text/css\" />
-    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?Source+Sans+Pro:400,400i,600,600i%7Cfamily=Source+Code+Pro:400,400i,600\" />
-    <meta name=\"theme-color\" content=\"#D46A32\" />
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <link href=\"static/style2.css\" rel=\"stylesheet\" type=\"text/css\" />
     <link rel=\"icon\" href=\"static/favicon.ico\">")
 
     ;; This preamble is inserted at the beginning of the <body> of every page:
     ;;   This particular HTML creates a <div> with a simple linked headline
-    (setq org-static-blog-page-preamble
-    "<header><nav id=\"navigation\">
-      <div class=\"m-container\">
-        <div class=\"m-row\">
-          <a href=\"https://blog.catsu.it\" id=\"m-navbar-brand\" class=\"m-col-t-9 m-col-m-none m-left-m\">Cats everywhere!</a>
-          <a id=\"m-navbar-show\" href=\"#navigation\" title=\"Show navigation\" class=\"m-col-t-3 m-hide-m m-text-right\"></a>
-          <a id=\"m-navbar-hide\" href=\"#\" title=\"Hide navigation\" class=\"m-col-t-3 m-hide-m m-text-right\"></a>
-          <div id=\"m-navbar-collapse\" class=\"m-col-t-12 m-show-m m-col-m-none m-right-m\">
-            <ul>
-              <li><a href=\"https://blog.catsu.it/rss.xml\">RSS</a></li>
-              <li><a href=\"https://blog.catsu.it/impress.html\">Impressum</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav></header>")
+   (setq org-static-blog-page-preamble
+   "<header><nav id=\"navigation\">
+     <div>
+       <div>
+         <ul>
+           <li><a href=\"https://blog.catsu.it\">Cats everywhere!</a></li>
+           <li><a href=\"https://blog.catsu.it/tags.html\">Tags</a></li>
+           <li><a href=\"https://blog.catsu.it/archive.html\">Archive</a></li>
+           <li><a href=\"https://blog.catsu.it/rss.xml\">RSS</a></li>
+           <li><a href=\"https://blog.catsu.it/impress.html\">Impressum</a></li>
+         </ul>
+       </div>
+     </div>
+   </nav></header>")
 
     ;; This postamble is inserted at the end of the <body> of every page:
     ;;   This particular HTML creates a <div> with a link to the archive page
     ;;   and a licensing stub.
     (setq org-static-blog-page-postamble
-          ""))
-  ;;  "<div id=\"archive\">
-  ;;    <a href=\"https://blog.catsu.it/archive.html\">Other postsssssssssssss</a>
-  ;;  </div>
-  ;;  "
-  ;;  ))
+    "<div id=\"archive\">
+      <a href=\"https://blog.catsu.it/archive.html\">Other posts</a>
+    </div>
+    "
+    ))
 #+end_src
+
+#+RESULTS:
+: t
