@@ -1512,7 +1512,8 @@ To export to html.
 *** ox-jira
 #+BEGIN_SRC emacs-lisp
   (use-package ox-jira
-    :defer 1)
+    :defer 1
+    :after org)
 #+END_SRC
 *** org-web-tools
 #+BEGIN_SRC emacs-lisp
