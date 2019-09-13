@@ -2304,15 +2304,20 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
 
   ;; (use-package rust-mode
     ;; :hook (rust-mode . lsp))
-  (use-package rust-mode)
+  (use-package rust-mode
+    :config
+    (use-package flycheck-rust
+      :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 
   ;; Add keybindings for interacting with Cargo
   (use-package cargo
     :hook (rust-mode . cargo-minor-mode))
 
-  (use-package flycheck-rust
-    :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+  ;; no idea how to make this work correctly with use-package. the hook adding above does not work
+  (with-eval-after-load 'rust-mode
+    (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 #+end_src
+    :after rust-mode
 * org-static-blog
 
 #+begin_src emacs-lisp
