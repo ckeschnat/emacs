@@ -21,3 +21,4 @@ url
 org-caldav-*
 transient
 .lsp-session-v1
+org-journal.cache
