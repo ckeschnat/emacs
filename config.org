@@ -144,7 +144,7 @@ Set Symbola as fallback font to display unicode characters.
   (add-to-list 'default-frame-alist '(fullscreen . fullheight))
 #+END_SRC
 *** Theme
-#+BEGIN_SRC emacs-lisp :tangle no
+#+BEGIN_SRC emacs-lisp
   ;; Theme
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
     (setq zenburn-override-colors-alist '(
@@ -170,7 +170,7 @@ Set Symbola as fallback font to display unicode characters.
       (load-theme 'distinguished t))
 #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
   (use-package zerodark-theme
       :defer nil
       :config
