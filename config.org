@@ -9,6 +9,7 @@ Headings tagged "CANCELLED" will not be tangled.
 Install fonts from fonts folder.
 * Startup
 #+BEGIN_SRC emacs-lisp
+  ;;(setq debug-on-error t)
   ;; Use a hook so the message doesn't get clobbered by other messages.
   (add-hook 'emacs-startup-hook
         (lambda ()
