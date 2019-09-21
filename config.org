@@ -1043,6 +1043,13 @@ https://cestlaz-nikola.github.io/posts/using-emacs-5-windows/
        '(aw-leading-char-face
      ((t (:inherit ace-jump-face-foreground :height 3.0)))))))
 #+END_SRC
+* Eyebrowse
+#+BEGIN_SRC emacs-lisp
+  (use-package eyebrowse
+    :init
+    (eyebrowse-mode t)
+    (eyebrowse-setup-opinionated-keys))
+#+END_SRC
 * Which-key
 #+BEGIN_SRC emacs-lisp
   ;; Which Key
