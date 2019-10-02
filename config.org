@@ -888,6 +888,12 @@ https://oremacs.com/2017/08/04/ripgrep/
   (setq counsel-rg-base-command
     "rg -S -M 120 --no-heading --line-number --color never %s .")
 #+END_SRC
+
+#+begin_src emacs-lisp
+  (use-package rg
+   :init
+   (rg-enable-default-bindings))
+#+end_src
 * CANCELLED Key-chord                                             :CANCELLED:
 CLOSED: [2018-12-27 Thu 20:37]
 :LOGBOOK:
