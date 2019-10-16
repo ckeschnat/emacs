@@ -2199,6 +2199,9 @@ Look at this if needed.
       "gs" '(magit-status :which-key "Status")
       "gp" '(magit-push-other :which-key "Push")
       "gl" '(magit-log :which-key "Log"))
+    (general-define-key
+     :states '(normal visual insert emacs)
+     "C-c g s" 'magit-status)
     :config
       (require 'evil-magit))
 
