@@ -257,9 +257,7 @@ Key bindings.
         "oc" '(org-capture :which-key "org-capture")
         "oi" '(org-clock-in :which-key "org-clock-in")
         "oo" '(org-clock-out :which-key "org-clock-out")
-        "os" '(ck/org-screenshot :which-key "org-screenshot")
-        ;; Search
-        "s"  '(:ignore t :which-key "Search"))
+        "os" '(ck/org-screenshot :which-key "org-screenshot"))
 
       (general-define-key
         "C-x j" 'kill-this-buffer
@@ -272,7 +270,7 @@ Key bindings.
 
       (general-define-key
         :states '(normal visual insert emacs)
-        "C-c e" 'config-visit)
+        "C-c v" 'config-visit)
 
      (defun ledger-visit ()
       (interactive)
@@ -443,8 +441,7 @@ This lets you use =C-x u= (=undo-tree-visualize=) to visually walk through the c
 
     (general-define-key
       :states '(normal visual insert emacs)
-      :prefix "SPC"
-      :non-normal-prefix "M-SPC"
+      :prefix "C-c"
       "u"  '(:ignore t :which-key "Undo")
       "uv" '(undo-tree-visualize :which-key "Visualize")))
 #+END_SRC
@@ -891,8 +888,8 @@ https://oremacs.com/2017/08/04/ripgrep/
 
 #+begin_src emacs-lisp
   (use-package rg
-   :init
-   (rg-enable-default-bindings))
+    :init
+    (rg-enable-default-bindings))
 #+end_src
 * CANCELLED Key-chord                                             :CANCELLED:
 CLOSED: [2018-12-27 Thu 20:37]
@@ -946,19 +943,7 @@ Use amx to save recent M-x items
     "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
 
   (general-define-key
-    :states '(normal visual insert emacs)
-    :prefix "SPC"
-    :non-normal-prefix "M-SPC"
-    "SPC" '(counsel-M-x :which-key "M-x")
-    ;; Buffers
-    "bb"  '(ivy-switch-buffer :which-key "buffers list")
-    ;; Files
-    "ff"  '(counsel-find-file :which-key "find files")
-    "fr"  '(counsel-recentf :which-key "recent files")
-    ;; Search
-    "s/"   '(swiper :which-key "swiper")
-    "sa"   '(swiper-all :which-key "swiper-all")
-    "ss"   '(counsel-rg :which-key "ripgrep"))
+   "C-x C-r" 'counsel-recentf)
 
   ;; https://www.reddit.com/r/emacs/comments/910pga/tip_how_to_use_ivy_and_its_utilities_in_your/
   (use-package ivy-rich
@@ -1072,9 +1057,7 @@ https://cestlaz-nikola.github.io/posts/using-emacs-5-windows/
   :init
     (general-define-key
       :states '(normal visual insert emacs)
-      :prefix "SPC"
-      :non-normal-prefix "M-SPC"
-      "fn" '(ranger :which-key "Ranger"))
+      "C-c r" '(ranger :which-key "Ranger"))
   :config
     (ranger-override-dired-mode t)
   )
@@ -1483,8 +1466,8 @@ https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_impro
 
       (general-define-key
         :states '(normal visual insert emacs)
-        :prefix "SPC"
-        :non-normal-prefix "M-SPC"
+        :prefix "C-c"
+        "j"  '(:ignore t :which-key "org-journal")
         "js" '(org-journal-new-scheduled-entry :which-key "scheduled capture")
         "jv" '(ck/org-journal-find-location :which-key "view today")
         "j/" '(org-journal-search-forever :which-key "search")
@@ -2193,15 +2176,11 @@ Look at this if needed.
     :init
     (general-define-key
       :states '(normal visual insert emacs)
-      :prefix "SPC"
-      :non-normal-prefix "M-SPC"
+      :prefix "C-c"
       "g"  '(:ignore t :which-key "Magit")
       "gs" '(magit-status :which-key "Status")
       "gp" '(magit-push-other :which-key "Push")
       "gl" '(magit-log :which-key "Log"))
-    (general-define-key
-     :states '(normal visual insert emacs)
-     "C-c g s" 'magit-status)
     :config
       (require 'evil-magit))
 
@@ -2221,12 +2200,11 @@ Look at this if needed.
 
     (general-define-key
       :states '(normal visual insert emacs)
-      :prefix "SPC"
-      :non-normal-prefix "M-SPC"
-      "se"  '(:ignore t :which-key "Engine")
-      "seg" '(engine/search-google "goole" :which-key "Google")
-      "sem" '(engine/search-mail "mail" :which-key "Mail")
-      "sej" '(engine/search-jira "jira" :which-key "Jira")))
+      :prefix "C-c"
+      "e"   '(:ignore t :which-key "Engine")
+      "eg" '(engine/search-google "goole" :which-key "Google")
+      "em" '(engine/search-mail "mail" :which-key "Mail")
+      "ej" '(engine/search-jira "jira" :which-key "Jira")))
 #+END_SRC
 * Tramp
 https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-Emacs-Under-Windows/
