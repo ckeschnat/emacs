@@ -1339,34 +1339,34 @@ Maybe inside a subdirectory? E.g.:
 *** Custom agenda
 https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html
 #+BEGIN_SRC emacs-lisp
-    (defun air-org-skip-subtree-if-priority (priority)
+  (defun air-org-skip-subtree-if-priority (priority)
     "Skip an agenda subtree if it has a priority of PRIORITY.
 
-    PRIORITY may be one of the characters ?A, ?B, or ?C."
+  PRIORITY may be one of the characters ?A, ?B, or ?C."
     (let ((subtree-end (save-excursion (org-end-of-subtree t)))
-        (pri-value (* 1000 (- org-lowest-priority priority)))
-        (pri-current (org-get-priority (thing-at-point 'line t))))
-    (if (= pri-value pri-current)
-        subtree-end
+          (pri-value (* 1000 (- org-lowest-priority priority)))
+          (pri-current (org-get-priority (thing-at-point 'line t))))
+      (if (= pri-value pri-current)
+          subtree-end
         nil)))
 
-    (setq org-agenda-custom-commands
+  (setq org-agenda-custom-commands
         '(("d" "Daily agenda and all TODOs"
-        ((tags "PRIORITY=\"A\""
-            ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-            (org-agenda-overriding-header "High-priority unfinished tasks:")))
-         (agenda "" ((org-agenda-span 'day)))
-        (alltodo ""
-            ((org-agenda-skip-function '(or (air-org-skip-subtree-if-priority ?A)
-                            (org-agenda-skip-if nil '(scheduled deadline))
-                            (org-agenda-skip-entry-if 'todo '("SOMEDAY"))))
-             (org-agenda-overriding-header "\nNormal priority TODO tasks:")))
-        (alltodo ""
-            ((org-agenda-skip-function '(or (air-org-skip-subtree-if-priority ?A)
-                            (org-agenda-skip-if nil '(scheduled deadline))
-                            (org-agenda-skip-entry-if 'nottodo '("SOMEDAY"))))
-             (org-agenda-overriding-header "\nSOMEDAY:"))))
-        ((org-agenda-compact-blocks t)))))
+           ((tags "PRIORITY=\"A\""
+                  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                   (org-agenda-overriding-header "High-priority unfinished tasks:")))
+            (agenda "" ((org-agenda-span 'day)))
+            (alltodo ""
+                     ((org-agenda-skip-function '(or (air-org-skip-subtree-if-priority ?A)
+                                                     (org-agenda-skip-if nil '(scheduled deadline))
+                                                     (org-agenda-skip-entry-if 'todo '("SOMEDAY"))))
+                      (org-agenda-overriding-header "\nNormal priority TODO tasks:")))
+            (alltodo ""
+                     ((org-agenda-skip-function '(or (air-org-skip-subtree-if-priority ?A)
+                                                     (org-agenda-skip-if nil '(scheduled deadline))
+                                                     (org-agenda-skip-entry-if 'nottodo '("SOMEDAY"))))
+                      (org-agenda-overriding-header "\nSOMEDAY:"))))
+           ((org-agenda-compact-blocks t)))))
 #+END_SRC
 *** Faces/UI
 #+BEGIN_SRC emacs-lisp
