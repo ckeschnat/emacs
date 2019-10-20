@@ -1242,6 +1242,24 @@ Maybe inside a subdirectory? E.g.:
 
   (setq org-agenda-text-search-extra-files '(agenda-archives))
 #+END_SRC
+*** org-super-agenda
+#+begin_src emacs-lisp
+  (use-package org-super-agenda
+    :config
+    (setq org-super-agenda-groups
+          '((:name "Next Items"
+                   :tag ("TODO"))
+            (:name "Importaaaaaaaant"
+                   :priority "A")
+            (:name "Quick Picks"
+                   :effort< "0:30")
+            (:name "Check out"
+                   :todo ("SOMEDAY"))
+            (:priority<= "B"
+                         :scheduled future
+                         :order 1))))
+  (org-super-agenda-mode)
+#+end_src
 *** Not yet sorted
 #+BEGIN_SRC emacs-lisp
   ;; TODO(chris) use this?
