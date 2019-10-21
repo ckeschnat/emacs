@@ -1242,7 +1242,11 @@ Maybe inside a subdirectory? E.g.:
 
   (setq org-agenda-text-search-extra-files '(agenda-archives))
 #+END_SRC
-*** org-super-agenda
+*** CANCELLED org-super-agenda                                  :CANCELLED:
+CLOSED: [2019-10-21 Mon 07:48]
+:LOGBOOK:
+- State "CANCELLED"  from              [2019-10-21 Mon 07:48]
+:END:
 #+begin_src emacs-lisp
   (use-package org-super-agenda
     :config
