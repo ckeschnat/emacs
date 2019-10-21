@@ -1476,6 +1476,14 @@ CLOSED: [2019-10-21 Mon 07:48]
 #+end_src
 *** Not yet sorted
 :PROPERTIES:
+:ID:       30e64492-0034-46ad-a69c-096610ce73a4
+:END:
+
+https://stackoverflow.com/questions/3964715/what-is-the-correct-way-to-join-multiple-path-components-into-a-single-complete
+
+https://koenig-haunstetten.de/2017/10/29/a-small-hack-for-my-daily-plan/
+
+:PROPERTIES:
 :ID:       1ac177fc-63ca-478d-a120-fec9ff12159c
 :END:
 #+BEGIN_SRC emacs-lisp
@@ -1528,6 +1536,12 @@ CLOSED: [2019-10-21 Mon 07:48]
                   ("read" . ?r)
                   )))
 
+  ;(setq my-org-tpl-dir
+  ;    (concat  (file-name-as-directory my-org-dir) "templates"))
+
+  ;(setq my-org-daily-tpl
+  ;    (concat  (file-name-as-directory my-org-tpl-dir) "tpl-dailyplan.txt"))
+
   (setq org-capture-templates
       (quote (("t" "todo" entry (file "") "* TODO %?\nEntered: %U\n")
           ("w" "wait" entry (file "") "* WAIT %?\nEntered: %U\n")
@@ -1535,6 +1549,11 @@ CLOSED: [2019-10-21 Mon 07:48]
           ("l" "linked todo" entry (file "") "* TODO %?\nEntered: %U\n%a\n")
           ("s" "calendar entry" entry (file org-caldav-inbox) "* %?\nSCHEDULED: %^{Scheduled to begin}t\n")
           ("n" "note" entry (file "") "* %? :NOTE:\n%U\n%a\n")
+          ("p" "Plans")
+          ("pd" "Daily Plan (Home)" plain (file+olp+datetree "c:/docs/org/plan-home.org")
+           (file "c:/docs/org/templates/tpl-dailyplan.txt") :immediate-finish t)
+          ("pw" "Daily Plan (Work)" plain (file+olp+datetree "c:/docs/org/plan-work.org")
+           (file "c:/docs/org/templates/tpl-dailyplan.txt") :immediate-finish t)
           )))
 
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
