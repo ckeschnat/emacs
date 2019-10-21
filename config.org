@@ -1279,6 +1279,7 @@ CLOSED: [2019-10-21 Mon 07:48]
 
   (setq org-enforce-todo-dependencies t)
   (setq org-enforce-todo-checkbox-dependencies t)
+  (setq org-track-ordered-property-with-tag t)
 
   (setq org-log-into-drawer t)
   (setq org-log-redeadline (quote time))
