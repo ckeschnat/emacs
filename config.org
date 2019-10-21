@@ -3,11 +3,17 @@
 #+FILETAGS: emacs
 #+TITLE: Emacs config
 * Introduction
+:PROPERTIES:
+:ID:       49b785a0-8925-42df-9ac9-d2476bf7d2b9
+:END:
 
 Headings tagged "CANCELLED" will not be tangled.
 
 Install fonts from fonts folder.
 * Startup
+:PROPERTIES:
+:ID:       9c46a810-c4e5-4898-b8a5-eb93ae1553bf
+:END:
 #+BEGIN_SRC emacs-lisp
   ;;(setq debug-on-error t)
   ;; Use a hook so the message doesn't get clobbered by other messages.
@@ -21,6 +27,9 @@ Install fonts from fonts folder.
 
 #+END_SRC
 * Gc and startup
+:PROPERTIES:
+:ID:       17a4d947-8ff8-495b-95aa-b630473ec086
+:END:
 https://www.reddit.com/r/emacs/comments/55ork0/is_emacs_251_noticeably_slower_than_245_on_windows/d8cmm7v/
 
 http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/
@@ -59,6 +68,9 @@ https://ambrevar.xyz/emacs2/
   (add-hook 'after-init-hook #'ambrevar/reset-file-name-handler-alist)
 #+END_SRC
 * OS and Hostname
+:PROPERTIES:
+:ID:       cf0f8ca5-a50b-4690-bf33-43fded239589
+:END:
 Functions to determine which machine I'm on
 
 https://karl-voit.at/2017/02/11/my-system-is-foobar/
@@ -95,6 +107,9 @@ https://karl-voit.at/2017/02/11/my-system-is-foobar/
     (string-equal (system-name) "P1WN0669"))
 #+END_SRC
 * Packages
+:PROPERTIES:
+:ID:       95a24227-9e84-4280-ab58-622ed2d7f12a
+:END:
 #+BEGIN_SRC emacs-lisp
   ;; Package configs
   (require 'package)
@@ -110,20 +125,32 @@ https://karl-voit.at/2017/02/11/my-system-is-foobar/
     (package-install 'use-package))
 #+END_SRC
 * use-package
+:PROPERTIES:
+:ID:       5fb87815-0613-4bd7-8aa2-af1032baa73d
+:END:
 #+BEGIN_SRC emacs-lisp
   (require 'use-package)
   (setq use-package-always-ensure t)
   (setq use-package-always-defer t)
 #+END_SRC
 * Profiling
+:PROPERTIES:
+:ID:       3252edea-c22b-4b36-9a0e-470101360f9e
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package esup)
 #+END_SRC
 * UI
+:PROPERTIES:
+:ID:       f4d3f4aa-1f90-4ce5-80c7-1dfe8d7f0883
+:END:
 https://huytd.github.io/emacs-from-scratch.html
 
 https://superuser.com/questions/313398/how-to-prevent-the-symbols-function-definition-is-void-error-when-running-em
 *** Misc
+:PROPERTIES:
+:ID:       06c01f93-2e30-4872-9864-20d1bbfb4141
+:END:
 #+BEGIN_SRC emacs-lisp
   ;; Minimal UI
   (when (display-graphic-p)
@@ -135,6 +162,9 @@ https://superuser.com/questions/313398/how-to-prevent-the-symbols-function-defin
   (setq inhibit-splash-screen t)
 #+END_SRC
 *** Font
+:PROPERTIES:
+:ID:       6dd817a9-e881-48f4-9274-b99a18d1d68f
+:END:
 Set Symbola as fallback font to display unicode characters.
 #+BEGIN_SRC emacs-lisp
   (set-fontset-font "fontset-default" nil
@@ -145,6 +175,9 @@ Set Symbola as fallback font to display unicode characters.
   (add-to-list 'default-frame-alist '(fullscreen . fullheight))
 #+END_SRC
 *** Theme
+:PROPERTIES:
+:ID:       fe2428a0-1e17-42c0-9133-6e87c35bd129
+:END:
 #+BEGIN_SRC emacs-lisp
   ;; Theme
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
@@ -207,6 +240,9 @@ https://github.com/jasonm23/emacs-select-themes
 #+END_SRC
 **** CANCELLED Disable git vc info                             :CANCELLED:
 CLOSED: [2019-01-20 Sun 11:17]
+:PROPERTIES:
+:ID:       e12e3bc1-fd05-4b67-b796-e8a639cf4e15
+:END:
 :LOGBOOK:
 - State "CANCELLED"  from              [2019-01-20 Sun 11:17] \\
   This disabled git completely. Not sure I want this.
@@ -216,8 +252,14 @@ See https://github.com/seagle0128/doom-modeline and https://magit.vc/manual/magi
   (setq vc-handled-backends (delq 'Git vc-handled-backends))
 #+END_SRC
 * General
+:PROPERTIES:
+:ID:       392b1c5a-f6af-4d82-91b4-502b4f376c82
+:END:
 Key bindings.
 ** TODO move some of these somewhere else
+:PROPERTIES:
+:ID:       103feda0-1cab-4550-802c-162b117d40ef
+:END:
 #+BEGIN_SRC emacs-lisp
   ;; Custom keybinding
   (use-package general
@@ -262,42 +304,69 @@ Key bindings.
 #+END_SRC
 
 * Misc
+:PROPERTIES:
+:ID:       6a5a5ce8-2620-4b07-aa16-91161221d516
+:END:
 A lot of this is from https://github.com/hrs/sensible-defaults.el/blob/master/sensible-defaults.el
 *** Cleanup whitespace
+:PROPERTIES:
+:ID:       acbbf4fe-f0f6-4a9f-a647-cf785b1eff72
+:END:
 #+BEGIN_SRC emacs-lisp
   (setq show-trailing-whitespace t)
   (add-hook 'before-save-hook 'whitespace-cleanup)
 #+END_SRC
 *** Follow symlinks
+:PROPERTIES:
+:ID:       420ecb4a-e60b-472c-b36b-db60d550b0a6
+:END:
 #+BEGIN_SRC emacs-lisp
   (setq vc-follow-symlinks t)
 #+END_SRC
 *** Scipts auto executable
+:PROPERTIES:
+:ID:       f2a304b0-6016-439e-a733-9593826f57e2
+:END:
 #+BEGIN_SRC emacs-lisp
   (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 #+END_SRC
 *** CamelCase-Movement
+:PROPERTIES:
+:ID:       5cfd65cf-222a-4939-baab-7ef4f75dff3b
+:END:
 #+BEGIN_SRC emacs-lisp
   (add-hook 'prog-mode-hook 'subword-mode)
 #+END_SRC
 *** Final newline
+:PROPERTIES:
+:ID:       8fa1e0d2-0f3d-4cee-9c97-fdd9f668de23
+:END:
 If you save a file that doesn't end with a newline,
 automatically append one.
 #+BEGIN_SRC emacs-lisp
   (setq require-final-newline t)
 #+END_SRC
 *** Confirm kill emacs
+:PROPERTIES:
+:ID:       df95a51e-f950-4fe6-8aa4-5570dfcc3a86
+:END:
 Ask if you're sure that you want to close Emacs.
 #+BEGIN_SRC emacs-lisp
   (setq confirm-kill-emacs 'y-or-n-p)
 #+END_SRC
 *** Visible bell
+:PROPERTIES:
+:ID:       7d4c5066-ea24-4a10-8bc9-03670e73468e
+:END:
 When you perform a problematic operation, flash the screen
 instead of ringing the terminal bell.
 #+BEGIN_SRC emacs-lisp
   (setq visible-bell t)
 #+END_SRC
 *** Create directories
+:PROPERTIES:
+:ID:       f4d61006-2baf-4971-b9ed-2bb3359d8ced
+:END:
 When saving a file in a directory that doesn't exist, offer
 to (recursively) create the file's parent directories.
 #+BEGIN_SRC emacs-lisp
@@ -310,16 +379,25 @@ to (recursively) create the file's parent directories.
   (make-directory dir t))))))
 #+END_SRC
 *** Auto reload
+:PROPERTIES:
+:ID:       c11afad7-85ed-483a-bc6e-a26e3ec689f6
+:END:
 When something changes a file, automatically refresh the
 buffer containing that file so they can't get out of sync.
 #+BEGIN_SRC emacs-lisp
   (global-auto-revert-mode t)
 #+END_SRC
 *** Paths
+:PROPERTIES:
+:ID:       61e128ef-d3d4-4c0b-a281-f3e4ab4be4ac
+:END:
 #+BEGIN_SRC emacs-lisp
   (setenv "PATH" (concat "C:\\msys64\\usr\\bin;" "C:\\msys64\\mingw64\\bin;" "C:\\texlive\\2018\\bin\\win32;" "w:\\handmade\\misc;" (getenv "PATH")))
 #+END_SRC
 *** Encoding
+:PROPERTIES:
+:ID:       d9c819e0-06b7-415f-a36c-68bcbd9e08a3
+:END:
 See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emacs][masteringemacs]] and [[https://zhangda.wordpress.com/2016/02/15/configurations-for-beautifying-emacs-org-mode/]]
 #+BEGIN_SRC emacs-lisp
   ;; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
@@ -344,25 +422,40 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 #+END_SRC
 *** Customize
+:PROPERTIES:
+:ID:       d268d952-0a7f-41cf-8a21-e67d8dc6e38b
+:END:
 #+BEGIN_SRC emacs-lisp
   (setq custom-file "~/.emacs.d/custom.el")
   (load custom-file 'noerror)
 #+END_SRC
 *** Help
+:PROPERTIES:
+:ID:       7a117147-5f32-4edf-835e-76b65e79b75d
+:END:
 #+BEGIN_SRC emacs-lisp
   (setq help-window-select t)
 #+END_SRC
 *** Parens
+:PROPERTIES:
+:ID:       443938e6-70ec-42f1-9b4f-ad8ba722cfa8
+:END:
 #+BEGIN_SRC emacs-lisp
   ;; Show matching parens
   (setq show-paren-delay 0)
   (show-paren-mode 1)
 #+END_SRC
 *** Change "yes or no" to "y or n"
+:PROPERTIES:
+:ID:       9531e72c-eb38-4593-8f2c-a2713f04926a
+:END:
 #+BEGIN_SRC emacs-lisp
   (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
 *** Backup, autosaves and lock files
+:PROPERTIES:
+:ID:       c6bc6928-43b9-4184-bfd9-c1b1d0afe3d1
+:END:
 #+BEGIN_SRC emacs-lisp
   ;; Set backup directory
   (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
@@ -376,6 +469,9 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
   (setq create-lockfiles nil)
 #+END_SRC
 *** History
+:PROPERTIES:
+:ID:       06c1e372-beca-49ff-a4a9-1e203b099075
+:END:
 #+BEGIN_SRC emacs-lisp
   (setq savehist-file "~/.emacs.d/savehist")
   (savehist-mode 1)
@@ -388,23 +484,38 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
       regexp-search-ring))
 #+END_SRC
 *** Time in modeline
+:PROPERTIES:
+:ID:       d3407173-5d63-49dd-b5a0-46e92cb484c8
+:END:
 #+BEGIN_SRC emacs-lisp
   (display-time-mode 1)
 #+END_SRC
 *** Sentences end with a single space
+:PROPERTIES:
+:ID:       8555bd92-963b-4494-9b84-4ac7aa83ace4
+:END:
 #+BEGIN_SRC emacs-lisp
   (setq sentence-end-double-space nil)
 #+END_SRC
 *** Winner
+:PROPERTIES:
+:ID:       68e7be21-c631-4f3c-9e27-16619d89e79f
+:END:
 #+BEGIN_SRC emacs-lisp
   (winner-mode 1)
 #+END_SRC
 *** persistent undo
+:PROPERTIES:
+:ID:       b4489f15-dd0f-431f-bc35-0a5c2f494065
+:END:
 #+BEGIN_SRC emacs-lisp
   (setq undo-tree-auto-save-history t)
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 #+END_SRC
 *** Undo tree mode - visualize your undos and branches
+:PROPERTIES:
+:ID:       84cf13eb-3862-4f1d-bddf-0aab0ee42ac8
+:END:
 
 People often struggle with the Emacs undo model, where there's really no concept of "redo" - you simply undo the undo.
 #
@@ -426,6 +537,9 @@ This lets you use =C-x u= (=undo-tree-visualize=) to visually walk through the c
       "uv" '(undo-tree-visualize :which-key "Visualize")))
 #+END_SRC
 *** center after search
+:PROPERTIES:
+:ID:       6dbe5de8-b499-4cb1-92c6-28f9f3737984
+:END:
 I had this on 0 to center after searches.
 But then scrolling also recenters point.
 #+BEGIN_SRC emacs-lisp
@@ -433,21 +547,33 @@ But then scrolling also recenters point.
   (setq scroll-conservatively 100)
 #+END_SRC
 *** Highlight current line
+:PROPERTIES:
+:ID:       1a9bbd07-f2c6-4050-91a9-7ef76ed24170
+:END:
 #+BEGIN_SRC emacs-lisp
   (when window-system
     (global-hl-line-mode)
     (set-face-background 'hl-line "#333333"))
 #+END_SRC
 *** Tabs
+:PROPERTIES:
+:ID:       2992fcde-3c21-4fea-b482-a2ff7e7c6829
+:END:
 #+BEGIN_SRC emacs-lisp
   (setq-default tab-width 4 indent-tabs-mode nil)
 #+END_SRC
 *** Always load newest
+:PROPERTIES:
+:ID:       7e3fac09-e40a-454d-bdba-ed6875dbe039
+:END:
 https://ambrevar.xyz/emacs2/
 #+BEGIN_SRC emacs-lisp
   (setq load-prefer-newer t)
 #+END_SRC
 *** narrow-or-widen-dwim
+:PROPERTIES:
+:ID:       f3ae5546-b13e-457d-a115-ba2c742b8d6e
+:END:
 http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html
 #+BEGIN_SRC emacs-lisp
   (defun narrow-or-widen-dwim (p)
@@ -486,17 +612,26 @@ http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html
        "\C-x\C-s" #'org-edit-src-exit))
 #+END_SRC
 *** recentf
+:PROPERTIES:
+:ID:       b658304a-3d9b-4840-a9ac-cde02967c61e
+:END:
 
 #+BEGIN_SRC emacs-lisp
   (setq recentf-max-saved-items 200
         recentf-max-menu-items 15)
 #+END_SRC
 * Try
+:PROPERTIES:
+:ID:       07ad8895-2258-487f-9931-711649565fba
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package try
     :defer nil)
 #+END_SRC
 * Highlight TODO etc.
+:PROPERTIES:
+:ID:       1b61f085-a492-4d47-97a6-58da90ac9a67
+:END:
 
 #+BEGIN_SRC emacs-lisp
   ;;; hl-todo.el --- highlight TODO and similar keywords  -*- lexical-binding: t -*-
@@ -782,6 +917,9 @@ http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html
   (global-hl-todo-mode)
 #+END_SRC
 * Evil
+:PROPERTIES:
+:ID:       92f98114-cc81-4beb-8bac-392c96d832d8
+:END:
 [[https://github.com/emacs-evil/evil-collection][Evil-Collection]]
 
 [[https://github.com/Somelauw/evil-org-mode][evil-org]]
@@ -840,6 +978,9 @@ http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html
   (advice-add 'evil-search-next :after #'my-center-line)
 #+END_SRC
 *** Lispyville
+:PROPERTIES:
+:ID:       928889a2-5422-4653-8654-f73954aa610c
+:END:
 https://github.com/noctuid/lispyville
 
 Just because of
@@ -857,6 +998,9 @@ in your configuration and just ignore the rest of its features.
     (add-hook 'lisp-mode-hook 'lispyville-mode))
 #+END_SRC
 * ripgrep
+:PROPERTIES:
+:ID:       783dfa51-b208-4df9-b4df-212fbe72955c
+:END:
 https://oremacs.com/2017/08/04/ripgrep/
 
 #+BEGIN_SRC emacs-lisp
@@ -873,6 +1017,9 @@ https://oremacs.com/2017/08/04/ripgrep/
 #+end_src
 * CANCELLED Key-chord                                             :CANCELLED:
 CLOSED: [2018-12-27 Thu 20:37]
+:PROPERTIES:
+:ID:       3c4835e9-a447-4904-bacf-5c8293ec3541
+:END:
 :LOGBOOK:
 - State "CANCELLED"  from              [2018-12-27 Thu 20:37] \\
   not sure if I want to use this
@@ -900,6 +1047,9 @@ Good candidates, taken from comment [[https://www.emacswiki.org/emacs/KeyChord][
   ;; (org-agenda-show-unscheduled)
 #+END_SRC
 * Ivy
+:PROPERTIES:
+:ID:       1df59399-bef6-49bf-9a6d-247f2e02f6e4
+:END:
 Use amx to save recent M-x items
 
 #+BEGIN_SRC emacs-lisp
@@ -1003,6 +1153,9 @@ Use amx to save recent M-x items
       (t . ivy--regex-plus)))
 #+END_SRC
 * Ace-window
+:PROPERTIES:
+:ID:       90f746ec-86e2-4954-bbe0-e29fb70fa582
+:END:
 https://cestlaz-nikola.github.io/posts/using-emacs-5-windows/
 #+BEGIN_SRC emacs-lisp
   (use-package ace-window
@@ -1015,12 +1168,18 @@ https://cestlaz-nikola.github.io/posts/using-emacs-5-windows/
      ((t (:inherit ace-jump-face-foreground :height 3.0)))))))
 #+END_SRC
 * Eyebrowse
+:PROPERTIES:
+:ID:       ac667529-eb13-4554-9d60-f39b2a940c68
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package eyebrowse
     :init
     (eyebrowse-mode t))
 #+END_SRC
 * Which-key
+:PROPERTIES:
+:ID:       1df9a9c8-4933-4228-88aa-0d4765918017
+:END:
 #+BEGIN_SRC emacs-lisp
   ;; Which Key
   (use-package which-key
@@ -1032,6 +1191,9 @@ https://cestlaz-nikola.github.io/posts/using-emacs-5-windows/
     (which-key-mode 1))
 #+END_SRC
 * Ranger
+:PROPERTIES:
+:ID:       b69105b7-6ac7-451e-bdef-42ffe70adc1a
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package ranger
   :init
@@ -1043,6 +1205,9 @@ https://cestlaz-nikola.github.io/posts/using-emacs-5-windows/
   )
 #+END_SRC
 * eshell
+:PROPERTIES:
+:ID:       948c20ba-21d1-4082-9472-c9967c1d5e8c
+:END:
 https://www.reddit.com/r/emacs/comments/9vk7iz/emacs_popup_shell/
 #+BEGIN_SRC emacs-lisp
   (defun eshell-here ()
@@ -1067,6 +1232,9 @@ https://www.reddit.com/r/emacs/comments/9vk7iz/emacs_popup_shell/
     (kill-buffer-and-window)) ; (I also set kill-buffer-and-window to C-x K)
 #+END_SRC
 * Projectile
+:PROPERTIES:
+:ID:       f175febc-5dfa-4279-a3e1-2105aa5a5cad
+:END:
 #+BEGIN_SRC emacs-lisp
 ;; Projectile
 (use-package projectile
@@ -1076,7 +1244,13 @@ https://www.reddit.com/r/emacs/comments/9vk7iz/emacs_popup_shell/
   (projectile-mode 1))
 #+END_SRC
 * Org
+:PROPERTIES:
+:ID:       ec389356-a95f-4d2e-b4a1-f7e16fe455e4
+:END:
 *** org-drill
+:PROPERTIES:
+:ID:       8dcdc647-8959-4d2c-940d-ec9eb5880ee6
+:END:
 #+BEGIN_SRC emacs-lisp
   (require 'cl)
   (use-package org-drill
@@ -1084,6 +1258,9 @@ https://www.reddit.com/r/emacs/comments/9vk7iz/emacs_popup_shell/
     :commands (org-drill))
 #+END_SRC
 *** use-package
+:PROPERTIES:
+:ID:       8cfea854-3489-48a4-a874-ca96bd1c047a
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package org
     :ensure org-plus-contrib
@@ -1127,12 +1304,18 @@ https://www.reddit.com/r/emacs/comments/9vk7iz/emacs_popup_shell/
     :config
 #+END_SRC
 *** Keybindings
+:PROPERTIES:
+:ID:       5a083456-5e62-405c-bb51-f75dfdb684ee
+:END:
 #+BEGIN_SRC emacs-lisp
  (general-def 'motion
    "RET" 'org-open-at-point
    "t" 'org-todo)
 #+END_SRC
 *** Background colors for export
+:PROPERTIES:
+:ID:       b19045fa-2573-4ee1-a178-7571663857f0
+:END:
 #+BEGIN_SRC emacs-lisp
 ;; background colors for export http://ivanmalison.github.io/dotfiles/#setbackgroundcolorofsourceblocksforexport
     (progn
@@ -1153,6 +1336,9 @@ https://www.reddit.com/r/emacs/comments/9vk7iz/emacs_popup_shell/
 #+END_SRC
 
 *** Ellipsis
+:PROPERTIES:
+:ID:       4d691d40-073f-43da-826f-cbbf16b93e59
+:END:
 "↝" "⇉" "⇝" "⇢" "⇨" "⇰" "➔" "➙" "➛" "➜" "➝" "➞"
 
 "➟" "➠" "➡" "➥" "➦" "➧" "➨"
@@ -1179,6 +1365,9 @@ other symbols
   (setq org-ellipsis " ▼")
 #+END_SRC
 *** Screenshots
+:PROPERTIES:
+:ID:       5ffb2ac0-713c-405d-bcb5-c692fbf700c8
+:END:
 http://www.sastibe.de/2018/11/take-screenshots-straight-into-org-files-in-emacs-on-win10/
 
 Maybe inside a subdirectory? E.g.:
@@ -1207,22 +1396,37 @@ Maybe inside a subdirectory? E.g.:
     (org-display-inline-images))
 #+END_SRC
 *** Archive location
+:PROPERTIES:
+:ID:       4810d144-4e93-4a25-b027-057c6b39b4da
+:END:
 #+BEGIN_SRC emacs-lisp
 (setq org-archive-location "archive/%s_archive::")
 #+END_SRC
 *** Hide markers
+:PROPERTIES:
+:ID:       9d24ae97-6abb-4912-91a2-c969d5c1e36e
+:END:
 #+BEGIN_SRC emacs-lisp
 (setq org-hide-emphasis-markers t)
 #+END_SRC
 *** Fold everything when opening
+:PROPERTIES:
+:ID:       76f16d4c-767c-41ba-9947-f12b2924e3b3
+:END:
 #+BEGIN_SRC emacs-lisp
 (setq org-startup-indented t)
 #+END_SRC
 *** No superscripts
+:PROPERTIES:
+:ID:       c0d55c06-bd9f-4a16-a784-c5258976bc1d
+:END:
 #+BEGIN_SRC emacs-lisp
 (setq org-export-with-sub-superscripts nil)
 #+END_SRC
 *** src-blocks
+:PROPERTIES:
+:ID:       0bd83202-e869-425e-be54-36dd747e726b
+:END:
 #+BEGIN_SRC emacs-lisp
   (setq org-confirm-babel-evaluate nil
     org-src-fontify-natively t
@@ -1237,6 +1441,9 @@ Maybe inside a subdirectory? E.g.:
      (ledger . t)))
 #+END_SRC
 *** Agenda
+:PROPERTIES:
+:ID:       39e8f675-3807-452e-b34e-88a4fb624a25
+:END:
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-files (list my-org-dir))
 
@@ -1244,6 +1451,9 @@ Maybe inside a subdirectory? E.g.:
 #+END_SRC
 *** CANCELLED org-super-agenda                                  :CANCELLED:
 CLOSED: [2019-10-21 Mon 07:48]
+:PROPERTIES:
+:ID:       2c78c6b8-3fc4-4bd7-899e-e6031be4f0a2
+:END:
 :LOGBOOK:
 - State "CANCELLED"  from              [2019-10-21 Mon 07:48]
 :END:
@@ -1265,6 +1475,9 @@ CLOSED: [2019-10-21 Mon 07:48]
   (org-super-agenda-mode)
 #+end_src
 *** Not yet sorted
+:PROPERTIES:
+:ID:       1ac177fc-63ca-478d-a120-fec9ff12159c
+:END:
 #+BEGIN_SRC emacs-lisp
   ;; TODO(chris) use this?
   ;; (setq org-publish-project-alist
@@ -1340,6 +1553,9 @@ CLOSED: [2019-10-21 Mon 07:48]
           ("DONE" ("WAIT") ("CANCELLED")))))
 #+END_SRC
 *** Custom agenda
+:PROPERTIES:
+:ID:       6a212e1e-984a-4a86-8ec1-ace591ec505f
+:END:
 https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html
 #+BEGIN_SRC emacs-lisp
   (defun air-org-skip-subtree-if-priority (priority)
@@ -1372,6 +1588,9 @@ https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html
            ((org-agenda-compact-blocks t)))))
 #+END_SRC
 *** Faces/UI
+:PROPERTIES:
+:ID:       09150518-e281-46fa-99ed-fe10669b83d0
+:END:
 #+BEGIN_SRC emacs-lisp
   (when (display-graphic-p)
     (let* ((variable-tuple (cond ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
@@ -1409,6 +1628,9 @@ https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html
   ) ;; END use-package org
 #+END_SRC
 *** Bullets
+:PROPERTIES:
+:ID:       a5602803-d16b-4a82-8b05-bfe8db2c2730
+:END:
 https://zhangda.wordpress.com/2016/02/15/configurations-for-beautifying-emacs-org-mode/
 
 #+BEGIN_SRC emacs-lisp
@@ -1426,12 +1648,18 @@ https://zhangda.wordpress.com/2016/02/15/configurations-for-beautifying-emacs-or
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 #+END_SRC
 **** make org-bullets faster under windows
+:PROPERTIES:
+:ID:       31e6ebd6-2aef-4076-b802-41cf956e64fe
+:END:
 https://github.com/sabof/org-bullets/issues/11#issuecomment-439228372
 
 #+BEGIN_SRC emacs-lisp
   (setq inhibit-compacting-font-caches t)
 #+END_SRC
 *** org-journal
+:PROPERTIES:
+:ID:       9d27471e-2812-44a2-9da8-a01c874b6c95
+:END:
 
 https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_improve_my/
 
@@ -1479,6 +1707,9 @@ https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_impro
 #+END_SRC
 
 *** org-brain
+:PROPERTIES:
+:ID:       ccbbcc48-0920-4356-a9bc-b412a61bc08c
+:END:
 
 https://github.com/Kungsgeten/org-brain
 
@@ -1499,12 +1730,18 @@ https://github.com/Kungsgeten/org-brain
     (setq org-brain-title-max-length 12))
 #+END_SRC
 *** htmlize
+:PROPERTIES:
+:ID:       c8c4ed94-cca4-4564-9710-28e5b384f305
+:END:
 To export to html.
 
 #+BEGIN_SRC emacs-lisp
   (use-package htmlize)
 #+END_SRC
 *** Archive
+:PROPERTIES:
+:ID:       32880232-3624-45f6-92ad-36f2169fa6d0
+:END:
 
 https://github.com/daviderestivo/galactic-emacs/blob/master/lisp/org-archive-subtree.el
 
@@ -1555,21 +1792,33 @@ https://github.com/daviderestivo/galactic-emacs/blob/master/lisp/org-archive-sub
                 (org-paste-subtree level tree-text))))))))
 #+END_SRC
 *** pamparam
+:PROPERTIES:
+:ID:       137fbae7-0d73-4e64-aae2-45b96bb6036e
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package pamparam :ensure t)
 #+END_SRC
 *** ox-jira
+:PROPERTIES:
+:ID:       4b802dd2-9fc5-490a-b422-bcddecf9b9a1
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package ox-jira
     :defer 1
     :after org)
 #+END_SRC
 *** org-web-tools
+:PROPERTIES:
+:ID:       03886350-a02c-49df-bc60-7466ac1395c8
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package org-web-tools
     :commands 'org-web-tools-read-url-as-org)
 #+END_SRC
 *** ord IDs
+:PROPERTIES:
+:ID:       750cc4dd-5418-45dc-8182-022771c4068c
+:END:
 
 https://emacs.stackexchange.com/questions/614/creating-permalinks-for-sections-in-html-exported-from-org-mode
 
@@ -1636,7 +1885,13 @@ https://koenig-haunstetten.de/2018/02/17/improving-my-orgmode-workflow/
   (global-set-key (kbd "<f5>") 'my/copy-idlink-to-clipboard)
 #+end_src
 * Navigation
+:PROPERTIES:
+:ID:       0176972c-e183-49fc-a719-8bda00ffe998
+:END:
 *** Alternate buffer
+:PROPERTIES:
+:ID:       6e249748-2208-401f-9729-8c7eac3f5c18
+:END:
 #+BEGIN_SRC emacs-lisp
 (defun spacemacs/alternate-buffer (&optional window)
   "Switch back and forth between current and last buffer in the
@@ -1657,6 +1912,9 @@ current window."
      (other-buffer current-buffer t)))))
 #+END_SRC
 *** Movement
+:PROPERTIES:
+:ID:       f238083c-d7c9-41ed-8cb4-a32b7af47c9e
+:END:
 #+BEGIN_SRC emacs-lisp
   (general-define-key
     :states '(normal visual insert emacs)
@@ -1668,6 +1926,9 @@ current window."
   ;; (evil-define-key 'evilified org-agenda-mode-map (kbd "k") 'org-agenda-previous-item)
 #+END_SRC
 *** expand-region
+:PROPERTIES:
+:ID:       4d638a13-c145-4632-857f-29c672cfe1f8
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package expand-region
     :defer nil
@@ -1678,6 +1939,9 @@ current window."
       "M-p" 'er/contract-region))
 #+END_SRC
 * Hydra
+:PROPERTIES:
+:ID:       4955e15c-ec4c-439d-92eb-4028f96f2fee
+:END:
 https://github.com/abo-abo/hydra/wiki/Org-agenda
 
 #+BEGIN_SRC emacs-lisp
@@ -1772,9 +2036,15 @@ https://github.com/abo-abo/hydra/wiki/Org-agenda
 
 #+END_SRC
 * puppet
+:PROPERTIES:
+:ID:       ff8adfe0-429d-430b-b5dd-df558f1e4726
+:END:
 https://github.com/puppetlabs/puppet-syntax-emacs
 
 *** TODO defer loading of puppet stuff
+:PROPERTIES:
+:ID:       4efb6045-a359-434b-9c4b-36e966b77dc9
+:END:
 
 #+BEGIN_SRC emacs-lisp
 ;;; puppet-mode.el --- A simple mode for editing puppet manifests
@@ -2164,7 +2434,13 @@ The variable puppet-indent-level controls the amount of indentation.
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 #+END_SRC
 * Company
+:PROPERTIES:
+:ID:       372db7e9-1197-4fdc-aab9-1a04b0e21f23
+:END:
 ** TODO evtl. company enter key verbessern
+:PROPERTIES:
+:ID:       0162e539-c39b-40af-bf82-6eb6f604d8e6
+:END:
 https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-from-triggering-a-completion-in-company-mode
 
 #+BEGIN_SRC emacs-lisp
@@ -2195,6 +2471,9 @@ https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-fro
                             (company-mode)))
 #+END_SRC
 * Yasnippets
+:PROPERTIES:
+:ID:       7e8d1186-89ad-4b60-a6fc-96295c41cd4b
+:END:
 https://emacs.stackexchange.com/questions/29758/yasnippets-and-org-mode-yas-next-field-or-maybe-expand-does-not-expand
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
@@ -2223,6 +2502,9 @@ https://emacs.stackexchange.com/questions/29758/yasnippets-and-org-mode-yas-next
   ;;(add-hook 'org-mode-hook (lambda() (yas-reload-all)(yas-minor-mode)))
 #+END_SRC
 ** CANCELLED company/yasnippets                                                    :CANCELLED:
+:PROPERTIES:
+:ID:       e4c165d8-3fd6-4383-b33a-89e72229967d
+:END:
 Look at this if needed.
 #+BEGIN_SRC emacs-lisp
   ;; https://emacs.stackexchange.com/questions/10431/get-company-to-show-suggestions-for-yasnippet-names
@@ -2240,6 +2522,9 @@ Look at this if needed.
   (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 #+END_SRC
 * Magit
+:PROPERTIES:
+:ID:       38c6617f-026e-4300-9756-fa879897d239
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :init
@@ -2258,6 +2543,9 @@ Look at this if needed.
   (add-hook 'git-commit-mode-hook 'evil-insert-state)
 #+END_SRC
 * Engine
+:PROPERTIES:
+:ID:       ecc3c81c-132a-45cc-a25a-c4d5d6ded119
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package engine-mode
     :config
@@ -2276,6 +2564,9 @@ Look at this if needed.
       "ej" '(engine/search-jira "jira" :which-key "Jira")))
 #+END_SRC
 * Tramp
+:PROPERTIES:
+:ID:       f3e112f6-1492-4ab6-ad26-60a1499ea06f
+:END:
 https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-Emacs-Under-Windows/
 
 #+BEGIN_EXAMPLE
@@ -2319,6 +2610,9 @@ https://emacs.stackexchange.com/questions/26560/bookmarking-remote-directories-t
 #+END_SRC
 * CANCELLED Elfeed                                                :CANCELLED:
 CLOSED: [2018-12-09 Sun 00:26]
+:PROPERTIES:
+:ID:       8c859399-f4b5-4f6a-8a29-44361d02b3ed
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package elfeed
     :config
@@ -2336,6 +2630,9 @@ CLOSED: [2018-12-09 Sun 00:26]
     (elfeed-goodies/setup)))
 #+END_SRC
 * caldav
+:PROPERTIES:
+:ID:       6c530abf-9049-485f-9da4-2e5c8cfc43cc
+:END:
 https://www.reddit.com/r/orgmode/comments/8rl8ep/making_orgcaldav_useable/
 #+BEGIN_SRC emacs-lisp
   (use-package org-caldav
@@ -2352,6 +2649,9 @@ https://www.reddit.com/r/orgmode/comments/8rl8ep/making_orgcaldav_useable/
     (setq org-icalendar-use-scheduled '(todo-start event-if-todo event-if-not-todo)))
 #+END_SRC
 * calfw
+:PROPERTIES:
+:ID:       f90aaaa2-6a68-4eec-83af-cacf4e21525f
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package calfw
     :commands (cfw:open-calendar-buffer))
@@ -2362,12 +2662,18 @@ https://www.reddit.com/r/orgmode/comments/8rl8ep/making_orgcaldav_useable/
     (setq calendar-week-start-day 1))
 #+END_SRC
 * ox-hugo
+:PROPERTIES:
+:ID:       fb5dffff-b7aa-4a41-9e82-8df8a6b3c7b4
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package ox-hugo
     :after ox
     :defer 1)
 #+END_SRC
 * flycheck
+:PROPERTIES:
+:ID:       1552a379-9a34-42e8-b9a2-d204d85e03f9
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck
     :init (global-flycheck-mode)
@@ -2375,6 +2681,9 @@ https://www.reddit.com/r/orgmode/comments/8rl8ep/making_orgcaldav_useable/
     (use-package flycheck-inline))
 #+END_SRC
 * ledger
+:PROPERTIES:
+:ID:       f9d56028-b646-4de9-a0a8-fb1fa0b70cbb
+:END:
 #+BEGIN_SRC emacs-lisp
   (use-package ledger-mode
     :mode ("\\.dat\\'"
@@ -2402,6 +2711,9 @@ https://www.reddit.com/r/orgmode/comments/8rl8ep/making_orgcaldav_useable/
     :after (flycheck ledger-mode))
 #+END_SRC
 * Rust
+:PROPERTIES:
+:ID:       298dbc03-6b8d-475d-a746-185557c91ae0
+:END:
 
 https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in_fewer_than_20/
 
@@ -2437,6 +2749,9 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
 #+end_src
     :after rust-mode
 * org-static-blog
+:PROPERTIES:
+:ID:       9a986873-a83e-4d43-b361-40e542f77f5e
+:END:
 
 #+begin_src emacs-lisp
   (use-package org-static-blog
