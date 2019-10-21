@@ -1569,6 +1569,33 @@ https://github.com/daviderestivo/galactic-emacs/blob/master/lisp/org-archive-sub
   (use-package org-web-tools
     :commands 'org-web-tools-read-url-as-org)
 #+END_SRC
+*** ord IDs
+
+https://emacs.stackexchange.com/questions/614/creating-permalinks-for-sections-in-html-exported-from-org-mode
+
+#+begin_src emacs-lisp
+  ;; Use custom ID if present, otherwise create a new one when trying to
+  ;; resolve links
+  (setq org-id-link-to-org-use-id
+        'create-if-interactive-and-no-custom-id)
+
+  ;; Based on org-expiry-insinuate
+  (add-hook 'org-insert-heading-hook 'org-id-get-create)
+  (add-hook 'org-after-todo-state-change-hook 'org-id-get-create)
+  (add-hook 'org-after-tags-change-hook 'org-id-get-create)
+
+  (defun ck/org-update-ids ()
+    (interactive)
+    (let* ((tree (org-element-parse-buffer 'headline))
+           (map (reverse
+                 (org-element-map tree 'headline
+                   (lambda (hl)
+                     (org-element-property :begin hl))))))
+      (save-excursion
+        (cl-loop for point in map do
+                 (goto-char point)
+                 (org-id-get-create)))))
+#+end_src
 * Navigation
 *** Alternate buffer
 #+BEGIN_SRC emacs-lisp
