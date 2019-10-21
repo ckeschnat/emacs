@@ -1596,6 +1596,45 @@ https://emacs.stackexchange.com/questions/614/creating-permalinks-for-sections-i
                  (goto-char point)
                  (org-id-get-create)))))
 #+end_src
+
+https://koenig-haunstetten.de/2016/07/09/code-snippet-for-orgmode-e05s02/
+
+#+begin_src emacs-lisp
+  (defun my/org-add-ids-to-headlines-in-file ()
+    "Add ID properties to all headlines in the current file which
+  do not already have one."
+    (interactive)
+    (org-map-entries 'org-id-get-create))
+
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (add-hook 'before-save-hook 'my/org-add-ids-to-headlines-in-file nil 'local)))
+#+end_src
+
+https://koenig-haunstetten.de/2018/02/17/improving-my-orgmode-workflow/
+
+#+begin_src emacs-lisp
+  (defun my/copy-idlink-to-clipboard() "Copy an ID link with the
+  headline to killring, if no ID is there then create a new unique
+  ID.  This function works only in org-mode or org-agenda buffers.
+
+  The purpose of this function is to easily construct id:-links to
+  org-mode items. If its assigned to a key it saves you marking the
+  text and copying to the killring."
+         (interactive)
+         (when (eq major-mode 'org-agenda-mode) ;switch to orgmode
+       (org-agenda-show)
+       (org-agenda-goto))
+         (when (eq major-mode 'org-mode) ; do this only in org-mode buffers
+       (setq mytmphead (nth 4 (org-heading-components)))
+           (setq mytmpid (funcall 'org-id-get-create))
+       (setq mytmplink (format "[[id:%s][%s]]" mytmpid mytmphead))
+       (kill-new mytmplink)
+       (message "Copied %s to killring (clipboard)" mytmplink)
+         ))
+
+  (global-set-key (kbd "<f5>") 'my/copy-idlink-to-clipboard)
+#+end_src
 * Navigation
 *** Alternate buffer
 #+BEGIN_SRC emacs-lisp
