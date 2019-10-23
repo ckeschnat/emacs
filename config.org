@@ -1556,6 +1556,25 @@ https://koenig-haunstetten.de/2017/10/29/a-small-hack-for-my-daily-plan/
            (file "c:/docs/org/templates/tpl-dailyplan.txt") :immediate-finish t)
           )))
 
+  (defun daily-plan-visit ()
+    (interactive)
+    (find-file (concat my-org-dir "plan-home.org")))
+
+  (defun daily-plan-visit-work ()
+    (interactive)
+    (find-file (concat my-org-dir "plan-work.org")))
+
+  (general-define-key
+   :states '(normal visual insert emacs)
+   "C-c l" 'ledger-visit)
+
+  (general-define-key
+   :states '(normal visual insert emacs)
+   :prefix "C-c"
+   "p"  '(:ignore t :which-key "Plans")
+   "pd" 'daily-plan-visit
+   "pw" 'daily-plan-visit-work)
+
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
   (require 'org-tempo)
