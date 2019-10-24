@@ -170,7 +170,7 @@ Set Symbola as fallback font to display unicode characters.
   (set-fontset-font "fontset-default" nil
     (font-spec :size 20 :name "Symbola"))
 
-  (add-to-list 'default-frame-alist '(font . "Liberation Mono"))
+  (add-to-list 'default-frame-alist '(font . "Go Mono"))
   (add-to-list 'initial-frame-alist '(fullscreen . maximized))
   (add-to-list 'default-frame-alist '(fullscreen . fullheight))
 #+END_SRC
