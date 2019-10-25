@@ -1906,7 +1906,6 @@ https://koenig-haunstetten.de/2016/07/09/code-snippet-for-orgmode-e05s02/
 #+end_src
 
 https://koenig-haunstetten.de/2018/02/17/improving-my-orgmode-workflow/
-
 #+begin_src emacs-lisp
   (defun my/copy-idlink-to-clipboard() "Copy an ID link with the
   headline to killring, if no ID is there then create a new unique
@@ -1928,6 +1927,22 @@ https://koenig-haunstetten.de/2018/02/17/improving-my-orgmode-workflow/
          ))
 
   (global-set-key (kbd "<f5>") 'my/copy-idlink-to-clipboard)
+#+end_src
+
+https://emacs.stackexchange.com/questions/10707/in-org-mode-how-to-remove-a-link
+#+begin_src emacs-lisp
+  (defun ck/org-replace-link-by-link-description ()
+      "Replace an org link by its description or if empty its address"
+    (interactive)
+    (if (org-in-regexp org-bracket-link-regexp 1)
+        (let ((remove (list (match-beginning 0) (match-end 0)))
+          (description (if (match-end 3)
+                   (org-match-string-no-properties 3)
+                   (org-match-string-no-properties 1))))
+      (apply 'delete-region remove)
+      (insert description))))
+
+  (global-set-key (kbd "<f6>") 'ck/org-replace-link-by-link-description)
 #+end_src
 * Navigation
 :PROPERTIES:
@@ -2587,6 +2602,20 @@ Look at this if needed.
     :after magit)
   (add-hook 'git-commit-mode-hook 'evil-insert-state)
 #+END_SRC
+
+https://prathamesh.tech/2019/06/21/creating-pull-requests-from-emacs/
+#+begin_src emacs-lisp
+  (defun endless/visit-pull-request-url-gitlab ()
+    "Visit the current branch's PR on Gitlab."
+    (interactive)
+    (browse-url
+     (format "https://stash.payone-office.de/projects/ITOPS/repos/rz2-puppet/pull-requests?create&sourceBranch=refs/heads/%s"
+             (magit-get-current-branch))))
+
+  (eval-after-load 'magit
+    '(define-key magit-mode-map "h"
+       #'endless/visit-pull-request-url-gitlab))
+#+end_src
 * Engine
 :PROPERTIES:
 :ID:       ecc3c81c-132a-45cc-a25a-c4d5d6ded119
