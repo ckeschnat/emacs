@@ -1300,6 +1300,7 @@ https://www.reddit.com/r/emacs/comments/9vk7iz/emacs_popup_shell/
 
     :mode
     (("\\.txt$" . org-mode))
+    :custom (org-modules '(org-habit))
 
     :config
 #+END_SRC
