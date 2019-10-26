@@ -1945,6 +1945,26 @@ https://emacs.stackexchange.com/questions/10707/in-org-mode-how-to-remove-a-link
 
   (global-set-key (kbd "<f6>") 'ck/org-replace-link-by-link-description)
 #+end_src
+*** org-auto-commit
+:PROPERTIES:
+:ID:       b0fcd4ad-af11-469e-b655-dc7e032e08e1
+:END:
+
+https://www.reddit.com/r/orgmode/comments/940yfo/automatically_commit_the_org_directory/
+
+https://github.com/ryuslash/git-auto-commit-mode
+
+~.dir-locals.el~ with the following content to auto-commit in a directory:
+#+begin_quote
+  ((nil . ((eval git-auto-commit-mode 1))))
+#+end_quote
+
+#+begin_src emacs-lisp
+  (use-package git-auto-commit-mode
+    :ensure t
+    :init
+    (setq gac-automatically-push-p t))
+#+end_src
 * Navigation
 :PROPERTIES:
 :ID:       0176972c-e183-49fc-a719-8bda00ffe998
