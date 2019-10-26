@@ -1450,31 +1450,63 @@ Maybe inside a subdirectory? E.g.:
 
   (setq org-agenda-text-search-extra-files '(agenda-archives))
 #+END_SRC
-*** CANCELLED org-super-agenda                                  :CANCELLED:
-CLOSED: [2019-10-21 Mon 07:48]
+*** org-super-agenda
 :PROPERTIES:
 :ID:       2c78c6b8-3fc4-4bd7-899e-e6031be4f0a2
 :END:
 :LOGBOOK:
 - State "CANCELLED"  from              [2019-10-21 Mon 07:48]
 :END:
+
+~org-super-agenda-header-map~ von https://github.com/alphapapa/org-super-agenda/issues/50, da Keybindings in agenda views nicht funktioniert haben.
 #+begin_src emacs-lisp
   (use-package org-super-agenda
     :config
     (setq org-super-agenda-groups
-          '((:name "Next Items"
-                   :tag ("TODO"))
+          '(
+            (:name "Tech" :and
+                   (:tag
+                    ("checkout")
+                    :tag
+                    ("tech")))
+            (:name "Youtube" :and
+                   (:tag
+                    ("checkout")
+                    :tag
+                    ("youtube")))
+            (:name "Misc" :and
+                   (:tag
+                    ("checkout")
+                    :tag
+                    ("misc")))
+            (:name "Overdueeee" :scheduled past)
+            (:name "Today" :and
+                   (:not
+                    (:habit t)
+                    :scheduled today))
+            (:name "TODO" :and
+                   (:todo
+                    ("TODO")
+                    :scheduled nil))
+            (:habit t)
+            (:name "Waiting" :todo
+                   ("WAIT"))
+            (:name "SOMEDAY" :todo
+                   ("SOMEDAY")))
+    )
+  )
+  (org-super-agenda-mode)
+  (setq org-super-agenda-header-map (make-sparse-keymap))
+#+end_src
+
             (:name "Importaaaaaaaant"
                    :priority "A")
             (:name "Quick Picks"
                    :effort< "0:30")
-            (:name "Check out"
-                   :todo ("SOMEDAY"))
             (:priority<= "B"
                          :scheduled future
-                         :order 1))))
-  (org-super-agenda-mode)
-#+end_src
+                         :order 1)))
+
 *** Not yet sorted
 :PROPERTIES:
 :ID:       30e64492-0034-46ad-a69c-096610ce73a4
