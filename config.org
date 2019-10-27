@@ -1449,6 +1449,8 @@ Maybe inside a subdirectory? E.g.:
   (setq org-agenda-files (list my-org-dir))
 
   (setq org-agenda-text-search-extra-files '(agenda-archives))
+
+  (setq org-agenda-span 'day)
 #+END_SRC
 *** org-super-agenda
 :PROPERTIES:
@@ -1464,41 +1466,31 @@ Maybe inside a subdirectory? E.g.:
     :config
     (setq org-super-agenda-groups
           '(
-            (:name "Tech" :and
-                   (:tag
-                    ("checkout")
-                    :tag
-                    ("tech")))
-            (:name "Youtube" :and
-                   (:tag
-                    ("checkout")
-                    :tag
-                    ("youtube")))
-            (:name "Misc" :and
-                   (:tag
-                    ("checkout")
-                    :tag
-                    ("misc")))
-            (:name "Overdueeee" :scheduled past)
-            (:name "Today" :and
-                   (:not
-                    (:habit t)
-                    :scheduled today))
-            (:name "TODO" :and
-                   (:todo
-                    ("TODO")
-                    :scheduled nil))
+            (:name "Tech"
+                   :and (:tag "checkout" :tag "tech"))
+            (:name "Youtube"
+                   :and (:tag "checkout" :tag "youtube"))
+            (:name "Misc"
+                   :and (:tag "checkout" :tag "misc"))
+            (:name "Overdue" :scheduled past)
+            (:name "Today"
+                   :and (:not (:habit t) :scheduled today))
+            (:name "TODO"
+                   :and (:todo ("TODO") :scheduled nil))
             (:habit t)
-            (:name "Waiting" :todo
-                   ("WAIT"))
-            (:name "SOMEDAY" :todo
-                   ("SOMEDAY")))
+            (:name "Waiting"
+                   :todo ("WAIT"))
+            )
+          )
     )
-  )
   (org-super-agenda-mode)
   (setq org-super-agenda-header-map (make-sparse-keymap))
 #+end_src
 
+            (:discard (:todo "SOMEDAY"))
+
+            (:name "SOMEDAY" :todo
+                   ("SOMEDAY"))
             (:name "Importaaaaaaaant"
                    :priority "A")
             (:name "Quick Picks"
