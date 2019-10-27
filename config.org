@@ -1466,15 +1466,17 @@ Maybe inside a subdirectory? E.g.:
     :config
     (setq org-super-agenda-groups
           '(
+            (:name "Overdue" :scheduled past)
+            (:name "Today"
+                   :and (:not (:habit t) :scheduled today))
+            (:name "Projects"
+                   :auto-property "ProjectId")
             (:name "Tech"
                    :and (:tag "checkout" :tag "tech"))
             (:name "Youtube"
                    :and (:tag "checkout" :tag "youtube"))
             (:name "Misc"
                    :and (:tag "checkout" :tag "misc"))
-            (:name "Overdue" :scheduled past)
-            (:name "Today"
-                   :and (:not (:habit t) :scheduled today))
             (:name "TODO"
                    :and (:todo ("TODO") :scheduled nil))
             (:habit t)
@@ -1486,6 +1488,10 @@ Maybe inside a subdirectory? E.g.:
   (org-super-agenda-mode)
   (setq org-super-agenda-header-map (make-sparse-keymap))
 #+end_src
+                   :face (:background "firebrick" :underline t))
+                   :face (:background "indian red" :underline t)
+                   :face (:background "maroon" :underline t)
+                   :face (:background "wheat4" :underline t)
 
             (:discard (:todo "SOMEDAY"))
 
@@ -1553,7 +1559,7 @@ https://koenig-haunstetten.de/2017/10/29/a-small-hack-for-my-daily-plan/
       ("CANCELLED" . org-done)))
 
   (setq org-todo-keywords
-      '((sequence "TODO(t)" "WAIT(w@/!)" "SOMEDAY(s)" "|" "CANCELLED(c@)" "DONE(d!)")))
+      '((sequence "TODO(t)" "WAIT(w@/!)" "SOMEDAY(s)" "PROJ(p)" "|" "CANCELLED(c@)" "DONE(d!)")))
   (setq org-tag-alist (quote (
                   ("WAIT" . ?A)
                   ("CANCELLED" . ?C)
@@ -1622,9 +1628,13 @@ https://koenig-haunstetten.de/2017/10/29/a-small-hack-for-my-daily-plan/
           ("TODO" ("WAIT") ("CANCELLED"))
           ("DONE" ("WAIT") ("CANCELLED")))))
 #+END_SRC
-*** Custom agenda
+*** CANCELLED Custom agenda                                     :CANCELLED:
+CLOSED: [2019-10-27 Sun 13:49]
 :PROPERTIES:
 :ID:       6a212e1e-984a-4a86-8ec1-ace591ec505f
+:END:
+:LOGBOOK:
+- State "CANCELLED"  from              [2019-10-27 Sun 13:49]
 :END:
 https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html
 #+BEGIN_SRC emacs-lisp
@@ -2893,7 +2903,7 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
     "<meta name=\"author\" content=\"Chris Keschnat\">
     <meta name=\"referrer\" content=\"no-referrer\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-    <link href=\"static/style2.css\" rel=\"stylesheet\" type=\"text/css\" />
+    <link href=\"static/blog.css\" rel=\"stylesheet\" type=\"text/css\" />
     <link rel=\"icon\" href=\"static/favicon.ico\">")
 
     ;; This preamble is inserted at the beginning of the <body> of every page:
