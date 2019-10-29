@@ -1266,37 +1266,37 @@ https://www.reddit.com/r/emacs/comments/9vk7iz/emacs_popup_shell/
     :ensure org-plus-contrib
     :after evil
     :init
-      (defun ck-set-home-agenda ()
-    (interactive)
-    (setq my-org-dir "c:/docs/org/")
-    (setq org-agenda-files (list my-org-dir))
-    (setq org-agenda-tag-filter-preset '("-@work" "-REFILE")))
+    (defun ck-set-home-agenda ()
+      (interactive)
+      (setq my-org-dir "c:/docs/org/")
+      (setq org-agenda-files (list my-org-dir))
+      (setq org-agenda-tag-filter-preset '("-@work" "-REFILE")))
 
-      (defun ck-set-work-agenda ()
-    (interactive)
-    (setq my-org-dir "c:/docs/org/")
-    (setq org-agenda-files (list my-org-dir))
-    (setq org-agenda-tag-filter-preset '("-@home" "-REFILE")))
+    (defun ck-set-work-agenda ()
+      (interactive)
+      (setq my-org-dir "c:/docs/org/")
+      (setq org-agenda-files (list my-org-dir))
+      (setq org-agenda-tag-filter-preset '("-@home" "-REFILE")))
 
-      (defun ck-set-calendar-agenda ()
-    (interactive)
-    (setq my-org-dir "c:/docs/org/calendar/")
-    (setq org-agenda-files (list my-org-dir)))
+    (defun ck-set-calendar-agenda ()
+      (interactive)
+      (setq my-org-dir "c:/docs/org/calendar/")
+      (setq org-agenda-files (list my-org-dir)))
 
-      (when (my-system-type-is-gnu)
-    (setq my-org-dir "~/org/"))
+    (when (my-system-type-is-gnu)
+      (setq my-org-dir "~/org/"))
 
-      (when (my-system-is-mypc)
-    (setq my-org-dir "c:/docs/org/"
-          org-agenda-tag-filter-preset '("-@work" "-REFILE")))
+    (when (my-system-is-mypc)
+      (setq my-org-dir "c:/docs/org/"
+            org-agenda-tag-filter-preset '("-@work" "-REFILE")))
 
-      (when (my-system-is-myoldworkpc)
-    (setq my-org-dir "c:/Users/chris.keschnat/Documents/docs/org/"
-          org-agenda-tag-filter-preset '("-@home" "-REFILE")))
+    (when (my-system-is-myoldworkpc)
+      (setq my-org-dir "c:/Users/chris.keschnat/Documents/docs/org/"
+            org-agenda-tag-filter-preset '("-@home" "-REFILE")))
 
-      (when (my-system-is-myworkpc)
-    (setq my-org-dir "c:/docs/org/"
-          org-agenda-tag-filter-preset '("-@home" "-REFILE")))
+    (when (my-system-is-myworkpc)
+      (setq my-org-dir "c:/docs/org/"
+            org-agenda-tag-filter-preset '("-@home" "-REFILE")))
 
     :mode
     (("\\.txt$" . org-mode))
