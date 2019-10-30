@@ -1997,7 +1997,8 @@ https://github.com/ryuslash/git-auto-commit-mode
   (use-package git-auto-commit-mode
     :ensure t
     :init
-    (setq gac-automatically-push-p t))
+    (when (my-system-is-mypc)
+      (setq gac-automatically-push-p t)))
 #+end_src
 * Navigation
 :PROPERTIES:
