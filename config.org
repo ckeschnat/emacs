@@ -1477,6 +1477,8 @@ Maybe inside a subdirectory? E.g.:
                    :and (:tag "checkout" :tag "youtube"))
             (:name "Misc"
                    :and (:tag "checkout" :tag "misc"))
+            (:name "Einkaufsliste"
+                   :and (:tag "einkauf"))
             (:name "TODO"
                    :and (:todo ("TODO") :scheduled nil))
             (:habit t)
