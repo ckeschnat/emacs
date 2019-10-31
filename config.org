@@ -1477,9 +1477,12 @@ Maybe inside a subdirectory? E.g.:
                    :and (:todo ("TODO") :scheduled nil :not (:tag "kyra") :not (:tag "explore")))
             (:habit t)
             (:name "Waiting"
+                   :transformer (--> it
+                                     (propertize it 'face '(:foreground "lavender blush")))
                    :todo ("WAIT"))
             (:name "Tech"
-                   :face (:background "DarkOliveGreen")
+                   :transformer (--> it
+                                     (propertize it 'face '(:foreground "LightSkyBlue")))
                    :and (:tag "explore" :tag "tech")
                    :and (:todo "EXPLORE" :tag "tech"))
             (:name "Youtube"
