@@ -1484,6 +1484,8 @@ Maybe inside a subdirectory? E.g.:
             (:habit t)
             (:name "Waiting"
                    :todo ("WAIT"))
+            (:name "Misc"
+                   :and (:tag "explore" :tag "misc"))
             )
           )
     )
