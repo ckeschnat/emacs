@@ -1469,6 +1469,8 @@ Maybe inside a subdirectory? E.g.:
             (:name "Overdue" :scheduled past)
             (:name "Today"
                    :and (:not (:habit t) :scheduled today))
+            (:name "NEXT"
+                   :and (:todo ("NEXT")))
             (:name "Projects"
                    :auto-property "Project")
             (:name "Einkaufsliste"
