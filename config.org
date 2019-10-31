@@ -2200,8 +2200,9 @@ https://github.com/aaronbieber/periodic-commit-minor-mode
 #+end_src
 
 #+begin_src emacs-lisp
-  (setq pcmm-commit-frequency 0)
-  (add-hook 'org-mode-hook 'periodic-commit-minor-mode)
+  (when (my-system-is-mypc)
+    (setq pcmm-commit-frequency 0)
+    (add-hook 'org-mode-hook 'periodic-commit-minor-mode))
 #+end_src
 * Navigation
 :PROPERTIES:
