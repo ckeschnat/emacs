@@ -1804,7 +1804,8 @@ https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_impro
         "jo" '(org-clock-out :which-key "org-clock-out")))
 #+END_SRC
 
-*** org-brain
+*** CANCELLED org-brain                                         :CANCELLED:
+CLOSED: [2019-10-31 Thu 14:28]
 :PROPERTIES:
 :ID:       ccbbcc48-0920-4356-a9bc-b412a61bc08c
 :END:
