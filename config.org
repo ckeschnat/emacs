@@ -1476,7 +1476,7 @@ Maybe inside a subdirectory? E.g.:
                                      (propertize it 'face '(:foreground "RosyBrown1")))
                    )
             (:name "Tech"
-                   :face (:background "LightSkyBlue" :underline t)
+                   :face (:background "DarkOliveGreen")
                    :and (:tag "explore" :tag "tech")
                    :and (:todo "EXPLORE" :tag "tech"))
             (:name "Youtube"
