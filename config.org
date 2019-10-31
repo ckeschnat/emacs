@@ -2008,6 +2008,10 @@ https://github.com/ryuslash/git-auto-commit-mode
 :ID:       e9dcc495-0a55-4edb-ae86-48ba0a9f217d
 :END:
 
+#+begin_src emacs-lisp
+  (when (my-system-is-mypc)
+#+end_src
+
 https://github.com/aaronbieber/periodic-commit-minor-mode
 #+begin_src emacs-lisp
   ;;; periodic-commit-minor-mode.el --- Auto-commit files periodically
@@ -2203,6 +2207,11 @@ https://github.com/aaronbieber/periodic-commit-minor-mode
   (when (my-system-is-mypc)
     (setq pcmm-commit-frequency 0)
     (add-hook 'org-mode-hook 'periodic-commit-minor-mode))
+#+end_src
+
+end of ~(when (my-system-is-mypc)~
+#+begin_src emacs-lisp
+  )
 #+end_src
 * Navigation
 :PROPERTIES:
