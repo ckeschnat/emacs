@@ -1476,8 +1476,7 @@ Maybe inside a subdirectory? E.g.:
                                      (propertize it 'face '(:foreground "RosyBrown1")))
                    )
             (:name "Tech"
-                   :transformer (--> it
-                                     (propertize it 'face '(:foreground "LightSkyBlue")))
+                   :face (:background "LightSkyBlue" :underline t)
                    :and (:tag "explore" :tag "tech")
                    :and (:todo "EXPLORE" :tag "tech"))
             (:name "Youtube"
@@ -1495,7 +1494,6 @@ Maybe inside a subdirectory? E.g.:
             (:name "Einkaufsliste"
                    :and (:tag "einkauf"))
             (:name "TODO"
-                   :face (:background "black" :underline t)
                    :and (:todo ("TODO") :scheduled nil :not (:tag "kyra")))
             (:habit t)
             (:name "Waiting"
