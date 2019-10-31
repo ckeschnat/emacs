@@ -1473,16 +1473,16 @@ Maybe inside a subdirectory? E.g.:
                    :auto-property "ProjectId")
             (:name "Explore"
                    :transformer (--> it
-                                     (propertize it 'face '(:foreground "RosyBrown1")))
-                   (:name "Tech"
-                          :and (:tag "explore" :tag "tech")
-                          :and (:todo "EXPLORE" :tag "tech"))
-                   (:name "Youtube"
-                          :and (:tag "explore" :tag "youtube"))
-                   (:name "Misc"
-                          :and (:tag "explore" :tag "misc"))
-                   (:name "Explore unsorted"
-                          :todo "EXPLORE"))
+                                     (propertize it 'face '(:foreground "RosyBrown1"))))
+            (:name "Tech"
+                   :and (:tag "explore" :tag "tech")
+                   :and (:todo "EXPLORE" :tag "tech"))
+            (:name "Youtube"
+                   :and (:tag "explore" :tag "youtube"))
+            (:name "Misc"
+                   :and (:tag "explore" :tag "misc"))
+            (:name "Explore unsorted"
+                   :todo "EXPLORE")
             (:name "Einkaufsliste"
                    :and (:tag "einkauf"))
             (:name "TODO"
