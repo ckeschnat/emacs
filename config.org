@@ -1473,8 +1473,11 @@ Maybe inside a subdirectory? E.g.:
                    :auto-property "ProjectId")
             (:name "Explore"
                    :transformer (--> it
-                                     (propertize it 'face '(:foreground "RosyBrown1"))))
+                                     (propertize it 'face '(:foreground "RosyBrown1")))
+                   )
             (:name "Tech"
+                   :transformer (--> it
+                                     (propertize it 'face '(:foreground "RosyBrown1")))
                    :and (:tag "explore" :tag "tech")
                    :and (:todo "EXPLORE" :tag "tech"))
             (:name "Youtube"
