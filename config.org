@@ -1472,7 +1472,8 @@ Maybe inside a subdirectory? E.g.:
             (:name "Projects"
                    :auto-property "ProjectId")
             (:name "Tech"
-                   :and (:tag "explore" :tag "tech"))
+                   :and (:tag "explore" :tag "tech")
+                   :and (:todo "EXPLORE" :tag "tech"))
             (:name "Youtube"
                    :and (:tag "explore" :tag "youtube"))
             (:name "Misc"
