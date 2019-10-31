@@ -1480,7 +1480,7 @@ Maybe inside a subdirectory? E.g.:
             (:name "Einkaufsliste"
                    :and (:tag "einkauf"))
             (:name "TODO"
-                   :and (:todo ("TODO") :scheduled nil))
+                   :and (:todo ("TODO") :scheduled nil :not (:tag "kyra")))
             (:habit t)
             (:name "Waiting"
                    :todo ("WAIT"))
