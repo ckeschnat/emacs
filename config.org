@@ -1470,7 +1470,7 @@ Maybe inside a subdirectory? E.g.:
             (:name "Today"
                    :and (:not (:habit t) :scheduled today))
             (:name "Projects"
-                   :auto-property "ProjectId")
+                   :auto-property "Project")
             (:name "Einkaufsliste"
                    :and (:tag "einkauf"))
             (:name "TODO"
