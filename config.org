@@ -1480,12 +1480,12 @@ Maybe inside a subdirectory? E.g.:
                    :transformer (--> it
                                      (propertize it 'face '(:foreground "lavender blush")))
                    :todo ("WAIT"))
-            (:name "Tech"
+            (:name "Explore Tech"
                    :transformer (--> it
                                      (propertize it 'face '(:foreground "LightSkyBlue")))
                    :and (:tag "explore" :tag "tech")
                    :and (:todo "EXPLORE" :tag "tech"))
-            (:name "Youtube"
+            (:name "Explore Youtube"
                    :transformer (--> it
                                      (propertize it 'face '(:foreground "LightSkyBlue")))
                    :and (:tag "explore" :tag "youtube"))
