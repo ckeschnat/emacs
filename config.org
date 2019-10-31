@@ -1471,6 +1471,13 @@ Maybe inside a subdirectory? E.g.:
                    :and (:not (:habit t) :scheduled today))
             (:name "Projects"
                    :auto-property "ProjectId")
+            (:name "Einkaufsliste"
+                   :and (:tag "einkauf"))
+            (:name "TODO"
+                   :and (:todo ("TODO") :scheduled nil :not (:tag "kyra")))
+            (:habit t)
+            (:name "Waiting"
+                   :todo ("WAIT"))
             (:name "Explore"
                    :transformer (--> it
                                      (propertize it 'face '(:foreground "RosyBrown1")))
@@ -1491,13 +1498,6 @@ Maybe inside a subdirectory? E.g.:
                    :transformer (--> it
                                      (propertize it 'face '(:foreground "LightSkyBlue")))
                    :todo "EXPLORE")
-            (:name "Einkaufsliste"
-                   :and (:tag "einkauf"))
-            (:name "TODO"
-                   :and (:todo ("TODO") :scheduled nil :not (:tag "kyra")))
-            (:habit t)
-            (:name "Waiting"
-                   :todo ("WAIT"))
             (:name "Scheduled"
                    :scheduled t)
             (:name "Kyra"
