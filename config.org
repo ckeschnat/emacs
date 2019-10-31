@@ -1470,6 +1470,7 @@ Maybe inside a subdirectory? E.g.:
             (:name "Today"
                    :and (:not (:habit t) :scheduled today))
             (:name "Projects"
+                   :face (:background "black" :underline t)
                    :auto-property "ProjectId")
             (:name "Explore"
                    :transformer (--> it
