@@ -1561,6 +1561,7 @@ https://koenig-haunstetten.de/2017/10/29/a-small-hack-for-my-daily-plan/
       '(("TODO" . org-warning)
       ("SOMEDAY" . (:foreground "moccasin" :weight bold))
       ("WAIT" . (:foreground "lavender blush" :weight bold))
+      ("EXPLORE" . (:foreground "lavender blush" :weight bold))
       ("CANCELLED" . org-done)))
 
   (setq org-todo-keywords
