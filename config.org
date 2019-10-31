@@ -1478,10 +1478,6 @@ Maybe inside a subdirectory? E.g.:
             (:habit t)
             (:name "Waiting"
                    :todo ("WAIT"))
-            (:name "Explore"
-                   :transformer (--> it
-                                     (propertize it 'face '(:foreground "RosyBrown1")))
-                   )
             (:name "Tech"
                    :face (:background "DarkOliveGreen")
                    :and (:tag "explore" :tag "tech")
@@ -1497,7 +1493,8 @@ Maybe inside a subdirectory? E.g.:
             (:name "Explore unsorted"
                    :transformer (--> it
                                      (propertize it 'face '(:foreground "LightSkyBlue")))
-                   :todo "EXPLORE")
+                   :todo "EXPLORE"
+                   :tag "explore")
             (:name "Scheduled"
                    :scheduled t)
             (:name "Kyra"
