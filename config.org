@@ -1471,7 +1471,7 @@ Maybe inside a subdirectory? E.g.:
                    :and (:not (:habit t) :scheduled today))
             (:name "Projects"
                    :auto-property "ProjectId")
-            '((:name "Explore"
+            (:name "Explore"
                    :transformer (--> it
                                      (propertize it 'face '(:foreground "RosyBrown1")))
                    (:name "Tech"
@@ -1482,7 +1482,7 @@ Maybe inside a subdirectory? E.g.:
                    (:name "Misc"
                           :and (:tag "explore" :tag "misc"))
                    (:name "Explore unsorted"
-                          :todo "EXPLORE")))
+                          :todo "EXPLORE"))
             (:name "Einkaufsliste"
                    :and (:tag "einkauf"))
             (:name "TODO"
