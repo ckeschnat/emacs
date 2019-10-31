@@ -1478,6 +1478,8 @@ Maybe inside a subdirectory? E.g.:
                    :and (:tag "explore" :tag "youtube"))
             (:name "Misc"
                    :and (:tag "explore" :tag "misc"))
+            (:name "Explore unsorted"
+                   :todo "EXPLORE")
             (:name "Einkaufsliste"
                    :and (:tag "einkauf"))
             (:name "TODO"
