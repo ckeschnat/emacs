@@ -1496,7 +1496,7 @@ Maybe inside a subdirectory? E.g.:
                    :todo "EXPLORE"
                    :tag "explore")
             (:name "Scheduled"
-                   :and ((:scheduled t) :not (:tag "kyra")))
+                   :and (:scheduled t :not (:tag "kyra")))
             (:name "Kyra"
                    :and (:tag "kyra"))
             )
