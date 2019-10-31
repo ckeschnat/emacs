@@ -1488,7 +1488,8 @@ Maybe inside a subdirectory? E.g.:
             (:name "Explore watch"
                    :transformer (--> it
                                      (propertize it 'face '(:foreground "LightSkyBlue")))
-                   :and (:tag "explore" :tag "watch"))
+                   :and (:tag "explore" :tag "watch")
+                   :and (:todo "EXPLORE" :tag "watch"))
             (:name "Explore unsorted"
                    :transformer (--> it
                                      (propertize it 'face '(:foreground "LightSkyBlue")))
