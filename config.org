@@ -2022,7 +2022,8 @@ https://github.com/ryuslash/git-auto-commit-mode
     (when (my-system-is-mypc)
       (setq gac-automatically-push-p t)))
 #+end_src
-*** periodic commit
+*** CANCELLED periodic commit                                   :CANCELLED:
+CLOSED: [2019-11-01 Fri 18:30]
 :PROPERTIES:
 :ID:       e9dcc495-0a55-4edb-ae86-48ba0a9f217d
 :END:
