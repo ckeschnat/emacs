@@ -1645,7 +1645,7 @@ https://koenig-haunstetten.de/2017/10/29/a-small-hack-for-my-daily-plan/
                 ("WAIT" ("WAIT" . t))
                 ("PROJ" ("Project" . t))
                 (done ("WAIT"))
-                ("" ("WAIT") ("CANCELLED") ("Project"))
+                ("" ("WAIT") ("CANCELLED"))
                 ("TODO" ("WAIT") ("CANCELLED") ("Project"))
                 ("DONE" ("WAIT") ("CANCELLED")))))
 
