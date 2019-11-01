@@ -1564,7 +1564,7 @@ https://koenig-haunstetten.de/2017/10/29/a-small-hack-for-my-daily-plan/
   ;; More headings for refile
   ;; (setq org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
   (setq org-refile-targets '((nil :maxlevel . 9)
-                  (org-agenda-files :maxlevel . 9)))
+                             (org-agenda-files :maxlevel . 9)))
   (setq org-refile-use-outline-path 'file)              ; Show full paths for refiling
   (setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
 
@@ -1572,42 +1572,42 @@ https://koenig-haunstetten.de/2017/10/29/a-small-hack-for-my-daily-plan/
   (setq org-refile-allow-creating-parent-nodes 'confirm)
 
   (setq org-todo-keyword-faces
-      '(("TODO" . org-warning)
-      ("SOMEDAY" . (:foreground "moccasin" :weight bold))
-      ("WAIT" . (:foreground "lavender blush" :weight bold))
-      ("EXPLORE" . (:foreground "LightSkyBlue" :weight bold))
-      ("CANCELLED" . org-done)))
+        '(("TODO" . org-warning)
+          ("SOMEDAY" . (:foreground "moccasin" :weight bold))
+          ("WAIT" . (:foreground "lavender blush" :weight bold))
+          ("EXPLORE" . (:foreground "LightSkyBlue" :weight bold))
+          ("CANCELLED" . org-done)))
 
   (setq org-todo-keywords
-      '((sequence "NEXT(n)" "TODO(t)" "REPEAT(r)" "WAIT(w@/!)" "SOMEDAY(s)" "EXPLORE(e)" "PROJ(p)" "|" "CANCELLED(c@)" "DONE(d!)")))
+        '((sequence "NEXT(n)" "TODO(t)" "REPEAT(r)" "WAIT(w@/!)" "SOMEDAY(s)" "EXPLORE(e)" "PROJ(p)" "|" "CANCELLED(c@)" "DONE(d!)")))
   (setq org-tag-alist (quote (
-                  ("WAIT" . ?A)
-                  ("CANCELLED" . ?C)
-                  ("watch" . ?w)
-                  ("read" . ?r)
-                  )))
+                              ("WAIT" . ?A)
+                              ("CANCELLED" . ?C)
+                              ("watch" . ?w)
+                              ("read" . ?r)
+                              )))
 
-  ;(setq my-org-tpl-dir
-  ;    (concat  (file-name-as-directory my-org-dir) "templates"))
+                                          ;(setq my-org-tpl-dir
+                                          ;    (concat  (file-name-as-directory my-org-dir) "templates"))
 
-  ;(setq my-org-daily-tpl
-  ;    (concat  (file-name-as-directory my-org-tpl-dir) "tpl-dailyplan.txt"))
+                                          ;(setq my-org-daily-tpl
+                                          ;    (concat  (file-name-as-directory my-org-tpl-dir) "tpl-dailyplan.txt"))
 
   (setq org-capture-templates
-      (quote (("t" "todo" entry (file "") "* TODO %?\nEntered: %U\n")
-          ("w" "wait" entry (file "") "* WAIT %?\nEntered: %U\n")
-          ("c" "clipboard" entry (file "") "* TODO %?\n\n#+BEGIN_QUOTE\n  %c\n#+END_QUOTE\n\nEntered: %U\n")
-          ("l" "linked todo" entry (file "") "* TODO %?\nEntered: %U\n%a\n")
-          ("s" "calendar entry" entry (file org-caldav-inbox) "* %?\nSCHEDULED: %^{Scheduled to begin}t\n")
-          ("n" "note" entry (file "") "* %? :NOTE:\n%U\n%a\n")
-          ("p" "Plans")
-          ("ph" "Daily Plan (Home)" plain (file+olp+datetree "c:/docs/org/plan-home.org")
-           (file "c:/docs/org/templates/tpl-dailyplan.txt") :immediate-finish t)
-          ("pw" "Daily Plan (Work)" plain (file+olp+datetree "c:/docs/org/plan-work.org")
-           (file "c:/docs/org/templates/tpl-dailyplan.txt") :immediate-finish t)
-          ("pr" "Weekly Review" plain (file+olp+datetree "c:/docs/org/review.org")
-           (file "c:/docs/org/templates/tpl-weeklyreview.txt") :immediate-finish t)
-          )))
+        (quote (("t" "todo" entry (file "") "* TODO %?\nEntered: %U\n")
+                ("w" "wait" entry (file "") "* WAIT %?\nEntered: %U\n")
+                ("c" "clipboard" entry (file "") "* TODO %?\n\n#+BEGIN_QUOTE\n  %c\n#+END_QUOTE\n\nEntered: %U\n")
+                ("l" "linked todo" entry (file "") "* TODO %?\nEntered: %U\n%a\n")
+                ("s" "calendar entry" entry (file org-caldav-inbox) "* %?\nSCHEDULED: %^{Scheduled to begin}t\n")
+                ("n" "note" entry (file "") "* %? :NOTE:\n%U\n%a\n")
+                ("p" "Plans")
+                ("ph" "Daily Plan (Home)" plain (file+olp+datetree "c:/docs/org/plan-home.org")
+                 (file "c:/docs/org/templates/tpl-dailyplan.txt") :immediate-finish t)
+                ("pw" "Daily Plan (Work)" plain (file+olp+datetree "c:/docs/org/plan-work.org")
+                 (file "c:/docs/org/templates/tpl-dailyplan.txt") :immediate-finish t)
+                ("pr" "Weekly Review" plain (file+olp+datetree "c:/docs/org/review.org")
+                 (file "c:/docs/org/templates/tpl-weeklyreview.txt") :immediate-finish t)
+                )))
 
   (defun daily-plan-home-visit ()
     (interactive)
@@ -1641,12 +1641,18 @@ https://koenig-haunstetten.de/2017/10/29/a-small-hack-for-my-daily-plan/
 
   (setq org-use-fast-todo-selection t)
   (setq org-todo-state-tags-triggers
-      (quote (("CANCELLED" ("CANCELLED" . t))
-          ("WAIT" ("WAIT" . t))
-          (done ("WAIT"))
-          ("" ("WAIT") ("CANCELLED"))
-          ("TODO" ("WAIT") ("CANCELLED"))
-          ("DONE" ("WAIT") ("CANCELLED")))))
+        (quote (("CANCELLED" ("CANCELLED" . t))
+                ("WAIT" ("WAIT" . t))
+                ("PROJ" ("Project" . t))
+                (done ("WAIT"))
+                ("" ("WAIT") ("CANCELLED") ("Project"))
+                ("TODO" ("WAIT") ("CANCELLED") ("Project"))
+                ("DONE" ("WAIT") ("CANCELLED")))))
+
+  (setq org-stuck-projects
+        '("+PROJECT/-MAYBE-DONE" ("NEXT") ("@einkauf")
+          "\\<PROJSTUCKIGNORE\\>"))
+  (setq org-tags-exclude-from-inheritance '("Project"))
 #+END_SRC
 *** CANCELLED Custom agenda                                     :CANCELLED:
 CLOSED: [2019-10-27 Sun 13:49]
