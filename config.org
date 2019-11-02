@@ -3116,6 +3116,15 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
     (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
 #+end_src
     :after rust-mode
+* eglot
+:PROPERTIES:
+:ID:       2bc18154-2e08-440c-9adf-68a840c223bc
+:END:
+
+#+begin_src emacs-lisp
+  (use-package eglot
+    :hook (rust-mode . eglot-ensure))
+#+end_src
 * org-static-blog
 :PROPERTIES:
 :ID:       9a986873-a83e-4d43-b361-40e542f77f5e
