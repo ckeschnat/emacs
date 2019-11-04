@@ -1466,7 +1466,8 @@ Maybe inside a subdirectory? E.g.:
     :config
     (setq org-super-agenda-groups
           '(
-            (:name "Overdue" :scheduled past)
+            (:name "Overdue"
+                   :and (:not (:habit t) :scheduled past))
             (:name "Today"
                    :and (:not (:habit t) :scheduled today))
             (:name "Next"
