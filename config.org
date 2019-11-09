@@ -2911,6 +2911,21 @@ https://prathamesh.tech/2019/06/21/creating-pull-requests-from-emacs/
     '(define-key magit-mode-map "h"
        #'endless/visit-pull-request-url-gitlab))
 #+end_src
+
+Add, commit, and push
+#+begin_src emacs-lisp
+  (defun ck/acp ()
+    (interactive)
+    (magit-with-toplevel
+      (magit-run-git "add" "-A")
+      (magit-run-git "commit" "--message=semiauto commit")
+      (magit-push-current-to-upstream nil)))
+
+  (general-define-key
+   :states '(normal visual insert emacs)
+   :prefix "C-c"
+   "gg" '(ck/acp :which-key "addcommitpush"))
+#+end_src
 * Engine
 :PROPERTIES:
 :ID:       ecc3c81c-132a-45cc-a25a-c4d5d6ded119
