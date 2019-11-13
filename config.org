@@ -3114,11 +3114,24 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
   (use-package toml-mode)
 
   ;; (use-package rust-mode
-    ;; :hook (rust-mode . lsp))
+  ;; :hook (rust-mode . lsp))
   (use-package rust-mode
     :config
     (use-package flycheck-rust
-      :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
+      :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
+    (use-package racer)
+
+    (add-hook 'rust-mode-hook #'racer-mode)
+    (add-hook 'racer-mode-hook #'eldoc-mode)
+    (add-hook 'racer-mode-hook #'company-mode)
+    (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+
+    (general-define-key
+     :states '(normal visual insert emacs)
+     "M-." '(racer-find-definition))
+
+  (setq company-tooltip-align-annotations t))
 
   ;; Add keybindings for interacting with Cargo
   (use-package cargo
