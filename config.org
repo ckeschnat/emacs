@@ -178,7 +178,23 @@ Set Symbola as fallback font to display unicode characters.
 :PROPERTIES:
 :ID:       fe2428a0-1e17-42c0-9133-6e87c35bd129
 :END:
-#+BEGIN_SRC emacs-lisp
+
+#+begin_src emacs-lisp
+  (use-package zenburn-theme
+    :custom
+    (zenburn-override-colors-alist '(("zenburn-bg"    . "#212121")
+                     ("zenburn-bg-1"  . "#111111")
+                     ("zenburn-bg-2"  . "#000000")
+                     ("zenburn-bg+1"  . "#313131")
+                     ("zenburn-bg+2"  . "#414141")
+                     ("zenburn-bg+3"  . "#515151")))
+    (zenburn-use-variable-pitch t)
+    (zenburn-scale-org-headlines t)
+    (zenburn-scale-outline-headlines t))
+  (load-theme `zenburn t)
+#+end_src
+
+#+BEGIN_SRC emacs-lisp :tangle no
   ;; Theme
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
     (setq zenburn-override-colors-alist '(
