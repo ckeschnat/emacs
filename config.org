@@ -1019,7 +1019,7 @@ in your configuration and just ignore the rest of its features.
 :END:
 https://oremacs.com/2017/08/04/ripgrep/
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
   (use-package rg)
   (setq counsel-git-cmd "rg --files")
   (setq counsel-rg-base-command
