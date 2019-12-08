@@ -1252,12 +1252,13 @@ https://www.reddit.com/r/emacs/comments/9vk7iz/emacs_popup_shell/
 :ID:       f175febc-5dfa-4279-a3e1-2105aa5a5cad
 :END:
 #+BEGIN_SRC emacs-lisp
-;; Projectile
-(use-package projectile
-  :init
-  (setq projectile-require-project-root nil)
-  :config
-  (projectile-mode 1))
+  ;; Projectile
+  (use-package projectile
+    :init
+    (setq projectile-require-project-root nil)
+    :config
+    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+    (projectile-mode +1))
 #+END_SRC
 * Org
 :PROPERTIES:
