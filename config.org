@@ -1254,10 +1254,11 @@ https://www.reddit.com/r/emacs/comments/9vk7iz/emacs_popup_shell/
 #+BEGIN_SRC emacs-lisp
   ;; Projectile
   (use-package projectile
+    :defer 1
     :init
     (setq projectile-require-project-root nil)
     :config
-    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+    (define-key projectile-mode-map (kbd "C-c o") 'projectile-command-map)
     (projectile-mode +1))
 #+END_SRC
 * Org
