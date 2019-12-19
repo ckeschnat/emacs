@@ -2742,6 +2742,7 @@ https://rentes.github.io/emacs/windows/ssh/2016/08/25/Editing-Remote-Files-With-
 #+BEGIN_EXAMPLE
   /plink:user@host:
   /plink:user@host|sudo:host:
+  /plink:user@host|sudo:host#2222:
 #+END_EXAMPLE
 
 With tramp-default-proxies-alist:
