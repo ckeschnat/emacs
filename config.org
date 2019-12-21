@@ -2942,7 +2942,8 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
   (use-package eglot
     :hook (rust-mode . eglot-ensure))
 #+end_src
-* org-static-blog
+* CANCELLED org-static-blog                                       :CANCELLED:
+CLOSED: [2019-12-21 Sat 18:49]
 :PROPERTIES:
 :ID:       9a986873-a83e-4d43-b361-40e542f77f5e
 :END:
@@ -2998,6 +2999,3 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
     "
     ))
 #+end_src
-
-#+RESULTS:
-: t
