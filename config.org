@@ -1601,8 +1601,6 @@ https://koenig-haunstetten.de/2017/10/29/a-small-hack-for-my-daily-plan/
   (setq org-todo-keywords
         '((sequence "NEXT(n)" "TODO(t)" "REPEAT(r)" "WAIT(w@/!)" "SOMEDAY(s)" "EXPLORE(e)" "PROJ(p)" "|" "CANCELLED(c@)" "DONE(d!)")))
   (setq org-tag-alist (quote (
-                              ("WAIT" . ?A)
-                              ("CANCELLED" . ?C)
                               ("watch" . ?w)
                               ("read" . ?r)
                               )))
