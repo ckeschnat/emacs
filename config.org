@@ -1494,7 +1494,9 @@ Maybe inside a subdirectory? E.g.:
             (:name "Projects"
                    :auto-property "Project")
             (:name "Einkaufsliste"
-                   :and (:tag "einkauf"))
+                   :and (:tag "shop"))
+            (:name "Blog"
+                   :and (:tag "blogposts"))
             (:name "TODO"
                    :and (:todo ("TODO") :scheduled nil :not (:tag "kyra") :not (:tag "explore")))
             (:habit t)
@@ -1668,7 +1670,7 @@ https://koenig-haunstetten.de/2017/10/29/a-small-hack-for-my-daily-plan/
                 ("DONE" ("WAIT") ("CANCELLED")))))
 
   (setq org-stuck-projects
-        '("+PROJECT/-MAYBE-DONE" ("NEXT") ("@einkauf")
+        '("+Project/-MAYBE-DONE" ("NEXT") ("shop")
           "\\<PROJSTUCKIGNORE\\>"))
   (setq org-tags-exclude-from-inheritance '("Project"))
 #+END_SRC
@@ -1916,12 +1918,20 @@ https://github.com/daviderestivo/galactic-emacs/blob/master/lisp/org-archive-sub
                 (org-end-of-subtree t t)
                 (org-paste-subtree level tree-text))))))))
 #+END_SRC
-*** pamparam
+*** CANCELLED pamparam                                          :CANCELLED:
+CLOSED: [2019-12-26 Thu 20:10]
 :PROPERTIES:
 :ID:       137fbae7-0d73-4e64-aae2-45b96bb6036e
 :END:
 #+BEGIN_SRC emacs-lisp
   (use-package pamparam :ensure t)
+#+END_SRC
+*** org-cliplink
+:PROPERTIES:
+:ID:       1b5b18c3-ead3-4e4c-a375-b2f7b85419c0
+:END:
+#+BEGIN_SRC emacs-lisp
+  (use-package org-cliplink :ensure t)
 #+END_SRC
 *** ox-jira
 :PROPERTIES:
