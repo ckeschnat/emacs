@@ -167,14 +167,30 @@ https://superuser.com/questions/313398/how-to-prevent-the-symbols-function-defin
 :END:
 Set Symbola as fallback font to display unicode characters.
 #+BEGIN_SRC emacs-lisp
+  (defun xah-toggle-line-spacing ()
+    "Toggle line spacing between no extra space to extra half line height.
+  URL `http://ergoemacs.org/emacs/emacs_toggle_line_spacing.html'
+  Version 2017-06-02"
+    (interactive)
+    (if line-spacing
+        (setq line-spacing nil)
+      (setq line-spacing 0.2))
+    (redraw-frame (selected-frame)))
+
+  (global-set-key (kbd "<f7>") 'xah-toggle-line-spacing)
+
   (set-fontset-font "fontset-default" nil
     (font-spec :size 20 :name "Symbola"))
 
   (add-to-list 'default-frame-alist '(font . "Liberation Mono-11.5:bold"))
-  (setq split-height-threshold nil)
-  (setq split-width-threshold 0)
   (add-to-list 'initial-frame-alist '(fullscreen . maximized))
   (add-to-list 'default-frame-alist '(fullscreen . fullheight))
+
+  (setq split-height-threshold nil)
+  (setq split-width-threshold 0)
+
+  (setq-default line-spacing nil)
+  (setq line-spacing nil)
 #+END_SRC
 *** Theme
 :PROPERTIES:
