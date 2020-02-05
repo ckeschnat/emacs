@@ -187,7 +187,7 @@ Set Symbola as fallback font to display unicode characters.
   (add-to-list 'default-frame-alist '(fullscreen . fullheight))
 
   (setq split-height-threshold nil)
-  (setq split-width-threshold 0)
+  ;(setq split-width-threshold 0)
 
   (setq-default line-spacing nil)
   (setq line-spacing nil)
