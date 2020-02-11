@@ -3026,6 +3026,20 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
   (use-package eglot
     :hook (rust-mode . eglot-ensure))
 #+end_src
+* Python
+:PROPERTIES:
+:ID:       31dcc79c-bed6-4b5a-b1bc-d195293a12eb
+:END:
+#+begin_src emacs-lisp
+  (use-package elpy
+    :ensure t
+    :defer t
+    :init
+    (advice-add 'python-mode :before 'elpy-enable))
+#+end_src
+:PROPERTIES:
+:ID:       3993bbe2-b9b9-4058-abe8-a06019561fd9
+:END:
 * CANCELLED org-static-blog                                       :CANCELLED:
 CLOSED: [2019-12-21 Sat 18:49]
 :PROPERTIES:
