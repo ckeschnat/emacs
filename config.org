@@ -3010,7 +3010,7 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
 
     (general-define-key
      :states '(normal visual insert emacs)
-     "M-." '(racer-find-definition))
+     "M-." 'racer-find-definition)
 
   (setq company-tooltip-align-annotations t))
 
