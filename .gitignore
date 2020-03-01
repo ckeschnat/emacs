@@ -24,3 +24,4 @@ transient
 org-journal.cache
 .pcmm
 elpy
+.cask
