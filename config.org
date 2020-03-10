@@ -229,7 +229,7 @@ Set Symbola as fallback font to display unicode characters.
 :ID:       fe2428a0-1e17-42c0-9133-6e87c35bd129
 :END:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package zenburn-theme
     :custom
     (zenburn-override-colors-alist '(("zenburn-bg"    . "#212121")
@@ -276,6 +276,13 @@ Set Symbola as fallback font to display unicode characters.
       :config
       (load-theme 'zerodark t)
       (zerodark-setup-modeline-format))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (use-package atom-one-dark-theme
+      :defer nil
+      :config
+      (load-theme 'atom-one-dark t))
 #+END_SRC
 
 https://github.com/jasonm23/emacs-select-themes
@@ -3010,7 +3017,7 @@ https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in
 
     (general-define-key
      :states '(normal visual insert emacs)
-     "M-." 'racer-find-definition)
+     "M-." 'racer-find-definition-other-window)
 
   (setq company-tooltip-align-annotations t))
 
