@@ -1323,7 +1323,8 @@ https://www.reddit.com/r/emacs/comments/9vk7iz/emacs_popup_shell/
 :PROPERTIES:
 :ID:       ec389356-a95f-4d2e-b4a1-f7e16fe455e4
 :END:
-*** org-drill
+*** CANCELLED org-drill                                         :CANCELLED:
+CLOSED: [2020-03-15 Sun 14:04]
 :PROPERTIES:
 :ID:       8dcdc647-8959-4d2c-940d-ec9eb5880ee6
 :END:
