@@ -2064,15 +2064,15 @@ https://koenig-haunstetten.de/2018/02/17/improving-my-orgmode-workflow/
   text and copying to the killring."
          (interactive)
          (when (eq major-mode 'org-agenda-mode) ;switch to orgmode
-       (org-agenda-show)
-       (org-agenda-goto))
+           (org-agenda-show)
+           (org-agenda-goto))
          (when (eq major-mode 'org-mode) ; do this only in org-mode buffers
-       (setq mytmphead (nth 4 (org-heading-components)))
+           (setq mytmphead (nth 4 (org-heading-components)))
            (setq mytmpid (funcall 'org-id-get-create))
-       (setq mytmplink (format "[[id:%s][%s]]" mytmpid mytmphead))
-       (kill-new mytmplink)
-       (message "Copied %s to killring (clipboard)" mytmplink)
-         ))
+           (setq mytmplink (format "[[id:%s][%s]]" mytmpid mytmphead))
+           (kill-new mytmplink)
+           (message "Copied %s to killring (clipboard)" mytmplink)
+           ))
 
   (global-set-key (kbd "<f5>") 'my/copy-idlink-to-clipboard)
 #+end_src
@@ -3116,4 +3116,33 @@ CLOSED: [2019-12-21 Sat 18:49]
     </div>
     "
     ))
+#+end_src
+* diff
+:PROPERTIES:
+:ID:       8ddca48b-6974-418f-9173-39dc9db4c0e7
+:END:
+
+https://oremacs.com/2015/01/17/setting-up-ediff/
+
+#+begin_src emacs-lisp
+  (setq ediff-diff-program "C:/msys64/usr/bin/diff.exe")
+
+  (defmacro csetq (variable value)
+    `(funcall (or (get ',variable 'custom-set)
+                  'set-default)
+              ',variable ,value))
+
+
+  (csetq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+  (csetq ediff-split-window-function 'split-window-horizontally)
+
+  (csetq ediff-diff-options "-w")
+
+  (defun ora-ediff-hook ()
+    (ediff-setup-keymap)
+    (define-key ediff-mode-map "j" 'ediff-next-difference)
+    (define-key ediff-mode-map "k" 'ediff-previous-difference))
+
+  (add-hook 'ediff-mode-hook 'ora-ediff-hook)
 #+end_src
