@@ -1019,6 +1019,7 @@ http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html
     :init (add-hook 'pre-command-hook 'evil-escape-pre-command-hook))
 
   (use-package evil-collection
+    :defer 1
     :after evil
     :config
     (evil-collection-init))
