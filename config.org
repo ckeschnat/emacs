@@ -1362,7 +1362,7 @@ CLOSED: [2020-03-15 Sun 14:04]
       (setq org-agenda-files (list my-org-dir)))
 
     (when (my-system-type-is-gnu)
-      (setq my-org-dir "~/org/"))
+      (setq my-org-dir "~/docs/org/"))
 
     (when (my-system-is-mypc)
       (setq my-org-dir "c:/docs/org/"
