@@ -2781,7 +2781,7 @@ https://prathamesh.tech/2019/06/21/creating-pull-requests-from-emacs/
              (magit-get-current-branch))))
 
   (eval-after-load 'magit
-    '(define-key magit-mode-map "h"
+    '(define-key magit-mode-map "i"
        #'endless/visit-pull-request-url-gitlab))
 #+end_src
 
