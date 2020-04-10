@@ -1841,6 +1841,26 @@ https://github.com/sabof/org-bullets/issues/11#issuecomment-439228372
 #+BEGIN_SRC emacs-lisp
   (setq inhibit-compacting-font-caches t)
 #+END_SRC
+*** CANCELLED org-roam                                          :CANCELLED:
+CLOSED: [2020-04-10 Fri 12:14]
+:PROPERTIES:
+:ID:       407a9c56-56a6-4baf-8870-e7e41fe26757
+:END:
+
+#+begin_src emacs-lisp
+  (use-package org-roam
+        :hook
+        (after-init . org-roam-mode)
+        :custom
+        (org-roam-directory "c:/docs/org/roam")
+        :bind (:map org-roam-mode-map
+                (("C-c n l" . org-roam)
+                 ("C-c n f" . org-roam-find-file)
+                 ("C-c n g" . org-roam-show-graph))
+                :map org-mode-map
+                (("C-c n i" . org-roam-insert))))
+#+end_src
+
 *** org-journal
 :PROPERTIES:
 :ID:       9d27471e-2812-44a2-9da8-a01c874b6c95
@@ -1848,7 +1868,7 @@ https://github.com/sabof/org-bullets/issues/11#issuecomment-439228372
 
 https://www.reddit.com/r/emacs/comments/8kz8dv/tip_how_i_use_orgjournal_to_improve_my/
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
   (use-package org-journal
     :ensure t
     :after org
@@ -2987,6 +3007,7 @@ https://www.reddit.com/r/orgmode/comments/8rl8ep/making_orgcaldav_useable/
 
 https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in_fewer_than_20/
 
+try again with this? http://blog.binchen.org/posts/how-to-speed-up-lsp-mode.html
 #+begin_src emacs-lisp
   ;; (use-package lsp-mode
   ;;   :commands lsp
