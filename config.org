@@ -3139,7 +3139,7 @@ CLOSED: [2019-12-21 Sat 18:49]
     "
     ))
 #+end_src
-* diff
+* Diff
 :PROPERTIES:
 :ID:       8ddca48b-6974-418f-9173-39dc9db4c0e7
 :END:
