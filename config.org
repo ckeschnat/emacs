@@ -1455,7 +1455,8 @@ https://www.reddit.com/r/emacs/comments/9vk7iz/emacs_popup_shell/
   (defun eshell/x ()
     (kill-buffer-and-window)) ; (I also set kill-buffer-and-window to C-x K)
 #+END_SRC
-* Projectile
+* CANCELLED Projectile                                            :CANCELLED:
+CLOSED: [2020-04-26 Sun 22:33]
 :PROPERTIES:
 :ID:       f175febc-5dfa-4279-a3e1-2105aa5a5cad
 :END:
