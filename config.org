@@ -2858,7 +2858,8 @@ https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-fro
 
   (add-hook 'python-mode-hook 'my/python-mode-hook)
 #+END_SRC
-* Yasnippets
+* CANCELLED Yasnippets                                            :CANCELLED:
+CLOSED: [2020-04-26 Sun 22:55]
 :PROPERTIES:
 :ID:       7e8d1186-89ad-4b60-a6fc-96295c41cd4b
 :END:
