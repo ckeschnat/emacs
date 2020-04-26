@@ -1370,6 +1370,10 @@ CLOSED: [2020-04-24 Fri 18:03]
 
 https://protesilaos.com/dotemacs/#h:751a310d-c63e-461c-a6e1-dfdfdb01cb92
 
+If =dired-listing-switches= is set, =ls-list-dirs-first= does not work anymore, put inside linux block if needed?
+=dired-dwim-target=: I did not understand what =target= meant in the documentation. It means the target for operations
+like copying. So with this set you can copy like in Freecommander etc., see [[http://ergoemacs.org/emacs/emacs_dired_tips.html][here]]
+
 #+begin_src emacs-lisp
   (use-package dired
     :ensure nil
@@ -1379,9 +1383,10 @@ https://protesilaos.com/dotemacs/#h:751a310d-c63e-461c-a6e1-dfdfdb01cb92
     (setq delete-by-moving-to-trash t)
     ;; (setq dired-listing-switches
     ;;       "-AGFhlv --group-directories-first --time-style=long-iso")
-    ;; (setq dired-dwim-target t)
-    ;; :hook ((dired-mode . dired-hide-details-mode)
-    ;;        (dired-mode . hl-line-mode)))
+    (setq ls-lisp-dirs-first t)
+    (setq dired-dwim-target t)
+    :hook ((dired-mode . dired-hide-details-mode)
+           (dired-mode . hl-line-mode)))
 
   ;; (use-package dired-aux
   ;;   :ensure nil
@@ -1402,13 +1407,28 @@ https://protesilaos.com/dotemacs/#h:751a310d-c63e-461c-a6e1-dfdfdb01cb92
   ;;         '("-ls" . "-AGFhlv --group-directories-first --time-style=long-iso"))
   ;;   (setq find-name-arg "-iname"))
 
-  ;; (use-package async
-  ;;   :ensure)
+  (use-package async
+    :ensure t)
 
-  ;; (use-package dired-async
-  ;;   :ensure nil
-  ;;   :after (dired async)
-   :hook (dired-mode . dired-async-mode))
+  (use-package dired-async
+    :ensure nil
+    :after (dired async)
+    :hook (dired-mode . dired-async-mode))
+#+end_src
+
+#+begin_src emacs-lisp
+  (add-hook 'dired-load-hook
+                 (lambda ()
+                   (load "dired-x")
+                   ;; Set dired-x global variables here.  For example:
+                   ;; (setq dired-guess-shell-gnutar "gtar")
+                   ;; (setq dired-x-hands-off-my-keys nil)
+                   ))
+       (add-hook 'dired-mode-hook
+                 (lambda ()
+                   ;; Set dired-x buffer-local variables here.  For example:
+                   (dired-omit-mode 1)
+                   ))
 #+end_src
 * eshell
 :PROPERTIES:
