@@ -1388,16 +1388,14 @@ like copying. So with this set you can copy like in Freecommander etc., see [[ht
     :hook ((dired-mode . dired-hide-details-mode)
            (dired-mode . hl-line-mode)))
 
-  ;; (use-package dired-aux
-  ;;   :ensure nil
-  ;;   :config
-  ;;   (setq dired-isearch-filenames 'dwim)
-  ;;   ;; The following variables were introduced in Emacs 27.1
-  ;;   (setq dired-create-destination-dirs 'ask)
-  ;;   (setq dired-vc-rename-file t)
-  ;;   :bind (:map dired-mode-map
-  ;;               ("C-+" . dired-create-empty-file)
-  ;;               ("M-s f" . nil)))
+  (use-package dired-aux
+    :ensure nil
+    :config
+    ;;   (setq dired-isearch-filenames 'dwim)
+    (setq dired-create-destination-dirs 'ask)
+    ;;   ;; The following variables were introduced in Emacs 27.1
+    ;;   (setq dired-vc-rename-file t)
+    )
 
   ;; (use-package find-dired
   ;;   :ensure nil
