@@ -596,7 +596,7 @@ This lets you use =C-x u= (=undo-tree-visualize=) to visually walk through the c
 
 #+BEGIN_SRC emacs-lisp
   (use-package undo-tree
-    :diminish undo-tree-mode
+    :delight undo-tree-mode
     :config
     (progn
       (global-undo-tree-mode)
@@ -1212,7 +1212,7 @@ Use amx to save recent M-x items
 
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
-    :diminish (ivy-mode . "") ; does not display ivy in the modeline
+    :delight
     :init (ivy-mode 1)        ; enable ivy globally at startup
     ;:bind (:map ivy-mode-map  ; bind in the ivy buffer
     ;       ("C-'" . ivy-avy)) ; C-' to ivy-avy
@@ -1280,7 +1280,7 @@ Use amx to save recent M-x items
       "C-d"  'avy-goto-char-timer))
 
   (use-package counsel
-    :diminish
+    :delight
     :after ivy
   ;  :bind*                           ; load counsel when pressed
   ;  (("M-x"     . counsel-M-x)       ; M-x use counsel
@@ -2825,7 +2825,7 @@ https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-fro
 #+BEGIN_SRC emacs-lisp
   (use-package company
     :hook (prog-mode . company-mode)
-    :diminish
+    :delight
     :custom
     (company-begin-commands '(self-insert-command))
     (company-idle-delay .1)
@@ -2838,11 +2838,11 @@ https://emacs.stackexchange.com/questions/13286/how-can-i-stop-the-enter-key-fro
     :config
     (use-package company-go
       :after company
-      :diminish)
+      :delight)
 
     (use-package company-jedi
       :after company
-      :diminish)
+      :delight)
 
     (general-define-key
      :states '(insert motion)
