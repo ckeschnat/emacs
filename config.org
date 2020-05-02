@@ -1381,8 +1381,16 @@ like copying. So with this set you can copy like in Freecommander etc., see [[ht
     (setq dired-recursive-copies 'always)
     (setq dired-recursive-deletes 'always)
     (setq delete-by-moving-to-trash t)
+    (setq dired-auto-revert-buffer t)
+    ;; https://emacs.stackexchange.com/questions/29228/how-to-stop-dired-printing-reverting-buffer
+    ; auto-revert-verbose
+    ;; http://pragmaticemacs.com/emacs/automatically-revert-buffers/
+    ;; auto refresh dired when file changes
+    (add-hook 'dired-mode-hook 'auto-revert-mode)
+
     ;; (setq dired-listing-switches
     ;;       "-AGFhlv --group-directories-first --time-style=long-iso")
+    (setq dired-listing-switches "-alh")
     (setq ls-lisp-dirs-first t)
     (setq dired-dwim-target t)
     :hook ((dired-mode . dired-hide-details-mode)
