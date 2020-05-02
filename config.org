@@ -1393,8 +1393,7 @@ like copying. So with this set you can copy like in Freecommander etc., see [[ht
     (setq dired-listing-switches "-alh")
     (setq ls-lisp-dirs-first t)
     (setq dired-dwim-target t)
-    :hook ((dired-mode . dired-hide-details-mode)
-           (dired-mode . hl-line-mode)))
+    :hook ((dired-mode . hl-line-mode)))
 
   (use-package dired-aux
     :ensure nil
