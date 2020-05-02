@@ -1412,6 +1412,16 @@ like copying. So with this set you can copy like in Freecommander etc., see [[ht
     :ensure nil
     :after (dired async)
     :hook (dired-mode . dired-async-mode))
+
+  (use-package dired-narrow
+    :ensure t
+    :after dired
+    :config
+    (setq dired-narrow-exit-when-one-left t)
+    (setq dired-narrow-enable-blinking t)
+    (setq dired-narrow-blink-time 0.3)
+    :bind (:map dired-mode-map
+           ("M-s n" . dired-narrow-fuzzy)))
 #+end_src
 
 #+begin_src emacs-lisp
