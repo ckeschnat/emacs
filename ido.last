@@ -1,0 +1,30 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("c:/docs/" . "books/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+
+)
+
+;; ----- ido-work-file-list -----
+(
+
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("c:/docs/books/" (23830 16967 0 0) "the_c_programming_language_2.pdf" "PAIP-part1.pdf" "Finanzwesir/" "awesomeasciidoctornotebook.pdf" "awesomeasciidoctornotebook.epub" "../" "./")
+
+ ("c:/docs/android/" (24044 15544 0 0) "update.zip" "../" "./")
+
+ ("c:/docs/" (24234 58913 0 0) "ynab_to_ledger/" "wohnung.org" "Unterlagen/" "unison/" "supermemo/" "smimport.txt" "share/" "ql/" "putty_colors.reg" "putty/" "org/" "Ninite 7Zip Blender Chrome CutePDF Discord Dropbox Installer.exe" "media/" "math/" "Kyra/" "keepass/" "g.txt" "duplicati/" "ct_Linux_2014.pdf" "books/" "bookmarks/" "blog/" "Ausweis/" "archive/" "android/" "activaid/" "8.txt" "4kblack.sddoc" "../" "./")
+
+ ("c:/docs/org/" (24241 45679 0 0) "worktasks.org" "work.txt" "work.org" "work.html" "themes/" "templates/" "styles/" "roam/" "review.org" "playground.txt" "plan-work.org" "plan-home.org" "ledger/" "journal/" "inbox.org" "hometasks.org" "home.org" "goals.org" "Getting Started with Orgzly.txt" "flycheck_.dir-locals.elc" "data/" "css/" "calendar/" "blog.org" "archive/" ".stversions/" ".stignore" ".stfolder/" ".pcmm" ".gitignore" ".git/" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
