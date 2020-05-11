@@ -1363,6 +1363,16 @@ CLOSED: [2020-04-24 Fri 18:03]
     (ranger-override-dired-mode t)
   )
 #+END_SRC
+* ibuffer
+:PROPERTIES:
+:ID:       e0907756-d2c3-482d-aa9b-12d3eed6190b
+:END:
+#+begin_src emacs-lisp
+  (use-package ibuffer
+    :ensure nil
+    :config
+    :bind ("C-x C-b" . ibuffer))
+#+end_src
 * dired
 :PROPERTIES:
 :ID:       50375ec7-e75a-464f-9b2e-0ee3715db323
