@@ -509,6 +509,25 @@ See [[https://www.masteringemacs.org/article/working-coding-systems-unicode-emac
 #+BEGIN_SRC emacs-lisp
   (setq help-window-select t)
 #+END_SRC
+*** helpful
+:PROPERTIES:
+:ID:       273fb4f0-dfcc-40d2-a61c-d4630156ff44
+:END:
+#+begin_src emacs-lisp
+  (use-package helpful
+    :ensure t
+    :defer nil
+    :config
+    ;; Note that the built-in `describe-function' includes both functions
+    ;; and macros. `helpful-function' is functions only, so we provide
+    ;; `helpful-callable' as a drop-in replacement.
+    (global-set-key (kbd "C-h f") #'helpful-callable)
+
+    (global-set-key (kbd "C-h v") #'helpful-variable)
+    (global-set-key (kbd "C-h k") #'helpful-key)
+    (setq counsel-describe-function-function #'helpful-callable)
+    (setq counsel-describe-variable-function #'helpful-variable))
+#+end_src
 *** Parens
 :PROPERTIES:
 :ID:       443938e6-70ec-42f1-9b4f-ad8ba722cfa8
