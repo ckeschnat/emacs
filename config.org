@@ -1581,13 +1581,13 @@ CLOSED: [2020-03-15 Sun 14:04]
       (interactive)
       (setq my-org-dir "c:/docs/org/")
       (setq org-agenda-files (list my-org-dir))
-      (setq org-agenda-tag-filter-preset '("-@work" "-REFILE")))
+      (setq org-agenda-tag-filter-preset '("-@work" "-REFILE" "-blogposts")))
 
     (defun ck-set-work-agenda ()
       (interactive)
       (setq my-org-dir "c:/docs/org/")
       (setq org-agenda-files (list my-org-dir))
-      (setq org-agenda-tag-filter-preset '("-@home" "-REFILE")))
+      (setq org-agenda-tag-filter-preset '("-@home" "-REFILE" "-blogposts")))
 
     (defun ck-set-calendar-agenda ()
       (interactive)
@@ -1599,15 +1599,15 @@ CLOSED: [2020-03-15 Sun 14:04]
 
     (when (my-system-is-mypc)
       (setq my-org-dir "c:/docs/org/"
-            org-agenda-tag-filter-preset '("-@work" "-REFILE")))
+            org-agenda-tag-filter-preset '("-@work" "-REFILE" "-blogposts")))
 
     (when (my-system-is-myoldworkpc)
       (setq my-org-dir "c:/Users/chris.keschnat/Documents/docs/org/"
-            org-agenda-tag-filter-preset '("-@home" "-REFILE")))
+            org-agenda-tag-filter-preset '("-@home" "-REFILE" "-blogposts")))
 
     (when (my-system-is-myworkpc)
       (setq my-org-dir "c:/docs/org/"
-            org-agenda-tag-filter-preset '("-@home" "-REFILE")))
+            org-agenda-tag-filter-preset '("-@home" "-REFILE" "-blogposts")))
 
     :mode
     (("\\.txt$" . org-mode))
