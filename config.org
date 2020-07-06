@@ -1919,6 +1919,8 @@ https://koenig-haunstetten.de/2017/10/29/a-small-hack-for-my-daily-plan/
                  (file "c:/docs/org/templates/tpl-dailyplan.txt") :immediate-finish t)
                 ("pr" "Weekly Review" plain (file+olp+datetree "c:/docs/org/review.org")
                  (file "c:/docs/org/templates/tpl-weeklyreview.txt") :immediate-finish t)
+                ("pm" "Meditation" plain (file+olp+datetree "c:/docs/org/meditation.org")
+                 (file "c:/docs/org/templates/tpl-meditation.txt") :immediate-finish t)
                 )))
 
   (defun daily-plan-home-visit ()
